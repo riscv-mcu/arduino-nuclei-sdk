@@ -1,0 +1,8 @@
+menu.clksrc=CPU Clock Frequency
+menu.burn_baudrate=Burn Baud Rate
+menu.toolsloc=Tool Install Location
+
+##################################################
+########### GD32VF103 RV-STAR Board ##############
+
+rvstar.name=GD32VF103 RV-STAR Board

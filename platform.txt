@@ -1,0 +1,4 @@
+name=gd32vduino
+version=0.0.9
+
+# Compile variables

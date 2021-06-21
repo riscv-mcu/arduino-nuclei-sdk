@@ -1,0 +1,1 @@
+rvdebugger.name=Nuclei RV Debugger
