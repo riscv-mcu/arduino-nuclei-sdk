@@ -2,3 +2,104 @@ name=gd32vduino
 version=0.0.9
 
 # Compile variables
+
+## GCC tools path
+compiler.path={runtime.tools.riscv-nuclei-elf-gcc.path}/bin/
+compiler.c.cmd=riscv-nuclei-elf-gcc
+compiler.c.elf.cmd=riscv-nuclei-elf-gcc
+compiler.S.cmd=riscv-nuclei-elf-gcc
+compiler.cpp.cmd=riscv-nuclei-elf-g++
+compiler.ld.cmd=riscv-nuclei-elf-ld
+compiler.ar.cmd=riscv-nuclei-elf-gcc-ar
+compiler.objcopy.cmd=riscv-nuclei-elf-objcopy
+compiler.elf2hex.cmd=riscv-nuclei-elf-objcopy
+compiler.size.cmd=riscv-nuclei-elf-size
+
+## C CODE path
+compiler.sdk.path={runtime.platform.path}/cores/arduino/nuclei_sdk
+compiler.build.path={runtime.platform.path}/cores/arduino/nuclei_sdk/build
+compiler.nmsis.path={runtime.platform.path}/cores/arduino/nuclei_sdk/NMSIS
+compiler.soc.path={runtime.platform.path}/cores/arduino/nuclei_sdk/SoC
+compiler.cores.path={runtime.platform.path}/cores/arduino
+
+## Compile flags
+compiler.preproc.flags="-I{build.system.path}/include" "-I{compiler.cores.path}" "-I{compiler.cores.path}/avr" "-I{compiler.cores.path}/gd32v" "-I{compiler.soc.path}/gd32vf103/Board/gd32vf103_rvstar/Include" "-I{compiler.soc.path}/gd32vf103/Board/gd32vf103_rvstar/Source" "-I{compiler.soc.path}/gd32vf103/Board/gd32vf103_rvstar/Source/GCC" "-I{compiler.soc.path}/gd32vf103/Common/Include" "-I{compiler.soc.path}/gd32vf103/Common/Source" "-I{compiler.soc.path}/gd32vf103/Common/Source/Drivers" "-I{compiler.soc.path}/gd32vf103/Common/Source/GCC" "-I{compiler.soc.path}/gd32vf103/Common/Source/Stubs" "-I{compiler.nmsis.path}/Core/Include" 
+
+compiler.both.flags= -Os -Wall -march=rv32imac -mabi=ilp32 -mcmodel=medlow -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common
+
+compiler.debug.flags=
+
+compiler.c.flags=-c {compiler.debug.flags} {compiler.both.flags} {compiler.preproc.flags} -std=gnu11
+
+compiler.cpp.flags=-c {compiler.debug.flags} {compiler.both.flags} {compiler.preproc.flags} -std=gnu++17 -fpermissive 
+
+compiler.ld.flags=-march=rv32imac -mabi=ilp32 -mcmodel=medlow -nostartfiles -Xlinker --gc-sections --specs=nano.specs -Os -T {build.ldscript} -Wl,--wrap=puts 
+
+compiler.S.flags=-c {compiler.debug.flags} {compiler.both.flags} {compiler.preproc.flags} -x assembler-with-cpp
+
+compiler.ar.flags=rc
+
+compiler.objcopy.eep.flags=
+
+compiler.elf2hex.flags=-R .rel.dyn
+
+compiler.define=-DARDUINO=
+
+compiler.c.extra_flags=-DF_CPU={build.f_cpu} -D{build.board} -DUSE_STDPERIPH_DRIVER -DHXTAL_VALUE={build.hxtal_value}
+
+compiler.c.elf.extra_flags=
+
+compiler.cpp.extra_flags=-DF_CPU={build.f_cpu} -D{build.board} -DUSE_STDPERIPH_DRIVER -DHXTAL_VALUE={build.hxtal_value}
+
+compiler.S.extra_flags=-DF_CPU={build.f_cpu} -D{build.board} -DUSE_STDPERIPH_DRIVER -DHXTAL_VALUE={build.hxtal_value}
+
+compiler.ar.extra_flags=
+
+compiler.elf2hex.extra_flags=
+
+# Can be overridden in boards.txt
+build.extra_flags=
+
+# USB Flags
+# ---------
+build.usb_flags=
+build.openocdcfg=
+
+# Compile patterns
+# ---------------------
+
+## Compile S files
+recipe.S.o.pattern="{compiler.path}{compiler.c.cmd}" {compiler.S.flags} -DARDUINO={runtime.ide.version} {compiler.S.extra_flags} {build.extra_flags} {includes} "{source_file}" -o "{object_file}"
+
+## Compile c files
+recipe.c.o.pattern="{compiler.path}{compiler.c.cmd}" {compiler.c.flags} -DARDUINO={runtime.ide.version} {compiler.c.extra_flags} {build.extra_flags} {includes} "{source_file}" -o "{object_file}"
+
+## Compile c++ files
+recipe.cpp.o.pattern="{compiler.path}{compiler.cpp.cmd}" {compiler.cpp.flags} -DARDUINO={runtime.ide.version} {compiler.cpp.extra_flags} {build.extra_flags} {includes} "{source_file}" -o "{object_file}"
+
+## Create archives
+recipe.ar.pattern="{compiler.path}{compiler.ar.cmd}" {compiler.ar.flags} {compiler.ar.extra_flags} "{archive_file_path}" "{object_file}"
+
+## Link gc-sections, archives, and objects
+recipe.c.combine.pattern="{compiler.path}{compiler.cpp.cmd}" {compiler.ld.flags} {build.extra_flags} {object_files} -o "{build.path}/{build.project_name}.elf" -Wl,--start-group -lc -Wl,--end-group -Wl,--start-group -lc "{archive_file_path}" -Wl,--end-group
+
+## Create binary
+recipe.objcopy.eep.pattern="{compiler.path}{compiler.objcopy.cmd}" {compiler.objcopy.eep.flags} --output-format=binary "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.bin"
+
+## Create hex
+recipe.objcopy.hex.pattern="{compiler.path}{compiler.elf2hex.cmd}" {compiler.elf2hex.flags} -O ihex "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.hex"
+
+## Compute size
+recipe.size.pattern="{compiler.path}{compiler.size.cmd}" -B "{build.path}/{build.project_name}.elf"
+recipe.size.regex=\s*[0-9]+\s+[0-9]+\s+[0-9]+\s+([0-9]+).*
+
+## Save hex
+recipe.output.tmp_file={build.project_name}.bin
+recipe.output.save_file={build.project_name}.{build.variant}.bin
+
+# Uploader tools
+## Openocd (Debug tools)
+tools.openocd.cmd=openocd
+tools.openocd.path={runtime.tools.openocd.path}/bin/
+tools.openocd.program.config={program.params.config}
+tools.openocd.program.pattern="{path}{cmd}" -s {runtime.tools.openocd.path}/share/openocd/scripts -f interface/{program.config} -c "transport select jtag" -f target/gd32vf103.cfg -c "adapter_khz 1000" -c "init; halt;" -c "flash protect 0 0 last off; program {{build.path}/{build.project_name}.elf} verify; mww 0xe004200c 0x4b5a6978; mww 0xe0042008 0x01; resume; exit 0;"
