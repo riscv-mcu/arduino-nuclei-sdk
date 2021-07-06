@@ -1,6 +1,6 @@
 {
     "name": "framework-arduino-nuclei",
     "description": "Arduino Wiring-based Framework (Nuclei SDK)",
-    "version": "0.0.9",
-    "url": "https://gitee.com/CasPaPaPa_Personal/arduino-nuclei-sdk"
+    "version": "0.1.0",
+    "url": "https://www.rvmcu.com"
 }

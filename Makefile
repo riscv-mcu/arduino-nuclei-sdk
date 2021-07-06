@@ -7,18 +7,18 @@ SRCDIRS := .\
 		   .\cores\arduino\avr\
 		   .\cores\arduino\gd32v\
 		   .\variants\RVSTAR\
-		   .\libraries\SPI\src\
-		   .\libraries\Wire\src\
-		   .\libraries\Wire\src\utility\
+		   .\libraries\SPI\
+		   .\libraries\Wire\
+		   .\libraries\Wire\utility\
 
 INCDIRS := .\
 		   .\cores\arduino\
 		   .\cores\arduino\avr\
 		   .\cores\arduino\gd32v\
 		   .\variants\RVSTAR\
-		   .\libraries\SPI\src\
-		   .\libraries\Wire\src\
-		   .\libraries\Wire\src\utility\
+		   .\libraries\SPI\
+		   .\libraries\Wire\
+		   .\libraries\Wire\utility\
 
 
 include $(NUCLEI_SDK_ROOT)/Build/Makefile.base

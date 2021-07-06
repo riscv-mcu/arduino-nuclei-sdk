@@ -2,6 +2,10 @@
 
 #define MAX_FREQ  65535
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void tone(uint8_t pin, unsigned int freq)
 {
     if(analogPinToTimer(pin) != 0 && freq >= 0)
@@ -59,3 +63,7 @@ void noTone(uint8_t pin)
 {
     timer_deinit(analogPinToTimer(pin));
 }
+
+#ifdef __cplusplus
+}
+#endif

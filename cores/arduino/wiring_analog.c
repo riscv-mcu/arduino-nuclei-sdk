@@ -45,6 +45,11 @@ extern uint32_t analogRead(uint32_t pin)
 
 extern void analogWrite(uint32_t awPin, uint32_t awVal)
 {
+    if(awVal < 0 ) return;
+    if(awVal > 255) {
+        awVal = 255;
+    }
+
     // system clocks configuration
     rcu_periph_clock_enable(analogPinToPortRCU(awPin));
     rcu_periph_clock_enable(RCU_AF);
@@ -65,14 +70,14 @@ extern void analogWrite(uint32_t awPin, uint32_t awVal)
     timer_initpara.prescaler         = 107;
     timer_initpara.alignedmode       = TIMER_COUNTER_EDGE;
     timer_initpara.counterdirection  = TIMER_COUNTER_UP;
-    timer_initpara.period            = 999;
+    timer_initpara.period            = 9999;
     timer_initpara.clockdivision     = TIMER_CKDIV_DIV1;
     timer_initpara.repetitioncounter = 0;
     timer_init(analogPinToTimer(awPin), &timer_initpara);
 
     /* initialize TIMER channel output parameter struct */
     timer_channel_output_struct_para_init(&timer_ocinitpara);
-    /* CH0, CH1 and CH2 configuration in PWM mode */
+    /* CHconfiguration in PWM mode */
     timer_ocinitpara.outputstate  = TIMER_CCX_ENABLE;
     timer_ocinitpara.outputnstate = TIMER_CCXN_DISABLE;
     timer_ocinitpara.ocpolarity   = TIMER_OC_POLARITY_HIGH;
@@ -82,8 +87,8 @@ extern void analogWrite(uint32_t awPin, uint32_t awVal)
 
     timer_channel_output_config(analogPinToTimer(awPin),analogPinToTimerChannel(awPin),&timer_ocinitpara);
 
-    /* CH2 configuration in PWM mode1, duty cycle: (awVal / 255) * 100% */
-    timer_channel_output_pulse_value_config(analogPinToTimer(awPin),analogPinToTimerChannel(awPin), awVal*999/255);
+    /* CH configuration in PWM mode1, duty cycle: (awVal / 255) * 100% */
+    timer_channel_output_pulse_value_config(analogPinToTimer(awPin),analogPinToTimerChannel(awPin), awVal*9999/255);
     timer_channel_output_mode_config(analogPinToTimer(awPin),analogPinToTimerChannel(awPin), TIMER_OC_MODE_PWM0);
     timer_channel_output_shadow_config(analogPinToTimer(awPin),analogPinToTimerChannel(awPin), TIMER_OC_SHADOW_DISABLE);
 

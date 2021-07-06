@@ -1,5 +1,5 @@
 name=gd32vduino
-version=0.0.9
+version=0.1.0
 
 # Compile variables
 
@@ -16,22 +16,22 @@ compiler.elf2hex.cmd=riscv-nuclei-elf-objcopy
 compiler.size.cmd=riscv-nuclei-elf-size
 
 ## C CODE path
+compiler.cores.path={runtime.platform.path}/cores/arduino
 compiler.sdk.path={runtime.platform.path}/cores/arduino/nuclei_sdk
 compiler.build.path={runtime.platform.path}/cores/arduino/nuclei_sdk/build
 compiler.nmsis.path={runtime.platform.path}/cores/arduino/nuclei_sdk/NMSIS
 compiler.soc.path={runtime.platform.path}/cores/arduino/nuclei_sdk/SoC
-compiler.cores.path={runtime.platform.path}/cores/arduino
 
 ## Compile flags
-compiler.preproc.flags="-I{build.system.path}/include" "-I{compiler.cores.path}" "-I{compiler.cores.path}/avr" "-I{compiler.cores.path}/gd32v" "-I{compiler.soc.path}/gd32vf103/Board/gd32vf103_rvstar/Include" "-I{compiler.soc.path}/gd32vf103/Board/gd32vf103_rvstar/Source" "-I{compiler.soc.path}/gd32vf103/Board/gd32vf103_rvstar/Source/GCC" "-I{compiler.soc.path}/gd32vf103/Common/Include" "-I{compiler.soc.path}/gd32vf103/Common/Source" "-I{compiler.soc.path}/gd32vf103/Common/Source/Drivers" "-I{compiler.soc.path}/gd32vf103/Common/Source/GCC" "-I{compiler.soc.path}/gd32vf103/Common/Source/Stubs" "-I{compiler.nmsis.path}/Core/Include" 
+compiler.preproc.flags="-D DOWNLOAD_MODE"  "-I{build.system.path}/include" "-I{compiler.cores.path}"  "-I{compiler.soc.path}/gd32vf103\Board\gd32vf103v_rvstar\Include" "-I{compiler.soc.path}/gd32vf103/Common/Include" "-I{compiler.soc.path}/gd32vf103/Common/Include/Usb" "-I{compiler.nmsis.path}/Core/Include" "-I{compiler.cores.path}/avr" "-I{compiler.cores.path}/gd32v" "-I{compiler.soc.path}/gd32vf103/Board/gd32vf103v_rvstar/Source" "-I{compiler.soc.path}/gd32vf103/Board/gd32vf103v_rvstar/Source/GCC" "-I{compiler.soc.path}/gd32vf103/Common/Source/Drivers" "-I{compiler.soc.path}/gd32vf103/Common/Source/GCC" "-I{compiler.soc.path}/gd32vf103/Common/Source/Stubs" "-I{compiler.soc.path}/gd32vf103/Common/Source"
 
 compiler.both.flags= -Os -Wall -march=rv32imac -mabi=ilp32 -mcmodel=medlow -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common
 
 compiler.debug.flags=
 
-compiler.c.flags=-c {compiler.debug.flags} {compiler.both.flags} {compiler.preproc.flags} -std=gnu11
+compiler.c.flags=-c {compiler.debug.flags} {compiler.both.flags} {compiler.preproc.flags}
 
-compiler.cpp.flags=-c {compiler.debug.flags} {compiler.both.flags} {compiler.preproc.flags} -std=gnu++17 -fpermissive 
+compiler.cpp.flags=-c {compiler.debug.flags} {compiler.both.flags} {compiler.preproc.flags} -fpermissive 
 
 compiler.ld.flags=-march=rv32imac -mabi=ilp32 -mcmodel=medlow -nostartfiles -Xlinker --gc-sections --specs=nano.specs -Os -T {build.ldscript} -Wl,--wrap=puts 
 
@@ -101,5 +101,4 @@ recipe.output.save_file={build.project_name}.{build.variant}.bin
 ## Openocd (Debug tools)
 tools.openocd.cmd=openocd
 tools.openocd.path={runtime.tools.openocd.path}/bin/
-tools.openocd.program.config={program.params.config}
-tools.openocd.program.pattern="{path}{cmd}" -s {runtime.tools.openocd.path}/share/openocd/scripts -f interface/{program.config} -c "transport select jtag" -f target/gd32vf103.cfg -c "adapter_khz 1000" -c "init; halt;" -c "flash protect 0 0 last off; program {{build.path}/{build.project_name}.elf} verify; mww 0xe004200c 0x4b5a6978; mww 0xe0042008 0x01; resume; exit 0;"
+tools.openocd.program.pattern="{path}{cmd}" -s {runtime.tools.openocd.path}/scripts -f {runtime.platform.path}/cores/arduino/nuclei_sdk/SoC/gd32vf103/Board/gd32vf103v_rvstar/openocd_gd32vf103.cfg -c "program {{build.path}/{build.project_name}.elf} verify; reset; resume; exit 0;"

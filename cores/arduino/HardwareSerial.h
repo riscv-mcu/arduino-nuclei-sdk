@@ -47,11 +47,6 @@
   typedef uint8_t rx_buffer_index_t;
 #endif
 
-typedef enum {
-  HALF_DUPLEX_DISABLED,
-  HALF_DUPLEX_ENABLED
-} HalfDuplexMode_t;
-
 #define SERIAL_8N1 0x06
 #define SERIAL_8N2 0x0E
 #define SERIAL_8E1 0x26
@@ -108,16 +103,6 @@ class HardwareSerial : public Stream {
       return true;
     }
 
-    // Enable half-duplex mode by setting the Rx pin to NC
-    // This needs to be done before the call to begin()
-    void setHalfDuplex(void);
-    bool isHalfDuplex(void) const;
-    void enableHalfDuplexRx(void);
-
-    // Interrupt handlers
-    static void _rx_complete_irq(void);
-    static int _tx_complete_irq(void);
-    
   private:
     uint8_t _config;
     unsigned long _baud;

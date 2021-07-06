@@ -1,1 +1,5 @@
 rvdebugger.name=Nuclei RV Debugger
+rvdebugger.communication=usb
+rvdebugger.program.params.verbose=-v
+rvdebugger.program.params.quiet=-q
+rvdebugger.program.tool=openocd

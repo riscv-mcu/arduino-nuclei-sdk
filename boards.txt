@@ -6,3 +6,35 @@ menu.toolsloc=Tool Install Location
 ########### GD32VF103 RV-STAR Board ##############
 
 rvstar.name=GD32VF103 RV-STAR Board
+
+## Toolchain
+rvstar.menu.toolsloc.default=Default
+rvstar.menu.toolsloc.default.compiler.path={runtime.tools.riscv-nuclei-elf-gcc.path}/bin/
+
+## CPU Clock
+rvstar.menu.clksrc.108=108MHz CPU Clock Frequency
+rvstar.menu.clksrc.108.build.f_cpu=108000000L
+
+## Burn baud rate
+rvstar.menu.burn_baudrate.115200=115200 bps
+rvstar.menu.burn_baudrate.115200.build.burn_baudrate=115200
+
+## This sets a define for use in the compiled code.
+rvstar.build.board=BOARD_GD32VF103_RVSTAR
+
+## Point to the file for ./variants/<variant>/pins_arduino.h
+rvstar.build.variant=RVSTAR
+
+## HXTAL freq value
+rvstar.build.hxtal_value=8000000UL
+
+## LXTAL freq value
+rvstar.build.lxtal_value=32768UL
+
+## This selects the tool from "programmers.txt"
+rvstar.program.tool=rvdebugger
+rvstar.upload.tool=rvdebugger
+
+## Limit is the 128KiB Flash. Assume half is used for something else.
+rvstar.upload.maximum_size=131072
+rvstar.build.ldscript={runtime.platform.path}/cores/arduino/nuclei_sdk/SoC/gd32vf103/Board/gd32vf103v_rvstar/Source/GCC/gcc_gd32vf103_flashxip.ld

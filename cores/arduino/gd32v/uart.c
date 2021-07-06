@@ -30,19 +30,16 @@ void uart_init(serial_t *obj_s, uint32_t baudrate, uint32_t databits, uint32_t p
 
 void uart_deinit(serial_t *obj_s)
 {
-    //usart_deinit(UART4);
     usart_deinit(obj_s->uart_periph);
 }
 
 void uart_write(serial_t *obj_s, uint8_t data, uint16_t size)
 {
-    //usart_data_transmit(UART4, data);
     usart_data_transmit(obj_s->uart_periph, data);
 }
 
 int uart_getc(serial_t *obj_s, unsigned char *c)
 {
-    //return usart_data_receive(UART4);
     return usart_data_receive(obj_s->uart_periph);
 }
 
