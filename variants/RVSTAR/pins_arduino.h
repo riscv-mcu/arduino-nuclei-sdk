@@ -1,8 +1,9 @@
 #ifndef _PINS_ARDUINO_H_
 #define _PINS_ARDUINO_H_
-#include "nuclei_sdk_hal.h"
 #include <stdbool.h>
 #include <stdlib.h>
+#include "nuclei_sdk_hal.h"
+
 
 #ifdef __cplusplus
 extern "C" {

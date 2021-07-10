@@ -1,4 +1,5 @@
 #include "pins_arduino.h"
+#include "nuclei_sdk_hal.h"
 
 gpio_dev_t gpioa = {
     .gpio_port = GPIOA,
@@ -84,9 +85,9 @@ const gd32v_pin_dev_t PIN_MAP[BOARD_GPIO_NUM] = {
     {&gpioc, GPIO_PIN_5, 0, 0, &adc1, ADC_CHANNEL_15}, // 19 - PC5 - A5 - ADC1_IN15
     {&gpiob, GPIO_PIN_11, 0, 0, 0, 0}, // 20 - PB11 - SDA
     {&gpiob, GPIO_PIN_10, 0, 0, 0, 0}, // 21 - PB10 - SCL
-    {&gpioa, GPIO_PIN_1, 0, 0, 0, 0},  // 22 - LED_G  - PA1
-    {&gpioa, GPIO_PIN_2, 0, 0, 0, 0},  // 23 - LED_R  - PA2
-    {&gpioa, GPIO_PIN_3, 0, 0, 0, 0}   // 24 - LED_B  - PA3
+    {&gpioa, GPIO_PIN_1, &timer4, TIMER_CH_1, 0, 0},  // 22 - LED_G  - PA1
+    {&gpioa, GPIO_PIN_2, &timer4, TIMER_CH_2, 0, 0},  // 23 - LED_R  - PA2
+    {&gpioa, GPIO_PIN_3, &timer4, TIMER_CH_3, 0, 0}   // 24 - LED_B  - PA3
 };
 
 const uart_dev_t UART_MAP[BOARD_UART_NUM] = {

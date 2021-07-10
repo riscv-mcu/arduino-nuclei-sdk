@@ -4,7 +4,7 @@
 extern "C" {
 #endif
 
-extern void pinMode(uint32_t pin, uint32_t mode)
+void pinMode(uint32_t pin, uint32_t mode)
 {
     if(pin >= BOARD_GPIO_NUM || pin < 0)
         return;
@@ -29,7 +29,7 @@ extern void pinMode(uint32_t pin, uint32_t mode)
     }
 }
 
-extern void digitalWrite(uint32_t pin, uint32_t val)
+void digitalWrite(uint32_t pin, uint32_t val)
 {
     if(pin >= BOARD_GPIO_NUM || pin < 0)
         return;
@@ -47,7 +47,7 @@ extern void digitalWrite(uint32_t pin, uint32_t val)
     }
 }
 
-extern int digitalRead(uint32_t pin)
+int digitalRead(uint32_t pin)
 {
     if(pin >= BOARD_GPIO_NUM || pin < 0)
         return LOW;

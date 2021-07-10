@@ -28,8 +28,6 @@
 #include "Stream.h"
 #include "gd32v/uart.h"
 
-#include "Arduino.h"
-
 #if !defined(SERIAL_TX_BUFFER_SIZE)
   #define SERIAL_TX_BUFFER_SIZE 64
 #endif
@@ -102,13 +100,12 @@ class HardwareSerial : public Stream {
     {
       return true;
     }
-
+    
   private:
     uint8_t _config;
     unsigned long _baud;
     void init(uint32_t _rx, uint32_t _tx);
 };
-
 
 #ifdef UART3
   extern HardwareSerial Serial;

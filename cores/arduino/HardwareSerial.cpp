@@ -136,6 +136,7 @@ size_t HardwareSerial::write(uint8_t c)
     if(_serial.tx_head == _serial.tx_tail && usart_flag_get(_serial.uart_periph, USART_FLAG_TBE)) {
 
         usart_data_transmit(_serial.uart_periph, c);
+        //delay_1ms(1);  // to optimize
         while(!usart_flag_get(_serial.uart_periph, USART_FLAG_TBE));
 
         return 1;

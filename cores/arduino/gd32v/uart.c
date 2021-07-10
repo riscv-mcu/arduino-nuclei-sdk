@@ -48,7 +48,7 @@ void UART3_IRQHandler(void)
     // get a char from the register to rx buffer and clear the flag
     if(RESET != usart_interrupt_flag_get(UART3, USART_INT_FLAG_RBNE)) {
         unsigned char c = usart_data_receive(UART3);
-        uint8_t i = (unsigned int)(obj[3]->rx_head + 1) % 64;
+        rx_buffer_index_t i = (unsigned int)(obj[3]->rx_head + 1) % SERIAL_RX_BUFFER_SIZE;
         
         if(i != obj[3]->rx_tail) {
             obj[3]->rx_buff[obj[3]->rx_head] = c;
@@ -58,7 +58,7 @@ void UART3_IRQHandler(void)
     // send a char from the tx buffer
     if(RESET != usart_interrupt_flag_get(UART3, USART_INT_FLAG_TBE)){
         unsigned char c = obj[3]->tx_buff[obj[3]->tx_tail];
-        obj[3]->tx_tail = ( obj[3]->tx_tail + 1 ) % 64;
+        obj[3]->tx_tail = ( obj[4]->tx_tail + 1 ) % SERIAL_TX_BUFFER_SIZE;
 
         usart_data_transmit(UART3, c);
 
@@ -73,7 +73,7 @@ void UART4_IRQHandler(void)
     // get a char from the register to rx buffer and clear the flag
     if(RESET != usart_interrupt_flag_get(UART4, USART_INT_FLAG_RBNE)) {
         unsigned char c = usart_data_receive(UART4);
-        uint8_t i = (unsigned int)(obj[4]->rx_head + 1) % 64;
+        rx_buffer_index_t i = (unsigned int)(obj[4]->rx_head + 1) % SERIAL_RX_BUFFER_SIZE;
         
         if(i != obj[4]->rx_tail) {
             obj[4]->rx_buff[obj[4]->rx_head] = c;
@@ -83,7 +83,7 @@ void UART4_IRQHandler(void)
     // send a char from the tx buffer
     if(RESET != usart_interrupt_flag_get(UART4, USART_INT_FLAG_TBE)){
         unsigned char c = obj[4]->tx_buff[obj[4]->tx_tail];
-        obj[4]->tx_tail = ( obj[4]->tx_tail + 1 ) % 64;
+        obj[4]->tx_tail = ( obj[4]->tx_tail + 1 ) % SERIAL_TX_BUFFER_SIZE;
 
         usart_data_transmit(UART4, c);
 

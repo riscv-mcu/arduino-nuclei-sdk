@@ -1,10 +1,10 @@
 #include "tone.h"
 
-#define MAX_FREQ  65535
-
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#define MAX_FREQ  65535
 
 void tone(uint8_t pin, unsigned int freq)
 {
