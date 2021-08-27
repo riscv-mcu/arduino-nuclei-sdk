@@ -83,16 +83,12 @@ void TwoWire::begin(void)
     ECLIC_Register_IRQ(I2C1_ER_IRQn, ECLIC_NON_VECTOR_INTERRUPT, ECLIC_LEVEL_TRIGGER, 3, 0, NULL);
     __enable_irq();
     #endif
-    
-    //twi_attachSlaveTxEvent(onRequestService); // default callback must exist
-    //twi_attachSlaveRxEvent(onReceiveService); // default callback must exist
 }
 
 void TwoWire::begin(uint8_t address)
 {
     begin();
     twi_setAddress(address << 1);
-    //i2c_mode_addr_config(I2C1, I2C_I2CMODE_ENABLE, I2C_ADDFORMAT_7BITS, address);
 }
 
 void TwoWire::begin(int address)
@@ -103,13 +99,11 @@ void TwoWire::begin(int address)
 void TwoWire::end(void)
 {
     twi_disable();
-    //i2c_disable(I2C1);
 }
 
 void TwoWire::setClock(uint32_t clock)
 {
     twi_setFrequency(clock);
-    //i2c_clock_config(I2C1, clock, I2C_DTCY_2);
 }
 
 /***

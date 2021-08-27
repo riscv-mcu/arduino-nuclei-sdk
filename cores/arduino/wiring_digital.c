@@ -13,7 +13,6 @@ void pinMode(uint32_t pin, uint32_t mode)
     {
         case INPUT:
             rcu_periph_clock_enable(digitalPinToPortRCU(pin));
-            //rcu_periph_clock_enable(RCU_AF);
             gpio_init(digitalPinToPort(pin), GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ, digitalPinToBit(pin));
             break;
         case OUTPUT:

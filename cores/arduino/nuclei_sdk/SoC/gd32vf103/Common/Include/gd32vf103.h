@@ -46,8 +46,14 @@ extern "C" {
   * @{
   */
 
-
-
+/** \brief SoC Download mode definition */
+typedef enum {
+    DOWNLOAD_MODE_FLASHXIP = 0,         /*!< Flashxip download mode */
+    DOWNLOAD_MODE_FLASH = 1,            /*!< Flash download mode */
+    DOWNLOAD_MODE_ILM = 2,              /*!< ilm download mode */
+    DOWNLOAD_MODE_DDR = 3,              /*!< ddr download mode */
+    DOWNLOAD_MODE_MAX,
+} DownloadMode_Type;
 
 /* =========================================================================================================================== */
 /* ================                                Interrupt Number Definition                                ================ */
@@ -341,19 +347,68 @@ typedef enum {
 /* ================                                  Peripheral declaration                                   ================ */
 /* =========================================================================================================================== */
 
+/* Macros for memory access operations */
+#define _REG8P(p, i)                        ((volatile uint8_t *) ((uintptr_t)((p) + (i))))
+#define _REG16P(p, i)                       ((volatile uint16_t *) ((uintptr_t)((p) + (i))))
+#define _REG32P(p, i)                       ((volatile uint32_t *) ((uintptr_t)((p) + (i))))
+#define _REG64P(p, i)                       ((volatile uint64_t *) ((uintptr_t)((p) + (i))))
+#define _REG8(p, i)                         (*(_REG8P(p, i)))
+#define _REG16(p, i)                        (*(_REG16P(p, i)))
+#define _REG32(p, i)                        (*(_REG32P(p, i)))
+#define _REG64(p, i)                        (*(_REG64P(p, i)))
+#define REG8(addr)                          _REG8((addr), 0)
+#define REG16(addr)                         _REG16((addr), 0)
+#define REG32(addr)                         _REG32((addr), 0)
+#define REG64(addr)                         _REG64((addr), 0)
+
+/* Macros for address type convert and access operations */
+#define ADDR16(addr)                        ((uint16_t)(uintptr_t)(addr))
+#define ADDR32(addr)                        ((uint32_t)(uintptr_t)(addr))
+#define ADDR64(addr)                        ((uint64_t)(uintptr_t)(addr))
+#define ADDR8P(addr)                        ((uint8_t *)(uintptr_t)(addr))
+#define ADDR16P(addr)                       ((uint16_t *)(uintptr_t)(addr))
+#define ADDR32P(addr)                       ((uint32_t *)(uintptr_t)(addr))
+#define ADDR64P(addr)                       ((uint64_t *)(uintptr_t)(addr))
+
+/* Macros for Bit Operations */
+#if __riscv_xlen == 32
+#define BITMASK_MAX                         0xFFFFFFFFUL
+#define BITOFS_MAX                          31
+#else
+#define BITMASK_MAX                         0xFFFFFFFFFFFFFFFFULL
+#define BITOFS_MAX                          63
+#endif
+
+// BIT/BITS only support bit mask for __riscv_xlen
+// For RISC-V 32 bit, it support mask 32 bit wide
+// For RISC-V 64 bit, it support mask 64 bit wide
+#define BIT(ofs)                            (0x1UL << (ofs))
+#define BITS(start, end)                    ((BITMASK_MAX) << (start) & (BITMASK_MAX) >> (BITOFS_MAX - (end)))
+#define GET_BIT(regval, bitofs)             (((regval) >> (bitofs)) & 0x1)
+#define SET_BIT(regval, bitofs)             ((regval) |= BIT(bitofs))
+#define CLR_BIT(regval, bitofs)             ((regval) &= (~BIT(bitofs)))
+#define FLIP_BIT(regval, bitofs)            ((regval) ^= BIT(bitofs))
+#define WRITE_BIT(regval, bitofs, val)      CLR_BIT(regval, bitofs); ((regval) |= ((val) << bitofs) & BIT(bitofs))
+#define CHECK_BIT(regval, bitofs)           (!!((regval) & (0x1UL<<(bitofs))))
+#define GET_BITS(regval, start, end)        (((regval) & BITS((start), (end))) >> (start))
+#define SET_BITS(regval, start, end)        ((regval) |= BITS((start), (end)))
+#define CLR_BITS(regval, start, end)        ((regval) &= (~BITS((start), (end))))
+#define FLIP_BITS(regval, start, end)       ((regval) ^= BITS((start), (end)))
+#define WRITE_BITS(regval, start, end, val) CLR_BITS(regval, start, end); ((regval) |= ((val) << start) & BITS((start), (end)))
+#define CHECK_BITS_ALL(regval, start, end)  (!((~(regval)) & BITS((start), (end))))
+#define CHECK_BITS_ANY(regval, start, end)  ((regval) & BITS((start), (end)))
+
+#define BITMASK_SET(regval, mask)           ((regval) |= (mask))
+#define BITMASK_CLR(regval, mask)           ((regval) &= (~(mask)))
+#define BITMASK_FLIP(regval, mask)          ((regval) ^= (mask))
+#define BITMASK_CHECK_ALL(regval, mask)     (!((~(regval)) & (mask)))
+#define BITMASK_CHECK_ANY(regval, mask)     ((regval) & (mask))
 
 /* ToDo: add here your device peripherals pointer definitions
          following is an example for timer */
 /** @addtogroup Device_Peripheral_declaration
   * @{
   */
-/* bit operations */
-#define REG32(addr)                  (*(volatile uint32_t *)(uint32_t)(addr))
-#define REG16(addr)                  (*(volatile uint16_t *)(uint32_t)(addr))
-#define REG8(addr)                   (*(volatile uint8_t *)(uint32_t)(addr))
-#define BIT(x)                       ((uint32_t)((uint32_t)0x01U<<(x)))
-#define BITS(start, end)             ((0xFFFFFFFFUL << (start)) & (0xFFFFFFFFUL >> (31U - (uint32_t)(end))))
-#define GET_BITS(regval, start, end) (((regval) & BITS((start),(end))) >> (start))
 
 // Interrupt Numbers
 #define SOC_ECLIC_NUM_INTERRUPTS    86

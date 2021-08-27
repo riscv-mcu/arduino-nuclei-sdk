@@ -1,10 +1,6 @@
 #include <math.h>
 #include <stdlib.h>
 #include <inttypes.h>
-//#include <avr/io.h>
-//#include <avr/interrupt.h>
-//#include <util/delay.h>
-//#include <compat/twi.h>
 #include "Arduino.h" // for digitalWrite and micros
 
 #ifndef cbi
@@ -27,9 +23,6 @@ static void req_nothing(void) {
 static void rec_nothing(int n) {
     // do nothing
 }
-
-//static volatile voidFuncPtr reqFunc = nothing;
-//static volatile voidFuncPtr recFunc = nothing;
 
 static volatile void (*reqFunc)(void) = req_nothing;
 static volatile void (*recFunc)(int) = rec_nothing;

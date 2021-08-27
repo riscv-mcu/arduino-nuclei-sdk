@@ -1,6 +1,6 @@
 {
     "name": "framework-arduino-nuclei",
     "description": "Arduino Wiring-based Framework (Nuclei SDK)",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "url": "https://www.rvmcu.com"
 }
