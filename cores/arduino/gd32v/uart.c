@@ -58,7 +58,7 @@ void UART3_IRQHandler(void)
     // send a char from the tx buffer
     if(RESET != usart_interrupt_flag_get(UART3, USART_INT_FLAG_TBE)){
         unsigned char c = obj[3]->tx_buff[obj[3]->tx_tail];
-        obj[3]->tx_tail = ( obj[4]->tx_tail + 1 ) % SERIAL_TX_BUFFER_SIZE;
+        obj[3]->tx_tail = ( obj[3]->tx_tail + 1 ) % SERIAL_TX_BUFFER_SIZE;
 
         usart_data_transmit(UART3, c);
 
