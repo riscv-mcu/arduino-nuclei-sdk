@@ -35,22 +35,19 @@
 #include <stdint.h>
 
 /** NMSIS-NN object to contain the width and height of a tile */
-typedef struct
-{
+typedef struct {
     int32_t w; /**< Width */
     int32_t h; /**< Height */
 } nmsis_nn_tile;
 
 /** NMSIS-NN object used for the function context. */
-typedef struct
-{
-    void *buf;    /**< Pointer to a buffer needed for the optimization */
+typedef struct {
+    void* buf;    /**< Pointer to a buffer needed for the optimization */
     int32_t size; /**< Buffer size */
 } nmsis_nn_context;
 
 /** NMSIS-NN object to contain the dimensions of the tensors */
-typedef struct
-{
+typedef struct {
     int32_t n; /**< Generic dimension to contain either the batch size or output channels.
                      Please refer to the function documentation for more information */
     int32_t h; /**< Height */
@@ -59,29 +56,25 @@ typedef struct
 } nmsis_nn_dims;
 
 /** NMSIS-NN object for the per-channel quantization parameters */
-typedef struct
-{
-    int32_t *multiplier; /**< Multiplier values */
-    int32_t *shift;      /**< Shift values */
+typedef struct {
+    int32_t* multiplier; /**< Multiplier values */
+    int32_t* shift;      /**< Shift values */
 } nmsis_nn_per_channel_quant_params;
 
 /** NMSIS-NN object for the per-tensor quantization parameters */
-typedef struct
-{
+typedef struct {
     int32_t multiplier; /**< Multiplier value */
     int32_t shift;      /**< Shift value */
 } nmsis_nn_per_tensor_quant_params;
 
 /** NMSIS-NN object for the quantized Relu activation */
-typedef struct
-{
+typedef struct {
     int32_t min; /**< Min value used to clamp the result */
     int32_t max; /**< Max value used to clamp the result */
 } nmsis_nn_activation;
 
 /** NMSIS-NN object for the convolution layer parameters */
-typedef struct
-{
+typedef struct {
     int32_t input_offset;  /**< Zero value for the input tensor */
     int32_t output_offset; /**< Zero value for the output tensor */
     nmsis_nn_tile stride;
@@ -91,8 +84,7 @@ typedef struct
 } nmsis_nn_conv_params;
 
 /** NMSIS-NN object for Depthwise convolution layer parameters */
-typedef struct
-{
+typedef struct {
     int32_t input_offset;  /**< Zero value for the input tensor */
     int32_t output_offset; /**< Zero value for the output tensor */
     int32_t ch_mult;       /**< Channel Multiplier. ch_mult * in_ch = out_ch */
@@ -102,16 +94,14 @@ typedef struct
     nmsis_nn_activation activation;
 } nmsis_nn_dw_conv_params;
 /** NMSIS-NN object for pooling layer parameters */
-typedef struct
-{
+typedef struct {
     nmsis_nn_tile stride;
     nmsis_nn_tile padding;
     nmsis_nn_activation activation;
 } nmsis_nn_pool_params;
 
 /** NMSIS-NN object for Fully Connected layer parameters */
-typedef struct
-{
+typedef struct {
     int32_t input_offset;  /**< Zero value for the input tensor */
     int32_t filter_offset; /**< Zero value for the filter tensor. Not used */
     int32_t output_offset; /**< Zero value for the output tensor */
@@ -119,8 +109,7 @@ typedef struct
 } nmsis_nn_fc_params;
 
 /** NMSIS-NN object for SVDF layer parameters */
-typedef struct
-{
+typedef struct {
     int32_t rank;
     int32_t input_offset;  /**< Zero value for the input tensor */
     int32_t output_offset; /**< Zero value for the output tensor */

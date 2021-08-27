@@ -62,7 +62,7 @@ enum {
     PA3    // 24, LED_B
 };
 
-// You can use Ax(x=1,2,3,4,5) or digital Pin numbers to use Analog I/O functions 
+// You can use Ax(x=1,2,3,4,5) or digital Pin numbers to use Analog I/O functions
 enum {
     A0 = 14,
     A1,
@@ -75,29 +75,29 @@ enum {
 typedef struct _gpio_dev_t {
     uint32_t gpio_port;
     rcu_periph_enum clk_id;
-}gpio_dev_t;
+} gpio_dev_t;
 
 typedef struct _timer_dev_t {
     uint32_t timer_dev;
     rcu_periph_enum clk_id;
-}timer_dev_t;
+} timer_dev_t;
 
 typedef struct _adc_dev_t {
     uint32_t adc_dev;
     rcu_periph_enum clk_id;
-}adc_dev_t;
+} adc_dev_t;
 
 typedef struct _spi_dev_t {
     uint32_t spi_dev;
     rcu_periph_enum clk_id;
-}spi_dev_t;
+} spi_dev_t;
 
 typedef struct _gd32v_pin_dev_t {
-    gpio_dev_t * gpio_device;
+    gpio_dev_t* gpio_device;
     uint32_t gpio_bit;
-    timer_dev_t * timer_device;
+    timer_dev_t* timer_device;
     uint16_t timer_channel;
-    adc_dev_t * adc_device;
+    adc_dev_t* adc_device;
     uint8_t adc_channel;
     //spi_dev_t * spi_device;
     //IRQn_Type irqn;
@@ -142,7 +142,7 @@ typedef struct _uart_dev_t {
     IRQn_Type uart_irq;
     uint8_t rx_pin;
     uint8_t tx_pin;
-}uart_dev_t;
+} uart_dev_t;
 
 #define BOARD_UART_NUM 5
 extern const uart_dev_t UART_MAP[BOARD_UART_NUM];
