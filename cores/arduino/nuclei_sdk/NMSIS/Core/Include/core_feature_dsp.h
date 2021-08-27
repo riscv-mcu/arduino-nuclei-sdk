@@ -29,7 +29,7 @@
  *   * 1: Present
  */
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 #if defined(__DSP_PRESENT) && (__DSP_PRESENT == 1)
@@ -18555,7 +18555,7 @@ __STATIC_FORCEINLINE unsigned long __RV_EXPD83(unsigned long a)
 /** \brief Dual 16-bit signed multiply with exchange returning difference. */
 #define __SMUSDX(x, y)              __RV_SMXDS((y), (x))
 /** \brief Q setting sum of dual 16-bit signed multiply with exchange. */
-__STATIC_FORCEINLINE int32_t __SMUADX (int32_t op1, int32_t op2)
+__STATIC_FORCEINLINE int32_t __SMUADX(int32_t op1, int32_t op2)
 {
     return (int32_t)__RV_KMXDA(op1, op2);
 }
@@ -18648,10 +18648,10 @@ __STATIC_FORCEINLINE int32_t __SMMLA(int32_t op1, int32_t op2, int32_t op3)
 
 /** \brief Halfword packing instruction. Combines bits[15:0] of val1 with bits[31:16] of val2 levitated with the val3. */
 #define __PKHBT(ARG1,ARG2,ARG3)     ( ((((uint32_t)(ARG1))          ) & 0x0000FFFFUL) |  \
-                                    ((((uint32_t)(ARG2)) << (ARG3)) & 0xFFFF0000UL)  )
+                                      ((((uint32_t)(ARG2)) << (ARG3)) & 0xFFFF0000UL)  )
 /** \brief Halfword packing instruction. Combines bits[31:16] of val1 with bits[15:0] of val2 right-shifted with the val3. */
 #define __PKHTB(ARG1,ARG2,ARG3)     ( ((((uint32_t)(ARG1))          ) & 0xFFFF0000UL) |  \
-                                    ((((uint32_t)(ARG2)) >> (ARG3)) & 0x0000FFFFUL)  )
+                                      ((((uint32_t)(ARG2)) >> (ARG3)) & 0x0000FFFFUL)  )
 
 /** first rotate then extract. This is more suitable for arm compiler for it can rotate and extract in one command*/
 #define __SXTB16_RORn(ARG1, ARG2)   __RV_SUNPKD820(__ROR(ARG1, ARG2))

@@ -31,7 +31,7 @@
  *   * 1: Present
  */
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 #if (defined(__ICACHE_PRESENT) && (__ICACHE_PRESENT == 1)) \

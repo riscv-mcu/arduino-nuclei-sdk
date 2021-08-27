@@ -16,11 +16,13 @@
 
 typedef void (*voidFuncPtr)(void);
 
-static void req_nothing(void) {
+static void req_nothing(void)
+{
     // do nothing
 }
 
-static void rec_nothing(int n) {
+static void rec_nothing(int n)
+{
     // do nothing
 }
 
@@ -80,7 +82,7 @@ void twi_init(void)
     i2c_mode_addr_config(I2C1, I2C_I2CMODE_ENABLE, I2C_ADDFORMAT_7BITS, 0);
     i2c_enable(I2C1);
     i2c_ack_config(I2C1, I2C_ACK_ENABLE);
-    
+
     ECLIC_Register_IRQ(I2C1_EV_IRQn, ECLIC_NON_VECTOR_INTERRUPT, ECLIC_LEVEL_TRIGGER, 1, 0, NULL);
     //ECLIC_Register_IRQ(I2C1_ER_IRQn, ECLIC_NON_VECTOR_INTERRUPT, ECLIC_LEVEL_TRIGGER, 1, 0, NULL);
     __enable_irq();
@@ -139,37 +141,37 @@ void twi_setFrequency(uint32_t frequency)
 uint8_t twi_readFrom(uint8_t address, uint8_t* data, uint8_t length, uint8_t sendStop)
 {
     /* wait until I2C bus is idle */
-    while(i2c_flag_get(I2C1, I2C_FLAG_I2CBSY));
+    while (i2c_flag_get(I2C1, I2C_FLAG_I2CBSY));
     /* send a start condition to I2C bus */
     i2c_start_on_bus(I2C1);
     /* wait until SBSEND bit is set */
-    while(!i2c_flag_get(I2C1, I2C_FLAG_SBSEND));
+    while (!i2c_flag_get(I2C1, I2C_FLAG_SBSEND));
     /* send slave address to I2C bus */
     i2c_master_addressing(I2C1, address << 1, I2C_RECEIVER);
 
     /* wait until ADDSEND bit is set */
-    while(!i2c_flag_get(I2C1, I2C_FLAG_ADDSEND));
+    while (!i2c_flag_get(I2C1, I2C_FLAG_ADDSEND));
     /* clear ADDSEND bit */
     i2c_flag_clear(I2C1, I2C_FLAG_ADDSEND);
 
     uint8_t count = 0;
-    for(uint8_t i=0; i<length; i++){
+    for (uint8_t i = 0; i < length; i++) {
         /* wait until the RBNE bit is set */
-        while(!i2c_flag_get(I2C1, I2C_FLAG_RBNE));
+        while (!i2c_flag_get(I2C1, I2C_FLAG_RBNE));
         /* read a data from I2C_DATA */
         data[i] = i2c_data_receive(I2C1);
         count++;
     }
     /* send a NACK for the last data byte */
     i2c_ack_config(I2C1, I2C_ACK_DISABLE);
-    
+
     /* send a stop condition to I2C bus */
     i2c_stop_on_bus(I2C1);
     /* wait until stop condition generate */
-    while(I2C_CTL0(I2C1)&0x0200);
+    while (I2C_CTL0(I2C1) & 0x0200);
 
     i2c_ack_config(I2C1, I2C_ACK_ENABLE);
-    
+
     return count;
 }
 
@@ -192,32 +194,32 @@ uint8_t twi_readFrom(uint8_t address, uint8_t* data, uint8_t length, uint8_t sen
 uint8_t twi_writeTo(uint8_t address, uint8_t* data, uint8_t length, uint8_t wait, uint8_t sendStop)
 {
     /* wait until I2C bus is idle */
-    while(i2c_flag_get(I2C1, I2C_FLAG_I2CBSY));
+    while (i2c_flag_get(I2C1, I2C_FLAG_I2CBSY));
 
     /* send a start condition to I2C bus */
     i2c_start_on_bus(I2C1);
     /* wait until SBSEND bit is set */
-    while(!i2c_flag_get(I2C1, I2C_FLAG_SBSEND));
-    
+    while (!i2c_flag_get(I2C1, I2C_FLAG_SBSEND));
+
     /* send slave address to I2C bus */
     i2c_master_addressing(I2C1, address, I2C_TRANSMITTER);
     /* wait until ADDSEND bit is set */
-    while(!i2c_flag_get(I2C1, I2C_FLAG_ADDSEND));
+    while (!i2c_flag_get(I2C1, I2C_FLAG_ADDSEND));
     /* clear ADDSEND bit */
     i2c_flag_clear(I2C1, I2C_FLAG_ADDSEND);
-    
+
     uint8_t count = 0;
-    for(uint8_t i=0; i<length; i++){
+    for (uint8_t i = 0; i < length; i++) {
         /* data transmission */
         i2c_data_transmit(I2C1, data[i]);
         /* wait until the TBE bit is set */
-        while(!i2c_flag_get(I2C1, I2C_FLAG_TBE));
+        while (!i2c_flag_get(I2C1, I2C_FLAG_TBE));
         count++;
     }
     /* send a stop condition to I2C bus */
     i2c_stop_on_bus(I2C1);
     /* wait until stop condition generate */
-    while(I2C_CTL0(I2C1)&0x0200);
+    while (I2C_CTL0(I2C1) & 0x0200);
 
     return count;
 }
@@ -239,16 +241,16 @@ uint8_t twi_transmit(const uint8_t* data, uint8_t length)
     /* clear ADDSEND bit */
     //i2c_flag_clear(I2C1, I2C_FLAG_ADDSEND);
     /* wait until the transmission data register is empty */
-    while(!i2c_flag_get(I2C1, I2C_FLAG_TBE));
+    while (!i2c_flag_get(I2C1, I2C_FLAG_TBE));
 
-    for(uint8_t i=0;i<length;i++){
+    for (uint8_t i = 0; i < length; i++) {
         /* send a data byte */
         i2c_data_transmit(I2C1, data[i]);
         /* wait until the transmission data register is empty */
-        while(!i2c_flag_get(I2C1, I2C_FLAG_TBE));
+        while (!i2c_flag_get(I2C1, I2C_FLAG_TBE));
     }
     /* the master doesn't acknowledge for the last byte */
-    while(!i2c_flag_get(I2C1, I2C_FLAG_AERR));
+    while (!i2c_flag_get(I2C1, I2C_FLAG_AERR));
     /* clear the bit of AERR */
     i2c_flag_clear(I2C1, I2C_FLAG_AERR);
 }
@@ -260,7 +262,7 @@ uint8_t twi_transmit(const uint8_t* data, uint8_t length)
  * Output   none
  */
 //void twi_attachSlaveRxEvent(void (*function)(uint8_t*, int))
-void twi_attachSlaveRxEvent(uint8_t *addr, uint8_t* index, uint8_t* length, void (*function)(int))
+void twi_attachSlaveRxEvent(uint8_t* addr, uint8_t* index, uint8_t* length, void (*function)(int))
 {
     rx_buffer_addr = addr;
     rx_buffer_index = index;
@@ -353,13 +355,13 @@ bool twi_manageTimeoutFlag(bool clear_flag)
 
 void I2C1_EV_IRQHandler(void)
 {
-    if(i2c_interrupt_flag_get(I2C1, I2C_INT_FLAG_ADDSEND)){
+    if (i2c_interrupt_flag_get(I2C1, I2C_INT_FLAG_ADDSEND)) {
         /* clear the ADDSEND bit */
         i2c_interrupt_flag_clear(I2C1, I2C_INT_FLAG_ADDSEND);
-    } else if(i2c_interrupt_flag_get(I2C1, I2C_INT_FLAG_RBNE)){
+    } else if (i2c_interrupt_flag_get(I2C1, I2C_INT_FLAG_RBNE)) {
         rx_buffer_addr[(*rx_buffer_length)++] = i2c_data_receive(I2C1);
         //*rx_buffer_length = ((*rx_buffer_length) + 1) % 32;
-    } else if(i2c_interrupt_flag_get(I2C1, I2C_INT_FLAG_STPDET)){
+    } else if (i2c_interrupt_flag_get(I2C1, I2C_INT_FLAG_STPDET)) {
         /* clear the STPDET bit */
         i2c_enable(I2C1);
         recFunc(1);

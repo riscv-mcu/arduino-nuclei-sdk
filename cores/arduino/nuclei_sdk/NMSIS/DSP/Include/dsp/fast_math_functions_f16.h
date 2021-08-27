@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef _FAST_MATH_FUNCTIONS_F16_H_
 #define _FAST_MATH_FUNCTIONS_F16_H_
 
@@ -38,16 +38,15 @@
 #include "dsp/fast_math_functions.h"
 
 #ifdef   __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
- /**
-   * @addtogroup SQRT
-   * @{
-   */
+/**
+  * @addtogroup SQRT
+  * @{
+  */
 
 /**
   @brief         Floating-point square root function.
@@ -58,21 +57,21 @@ extern "C"
                    - \ref RISCV_MATH_ARGUMENT_ERROR : input value is negative; *pOut is set to 0
  */
 __STATIC_FORCEINLINE riscv_status riscv_sqrt_f16(
-  float16_t in,
-  float16_t * pOut)
-  {
+    float16_t in,
+    float16_t* pOut)
+{
     float32_t r;
     riscv_status status;
-    status=riscv_sqrt_f32((float32_t)in,&r);
-    *pOut=(float16_t)r;
-    return(status);
-  }
+    status = riscv_sqrt_f32((float32_t)in, &r);
+    *pOut = (float16_t)r;
+    return (status);
+}
 
 
 /**
   @} end of SQRT group
  */
-  
+
 /**
   @brief         Floating-point vector of log values.
   @param[in]     pSrc       points to the input vector
@@ -80,10 +79,10 @@ __STATIC_FORCEINLINE riscv_status riscv_sqrt_f16(
   @param[in]     blockSize  number of samples in each vector
   @return        none
  */
-  void riscv_vlog_f16(
-  const float16_t * pSrc,
-        float16_t * pDst,
-        uint32_t blockSize);
+void riscv_vlog_f16(
+    const float16_t* pSrc,
+    float16_t* pDst,
+    uint32_t blockSize);
 
 /**
   @brief         Floating-point vector of exp values.
@@ -92,22 +91,22 @@ __STATIC_FORCEINLINE riscv_status riscv_sqrt_f16(
   @param[in]     blockSize  number of samples in each vector
   @return        none
  */
-  void riscv_vexp_f16(
-  const float16_t * pSrc,
-        float16_t * pDst,
-        uint32_t blockSize);
+void riscv_vexp_f16(
+    const float16_t* pSrc,
+    float16_t* pDst,
+    uint32_t blockSize);
 
-  /**
-  @brief         Floating-point vector of inverse values.
-  @param[in]     pSrc       points to the input vector
-  @param[out]    pDst       points to the output vector
-  @param[in]     blockSize  number of samples in each vector
-  @return        none
- */
-  void riscv_vinverse_f16(
-  const float16_t * pSrc,
-        float16_t * pDst,
-        uint32_t blockSize);
+/**
+@brief         Floating-point vector of inverse values.
+@param[in]     pSrc       points to the input vector
+@param[out]    pDst       points to the output vector
+@param[in]     blockSize  number of samples in each vector
+@return        none
+*/
+void riscv_vinverse_f16(
+    const float16_t* pSrc,
+    float16_t* pDst,
+    uint32_t blockSize);
 
 #endif /*defined(RISCV_FLOAT16_SUPPORTED)*/
 #ifdef   __cplusplus

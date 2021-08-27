@@ -29,7 +29,7 @@
  * 2. __SYSTIMER_BASEADDR:  Define the base address of the System Timer.
  */
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 #if defined(__SYSTIMER_PRESENT) && (__SYSTIMER_PRESENT == 1)
@@ -273,7 +273,7 @@ __STATIC_FORCEINLINE void SysTimer_SetMsipValue(uint32_t msip)
 __STATIC_FORCEINLINE void SysTimer_SoftwareReset(void)
 {
     SysTimer->MSFTRST = SysTimer_MSFRST_KEY;
-    while(1);
+    while (1);
 }
 
 #if defined (__Vendor_SysTickConfig) && (__Vendor_SysTickConfig == 0U) && defined(__ECLIC_PRESENT) && (__ECLIC_PRESENT == 1)

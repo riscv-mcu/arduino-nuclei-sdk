@@ -26,10 +26,10 @@
  * @brief    NMSIS compiler generic header file
  */
 #if defined ( __GNUC__ )
-  /** GNU GCC Compiler */
-  #include "nmsis_gcc.h"
+/** GNU GCC Compiler */
+#include "nmsis_gcc.h"
 #else
-  #error Unknown compiler.
+#error Unknown compiler.
 #endif
 
 

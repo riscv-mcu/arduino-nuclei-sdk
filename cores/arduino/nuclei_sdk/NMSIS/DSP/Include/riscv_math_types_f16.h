@@ -30,8 +30,7 @@
 #include "riscv_math_types.h"
 
 #ifdef   __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -51,8 +50,8 @@ won't be built.
 */
 #if !(__RISCV_FEATURE_MVE & 2)
 #else
-  /* When Vector float16, this flag is always defined and can't be disabled */
-  #define RISCV_FLOAT16_SUPPORTED
+/* When Vector float16, this flag is always defined and can't be disabled */
+#define RISCV_FLOAT16_SUPPORTED
 #endif
 
 

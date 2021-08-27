@@ -28,18 +28,17 @@
  * limitations under the License.
  */
 
- #ifndef _RISCV_MVE_TABLES_F16_H
- #define _RISCV_MVE_TABLES_F16_H
+#ifndef _RISCV_MVE_TABLES_F16_H
+#define _RISCV_MVE_TABLES_F16_H
 
 #include "riscv_math_types_f16.h"
 
 #ifdef   __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
- 
+
 
 
 

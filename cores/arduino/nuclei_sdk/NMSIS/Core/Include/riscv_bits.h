@@ -19,7 +19,7 @@
 #define __RISCV_BITS_H__
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 #if __riscv_xlen == 64

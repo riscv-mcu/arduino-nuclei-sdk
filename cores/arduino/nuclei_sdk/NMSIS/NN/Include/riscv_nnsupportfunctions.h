@@ -51,8 +51,7 @@ extern "C" {
 /**
  * @brief Union for SIMD access of q31/q15/q7 types
  */
-union riscv_nnword
-{
+union riscv_nnword {
     q31_t word;
     /**< q31 type */
     q15_t half_words[2];
@@ -64,14 +63,12 @@ union riscv_nnword
 /**
  * @brief Union for data type long long
  */
-struct riscv_nn_double
-{
+struct riscv_nn_double {
     uint32_t low;
     int32_t high;
 };
 
-union riscv_nn_long_long
-{
+union riscv_nn_long_long {
     int64_t long_long;
     struct riscv_nn_double word;
 };
@@ -90,9 +87,9 @@ union riscv_nn_long_long
  * @param[in]       blockSize length of the input vector
  *
  */
-void riscv_q7_to_q15_no_shift(const q7_t *pSrc, q15_t *pDst, uint32_t blockSize);
+void riscv_q7_to_q15_no_shift(const q7_t* pSrc, q15_t* pDst, uint32_t blockSize);
 
-void      riscv_q7_to_q7_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t blockSize);
+void      riscv_q7_to_q7_no_shift(const q7_t* pSrc, q7_t* pDst, uint32_t blockSize);
 
 /**
  * @brief Non-saturating addition of elements of a q7 vector
@@ -110,7 +107,7 @@ void      riscv_q7_to_q7_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t block
  * </pre>
  *
  * */
-void riscv_nn_add_q7(const q7_t *input, q31_t *output, uint32_t block_size);
+void riscv_nn_add_q7(const q7_t* input, q31_t* output, uint32_t block_size);
 
 /**
  * @brief  Converts the elements of the q7 vector to reordered q15 vector without left-shift
@@ -120,9 +117,9 @@ void riscv_nn_add_q7(const q7_t *input, q31_t *output, uint32_t block_size);
  * @return none.
  *
  */
-void riscv_q7_to_q15_reordered_no_shift(const q7_t *pSrc, q15_t *pDst, uint32_t blockSize);
+void riscv_q7_to_q15_reordered_no_shift(const q7_t* pSrc, q15_t* pDst, uint32_t blockSize);
 
-void      riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t blockSize);
+void      riscv_q7_to_q7_reordered_no_shift(const q7_t* pSrc, q7_t* pDst, uint32_t blockSize);
 
 /**
  * @brief Converts the elements from a q7 vector to a q15 vector with an added offset
@@ -140,7 +137,7 @@ void      riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint
  * </pre>
  *
  */
-void riscv_q7_to_q15_with_offset(const q7_t *src, q15_t *dst, uint32_t block_size, q15_t offset);
+void riscv_q7_to_q15_with_offset(const q7_t* src, q15_t* dst, uint32_t block_size, q15_t offset);
 
 /**
  * @brief Converts the elements of the q7 vector to reordered q15 vector with an added offset
@@ -155,7 +152,7 @@ void riscv_q7_to_q15_with_offset(const q7_t *src, q15_t *dst, uint32_t block_siz
  * original order.
  *
  */
-void riscv_q7_to_q15_reordered_with_offset(const q7_t *src, q15_t *dst, uint32_t block_size, q15_t offset);
+void riscv_q7_to_q15_reordered_with_offset(const q7_t* src, q15_t* dst, uint32_t block_size, q15_t offset);
 
 /**
  * @brief Converts the elements from a q7 vector and accumulate to a q15 vector
@@ -172,7 +169,7 @@ void riscv_q7_to_q15_reordered_with_offset(const q7_t *src, q15_t *dst, uint32_t
  * </pre>
  *
  */
-void riscv_nn_accumulate_q7_to_q15(q15_t *dst, const q7_t *src, uint32_t block_size);
+void riscv_nn_accumulate_q7_to_q15(q15_t* dst, const q7_t* src, uint32_t block_size);
 
 /**
  * @brief Converts the elements from a q7 vector and accumulate to a q7 vector
@@ -189,7 +186,7 @@ void riscv_nn_accumulate_q7_to_q15(q15_t *dst, const q7_t *src, uint32_t block_s
  * </pre>
  *
  */
-void riscv_nn_accumulate_q7_to_q7(q7_t *dst, const q7_t *src, uint32_t block_size);
+void riscv_nn_accumulate_q7_to_q7(q7_t* dst, const q7_t* src, uint32_t block_size);
 
 /**
  * @brief Depthwise conv on an im2col buffer where the input channel equals output channel.
@@ -210,17 +207,17 @@ void riscv_nn_accumulate_q7_to_q7(q7_t *dst, const q7_t *src, uint32_t block_siz
  *
  * @details     Supported framework: TensorFlow Lite micro.
  */
-q7_t *riscv_nn_depthwise_conv_s8_core(const q7_t *row,
-                                    const q15_t *col,
-                                    const uint16_t num_ch,
-                                    const int32_t *out_shift,
-                                    const int32_t *out_mult,
-                                    const int32_t out_offset,
-                                    const int32_t activation_min,
-                                    const int32_t activation_max,
-                                    const uint16_t kernel_size,
-                                    const int32_t *const output_bias,
-                                    q7_t *out);
+q7_t* riscv_nn_depthwise_conv_s8_core(const q7_t* row,
+                                      const q15_t* col,
+                                      const uint16_t num_ch,
+                                      const int32_t* out_shift,
+                                      const int32_t* out_mult,
+                                      const int32_t out_offset,
+                                      const int32_t activation_min,
+                                      const int32_t activation_max,
+                                      const uint16_t kernel_size,
+                                      const int32_t* const output_bias,
+                                      q7_t* out);
 
 /**
  * @brief General Matrix-multiplication function with per-channel requantization.
@@ -244,20 +241,20 @@ q7_t *riscv_nn_depthwise_conv_s8_core(const q7_t *row,
  *
  * @details   Supported framework: TensorFlow Lite
  */
-q7_t *riscv_nn_mat_mult_s8(const q7_t *input_row,
-                         const q7_t *input_col,
-                         const uint16_t output_ch,
-                         const uint16_t col_batches,
-                         const int32_t *output_shift,
-                         const int32_t *output_mult,
-                         const int32_t out_offset,
-                         const int32_t col_offset,
-                         const int32_t row_offset,
-                         const int16_t out_activation_min,
-                         const int16_t out_activation_max,
-                         const uint16_t row_len,
-                         const int32_t *const bias,
-                         q7_t *out);
+q7_t* riscv_nn_mat_mult_s8(const q7_t* input_row,
+                           const q7_t* input_col,
+                           const uint16_t output_ch,
+                           const uint16_t col_batches,
+                           const int32_t* output_shift,
+                           const int32_t* output_mult,
+                           const int32_t out_offset,
+                           const int32_t col_offset,
+                           const int32_t row_offset,
+                           const int16_t out_activation_min,
+                           const int16_t out_activation_max,
+                           const uint16_t row_len,
+                           const int32_t* const bias,
+                           q7_t* out);
 
 /**
  * @brief General Matrix-multiplication without requantization for one row & one column
@@ -277,10 +274,10 @@ q7_t *riscv_nn_mat_mult_s8(const q7_t *input_row,
  *
  */
 riscv_status riscv_nn_mat_mul_core_1x_s8(int32_t row_elements,
-                                     const int8_t *row_base,
-                                     const int8_t *col_base,
-                                     int32_t *const sum_col,
-                                     int32_t *const output);
+                                         const int8_t* row_base,
+                                         const int8_t* col_base,
+                                         int32_t* const sum_col,
+                                         int32_t* const output);
 
 /**
  * @brief General Matrix-multiplication without requantization for four rows and one column
@@ -305,11 +302,11 @@ riscv_status riscv_nn_mat_mul_core_1x_s8(int32_t row_elements,
  *          sum_col += col_base[i]
  */
 riscv_status riscv_nn_mat_mul_core_4x_s8(const int32_t row_elements,
-                                     const int32_t offset,
-                                     const int8_t *row_base,
-                                     const int8_t *col_base,
-                                     int32_t *const sum_col,
-                                     int32_t *const output);
+                                         const int32_t offset,
+                                         const int8_t* row_base,
+                                         const int8_t* col_base,
+                                         int32_t* const sum_col,
+                                         int32_t* const output);
 
 /**
  * @brief General Matrix-multiplication function with per-channel requantization.
@@ -340,19 +337,19 @@ riscv_status riscv_nn_mat_mul_core_4x_s8(const int32_t row_elements,
  * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
  *
  */
-riscv_status riscv_nn_mat_mult_nt_t_s8(const q7_t *lhs,
-                                   const q7_t *rhs,
-                                   const q31_t *bias,
-                                   q7_t *dst,
-                                   const int32_t *dst_multipliers,
-                                   const int32_t *dst_shifts,
-                                   const int32_t lhs_rows,
-                                   const int32_t rhs_rows,
-                                   const int32_t rhs_cols,
-                                   const int32_t lhs_offset,
-                                   const int32_t dst_offset,
-                                   const int32_t activation_min,
-                                   const int32_t activation_max);
+riscv_status riscv_nn_mat_mult_nt_t_s8(const q7_t* lhs,
+                                       const q7_t* rhs,
+                                       const q31_t* bias,
+                                       q7_t* dst,
+                                       const int32_t* dst_multipliers,
+                                       const int32_t* dst_shifts,
+                                       const int32_t lhs_rows,
+                                       const int32_t rhs_rows,
+                                       const int32_t rhs_cols,
+                                       const int32_t lhs_offset,
+                                       const int32_t dst_offset,
+                                       const int32_t activation_min,
+                                       const int32_t activation_max);
 
 /**
  * @brief s8 Vector by Matrix (transposed) multiplication
@@ -375,19 +372,19 @@ riscv_status riscv_nn_mat_mult_nt_t_s8(const q7_t *lhs,
  * @return         The function returns <code>RISCV_MATH_SUCCESS</code>
  *
  */
-riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
-                                    const q7_t *rhs,
-                                    const q31_t *bias,
-                                    q7_t *dst,
-                                    const int32_t lhs_offset,
-                                    const int32_t rhs_offset,
-                                    const int32_t dst_offset,
-                                    const int32_t dst_multiplier,
-                                    const int32_t dst_shift,
-                                    const int32_t rhs_cols,
-                                    const int32_t rhs_rows,
-                                    const int32_t activation_min,
-                                    const int32_t activation_max);
+riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t* lhs,
+                                        const q7_t* rhs,
+                                        const q31_t* bias,
+                                        q7_t* dst,
+                                        const int32_t lhs_offset,
+                                        const int32_t rhs_offset,
+                                        const int32_t dst_offset,
+                                        const int32_t dst_multiplier,
+                                        const int32_t dst_shift,
+                                        const int32_t rhs_cols,
+                                        const int32_t rhs_rows,
+                                        const int32_t activation_min,
+                                        const int32_t activation_max);
 
 /**
  * @brief s8 Vector by Matrix (transposed) multiplication with s16 output
@@ -410,18 +407,18 @@ riscv_status riscv_nn_vec_mat_mult_t_s8(const q7_t *lhs,
  * @return         The function returns <code>RISCV_MATH_SUCCESS</code>
  *
  */
-riscv_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
-                                         const q7_t *rhs,
-                                         q15_t *dst,
-                                         const int32_t lhs_offset,
-                                         const int32_t rhs_offset,
-                                         const int32_t scatter_offset,
-                                         const int32_t dst_multiplier,
-                                         const int32_t dst_shift,
-                                         const int32_t rhs_cols,
-                                         const int32_t rhs_rows,
-                                         const int32_t activation_min,
-                                         const int32_t activation_max);
+riscv_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t* lhs,
+                                             const q7_t* rhs,
+                                             q15_t* dst,
+                                             const int32_t lhs_offset,
+                                             const int32_t rhs_offset,
+                                             const int32_t scatter_offset,
+                                             const int32_t dst_multiplier,
+                                             const int32_t dst_shift,
+                                             const int32_t rhs_cols,
+                                             const int32_t rhs_rows,
+                                             const int32_t activation_min,
+                                             const int32_t activation_max);
 
 /**
  * @brief Depthwise convolution of transposed rhs matrix with 4 lhs matrices. To be used in padded cases where
@@ -451,18 +448,18 @@ riscv_status riscv_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
  *                  - Output bias
  *                  - rhs
  */
-q7_t *riscv_nn_depthwise_conv_nt_t_padded_s8(const q7_t *lhs,
-                                           const q7_t *rhs,
-                                           const int32_t lhs_offset,
-                                           const uint16_t num_ch,
-                                           const int32_t *out_shift,
-                                           const int32_t *out_mult,
-                                           const int32_t out_offset,
-                                           const int32_t activation_min,
-                                           const int32_t activation_max,
-                                           const uint16_t row_x_col,
-                                           const int32_t *const output_bias,
-                                           q7_t *out);
+q7_t* riscv_nn_depthwise_conv_nt_t_padded_s8(const q7_t* lhs,
+                                             const q7_t* rhs,
+                                             const int32_t lhs_offset,
+                                             const uint16_t num_ch,
+                                             const int32_t* out_shift,
+                                             const int32_t* out_mult,
+                                             const int32_t out_offset,
+                                             const int32_t activation_min,
+                                             const int32_t activation_max,
+                                             const uint16_t row_x_col,
+                                             const int32_t* const output_bias,
+                                             q7_t* out);
 
 /**
  * @brief Depthwise convolution of transposed rhs matrix with 4 lhs matrices. To be used in non-padded cases.
@@ -492,34 +489,34 @@ q7_t *riscv_nn_depthwise_conv_nt_t_padded_s8(const q7_t *lhs,
  *                  - Output bias
  *                  - rhs
  */
-q7_t *riscv_nn_depthwise_conv_nt_t_s8(const q7_t *lhs,
-                                    const q7_t *rhs,
-                                    const int32_t lhs_offset,
-                                    const uint16_t num_ch,
-                                    const int32_t *out_shift,
-                                    const int32_t *out_mult,
-                                    const int32_t out_offset,
-                                    const int32_t activation_min,
-                                    const int32_t activation_max,
-                                    const uint16_t row_x_col,
-                                    const int32_t *const output_bias,
-                                    q7_t *out);
+q7_t* riscv_nn_depthwise_conv_nt_t_s8(const q7_t* lhs,
+                                      const q7_t* rhs,
+                                      const int32_t lhs_offset,
+                                      const uint16_t num_ch,
+                                      const int32_t* out_shift,
+                                      const int32_t* out_mult,
+                                      const int32_t out_offset,
+                                      const int32_t activation_min,
+                                      const int32_t activation_max,
+                                      const uint16_t row_x_col,
+                                      const int32_t* const output_bias,
+                                      q7_t* out);
 
 /**
   @brief         Read 2 q15 elements and post increment pointer.
   @param[in]     in_q15   Pointer to pointer that holds address of input.
   @return        q31 value
  */
-__STATIC_FORCEINLINE q31_t riscv_nn_read_q15x2_ia(const q15_t **in_q15)
+__STATIC_FORCEINLINE q31_t riscv_nn_read_q15x2_ia(const q15_t** in_q15)
 {
     q31_t val;
 
 #ifdef __RISCV_FEATURE_UNALIGNED
-  memcpy (&val, *in_q15, 4);
+    memcpy(&val, *in_q15, 4);
 #else
-    __ASM volatile ("lw %0, 0(%1)" : "=r" (val) : "r" (*in_q15));
+    __ASM volatile("lw %0, 0(%1)" : "=r"(val) : "r"(*in_q15));
 #endif
-  *in_q15 += 2;
+    *in_q15 += 2;
 
     return (val);
 }
@@ -529,15 +526,15 @@ __STATIC_FORCEINLINE q31_t riscv_nn_read_q15x2_ia(const q15_t **in_q15)
   @param[in]     in_q7       Pointer to pointer that holds address of input.
   @return        q31 value
  */
-__STATIC_FORCEINLINE q31_t riscv_nn_read_q7x4_ia(const q7_t **in_q7)
+__STATIC_FORCEINLINE q31_t riscv_nn_read_q7x4_ia(const q7_t** in_q7)
 {
-  q31_t val;
+    q31_t val;
 #ifdef __RISCV_FEATURE_UNALIGNED
-  memcpy (&val, *in_q7, 4);
+    memcpy(&val, *in_q7, 4);
 #else
-  __ASM volatile ("lw %0, 0(%1)" : "=r" (val) : "r" (*in_q7));
+    __ASM volatile("lw %0, 0(%1)" : "=r"(val) : "r"(*in_q7));
 #endif
-  *in_q7 += 4;
+    *in_q7 += 4;
 
     return (val);
 }
@@ -547,13 +544,13 @@ __STATIC_FORCEINLINE q31_t riscv_nn_read_q7x4_ia(const q7_t **in_q7)
   @param[in]     in_q15   pointer to address of input.
   @return        q31 value
  */
-__STATIC_FORCEINLINE q31_t riscv_nn_read_q15x2(const q15_t *in_q15)
+__STATIC_FORCEINLINE q31_t riscv_nn_read_q15x2(const q15_t* in_q15)
 {
-  q31_t val;
+    q31_t val;
 #ifdef __RISCV_FEATURE_UNALIGNED
-  memcpy (&val, in_q15, 4);
+    memcpy(&val, in_q15, 4);
 #else
-    __ASM volatile ("lw %0, 0(%1)" : "=r" (val) : "r" (in_q15));
+    __ASM volatile("lw %0, 0(%1)" : "=r"(val) : "r"(in_q15));
 #endif
 
 
@@ -565,13 +562,13 @@ __STATIC_FORCEINLINE q31_t riscv_nn_read_q15x2(const q15_t *in_q15)
   @param[in]     in_q7       pointer to address of input.
   @return        q31 value
  */
-__STATIC_FORCEINLINE q31_t riscv_nn_read_q7x4(const q7_t *in_q7)
+__STATIC_FORCEINLINE q31_t riscv_nn_read_q7x4(const q7_t* in_q7)
 {
-  q31_t val;
+    q31_t val;
 #ifdef __RISCV_FEATURE_UNALIGNED
-  memcpy (&val, in_q7, 4);
+    memcpy(&val, in_q7, 4);
 #else
-    __ASM volatile ("lw %0, 0(%1)" : "=r" (val) : "r" (in_q7));
+    __ASM volatile("lw %0, 0(%1)" : "=r"(val) : "r"(in_q7));
 #endif
 
     return (val);
@@ -584,7 +581,7 @@ __STATIC_FORCEINLINE q31_t riscv_nn_read_q7x4(const q7_t *in_q7)
  * @param[in]       block_size  Number of bytes to copy.
  *
  */
-__STATIC_FORCEINLINE void riscv_memset_q7(q7_t *dst, const q7_t val, uint32_t block_size)
+__STATIC_FORCEINLINE void riscv_memset_q7(q7_t* dst, const q7_t val, uint32_t block_size)
 {
     memset(dst, val, block_size);
 }
@@ -595,7 +592,7 @@ __STATIC_FORCEINLINE void riscv_memset_q7(q7_t *dst, const q7_t val, uint32_t bl
  * @brief read and expand one q7 word into two q15 words
  */
 
-__STATIC_FORCEINLINE const q7_t *read_and_pad(const q7_t *source, q31_t *out1, q31_t *out2)
+__STATIC_FORCEINLINE const q7_t* read_and_pad(const q7_t* source, q31_t* out1, q31_t* out2)
 {
     q31_t inA = riscv_nn_read_q7x4_ia(&source);
     q31_t inAbuf1 = __SXTB16(__ROR((uint32_t)inA, 8));
@@ -611,7 +608,7 @@ __STATIC_FORCEINLINE const q7_t *read_and_pad(const q7_t *source, q31_t *out1, q
  * @brief read and expand one q7 word into two q15 words with reordering
  */
 
-__STATIC_FORCEINLINE const q7_t *read_and_pad_reordered(const q7_t *source, q31_t *out1, q31_t *out2)
+__STATIC_FORCEINLINE const q7_t* read_and_pad_reordered(const q7_t* source, q31_t* out1, q31_t* out2)
 {
     q31_t inA = riscv_nn_read_q7x4_ia(&source);
     *out2 = __SXTB16(__ROR((uint32_t)inA, 8));
@@ -623,8 +620,8 @@ __STATIC_FORCEINLINE const q7_t *read_and_pad_reordered(const q7_t *source, q31_
 /**
  * @brief read and expand one q7 word into two q15 words with reordering and add an offset
  */
-__STATIC_FORCEINLINE const q7_t *
-read_and_pad_reordered_with_offset(const q7_t *source, q31_t *out1, q31_t *out2, q31_t offset)
+__STATIC_FORCEINLINE const q7_t*
+read_and_pad_reordered_with_offset(const q7_t* source, q31_t* out1, q31_t* out2, q31_t offset)
 {
     q31_t inA = riscv_nn_read_q7x4_ia(&source);
 
@@ -660,7 +657,7 @@ read_and_pad_reordered_with_offset(const q7_t *source, q31_t *out1, q31_t *out2,
  * Results outside of the allowable q15 range [0x8000 0x7FFF] will be saturated.
  */
 
-void riscv_nn_mult_q15(q15_t *pSrcA, q15_t *pSrcB, q15_t *pDst, const uint16_t out_shift, uint32_t blockSize);
+void riscv_nn_mult_q15(q15_t* pSrcA, q15_t* pSrcB, q15_t* pDst, const uint16_t out_shift, uint32_t blockSize);
 
 /**
  * @brief           q7 vector multiplication with variable output shifts
@@ -677,7 +674,7 @@ void riscv_nn_mult_q15(q15_t *pSrcA, q15_t *pSrcB, q15_t *pDst, const uint16_t o
  * Results outside of the allowable q7 range [0x80 0x7F] will be saturated.
  */
 
-void riscv_nn_mult_q7(q7_t *pSrcA, q7_t *pSrcB, q7_t *pDst, const uint16_t out_shift, uint32_t blockSize);
+void riscv_nn_mult_q7(q7_t* pSrcA, q7_t* pSrcB, q7_t* pDst, const uint16_t out_shift, uint32_t blockSize);
 
 /**
  * @brief macro for adding rounding offset
@@ -713,8 +710,7 @@ __STATIC_FORCEINLINE q31_t riscv_nn_doubling_high_mult(const q31_t m1, const q31
     // Rounding offset to add for a right shift of 31
     q63_t mult = 1 << 30;
 
-    if ((m1 < 0) ^ (m2 < 0))
-    {
+    if ((m1 < 0) ^ (m2 < 0)) {
         mult = 1 - mult;
     }
     // Gets resolved as a SMLAL instruction
@@ -724,8 +720,7 @@ __STATIC_FORCEINLINE q31_t riscv_nn_doubling_high_mult(const q31_t m1, const q31
     // as well.
     result = (int32_t)(mult / (1ll << 31));
 
-    if ((m1 == m2) && (m1 == (int32_t)Q31_MIN))
-    {
+    if ((m1 == m2) && (m1 == (int32_t)Q31_MIN)) {
         result = Q31_MAX;
     }
     return result;
@@ -783,12 +778,10 @@ __STATIC_FORCEINLINE q31_t riscv_nn_divide_by_power_of_two(const q31_t dividend,
 
     // Adjust 'result' for rounding (mid point away from zero)
     q31_t threshold = remainder_mask >> 1;
-    if (result < 0)
-    {
+    if (result < 0) {
         threshold++;
     }
-    if (remainder > threshold)
-    {
+    if (remainder > threshold) {
         result++;
     }
 
@@ -807,7 +800,7 @@ __STATIC_FORCEINLINE q31_t riscv_nn_divide_by_power_of_two(const q31_t dividend,
 __STATIC_FORCEINLINE q31_t riscv_nn_requantize(const q31_t val, const q31_t multiplier, const q31_t shift)
 {
     return riscv_nn_divide_by_power_of_two(riscv_nn_doubling_high_mult_no_sat(val * (1 << LEFT_SHIFT(shift)), multiplier),
-                                         RIGHT_SHIFT(shift));
+                                           RIGHT_SHIFT(shift));
 }
 
 /**
@@ -817,7 +810,7 @@ __STATIC_FORCEINLINE q31_t riscv_nn_requantize(const q31_t val, const q31_t mult
  * @param[in]       block_size  Number of bytes to copy.
  *
  */
-__STATIC_FORCEINLINE void riscv_memcpy_q7(q7_t *__RESTRICT dst, const q7_t *__RESTRICT src, uint32_t block_size)
+__STATIC_FORCEINLINE void riscv_memcpy_q7(q7_t* __RESTRICT dst, const q7_t* __RESTRICT src, uint32_t block_size)
 {
     memcpy(dst, src, block_size);
 }
@@ -836,7 +829,7 @@ __STATIC_FORCEINLINE int32_t riscv_nn_exp_on_negative_values(int32_t val)
     const int32_t x2 = MUL_SAT(x, x);
 
     int32_t result = 1895147668 +
-        MUL_SAT(1895147668, x + DIV_POW2(MUL_SAT(DIV_POW2(MUL_SAT(x2, x2), 2) + MUL_SAT(x2, x), 715827883) + x2, 1));
+                     MUL_SAT(1895147668, x + DIV_POW2(MUL_SAT(DIV_POW2(MUL_SAT(x2, x2), 2) + MUL_SAT(x2, x), 715827883) + x2, 1));
 
 #define SELECT_IF_NON_ZERO(x)                                                                                          \
     {                                                                                                                  \
@@ -887,7 +880,7 @@ __STATIC_FORCEINLINE int32_t riscv_nn_one_over_one_plus_x_for_x_in_0_1(int32_t v
   @param[in]     src_q31   Input value to be written.
   @return        none
  */
-__STATIC_FORCEINLINE void riscv_nn_write_q15x2_ia(q15_t **dest_q15, q31_t src_q31)
+__STATIC_FORCEINLINE void riscv_nn_write_q15x2_ia(q15_t** dest_q15, q31_t src_q31)
 {
     q31_t val = src_q31;
 

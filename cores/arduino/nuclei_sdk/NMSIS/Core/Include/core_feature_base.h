@@ -26,7 +26,7 @@
 #include "riscv_encoding.h"
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 /**
@@ -36,21 +36,21 @@
  * @{
  */
 #ifndef __RISCV_XLEN
-  /** \brief Refer to the width of an integer register in bits(either 32 or 64) */
-  #ifndef __riscv_xlen
-    #define __RISCV_XLEN    32
-  #else
-    #define __RISCV_XLEN    __riscv_xlen
-  #endif
+/** \brief Refer to the width of an integer register in bits(either 32 or 64) */
+#ifndef __riscv_xlen
+#define __RISCV_XLEN    32
+#else
+#define __RISCV_XLEN    __riscv_xlen
+#endif
 #endif /* __RISCV_XLEN */
 
 /** \brief Type of Control and Status Register(CSR), depends on the XLEN defined in RISC-V */
 #if __RISCV_XLEN == 32
-  typedef uint32_t rv_csr_t;
+typedef uint32_t rv_csr_t;
 #elif __RISCV_XLEN == 64
-  typedef uint64_t rv_csr_t;
+typedef uint64_t rv_csr_t;
 #else
-  typedef uint32_t rv_csr_t;
+typedef uint32_t rv_csr_t;
 #endif
 /** @} */ /* End of Doxygen Group NMSIS_Core_Registers */
 /**
@@ -65,36 +65,36 @@
  */
 typedef union {
     struct {
-        rv_csr_t a:1;                           /*!< bit:     0  Atomic extension */
-        rv_csr_t b:1;                           /*!< bit:     1  Tentatively reserved for Bit-Manipulation extension */
-        rv_csr_t c:1;                           /*!< bit:     2  Compressed extension */
-        rv_csr_t d:1;                           /*!< bit:     3  Double-precision floating-point extension */
-        rv_csr_t e:1;                           /*!< bit:     4  RV32E base ISA */
-        rv_csr_t f:1;                           /*!< bit:     5  Single-precision floating-point extension */
-        rv_csr_t g:1;                           /*!< bit:     6  Additional standard extensions present */
-        rv_csr_t h:1;                           /*!< bit:     7  Hypervisor extension */
-        rv_csr_t i:1;                           /*!< bit:     8  RV32I/64I/128I base ISA */
-        rv_csr_t j:1;                           /*!< bit:     9  Tentatively reserved for Dynamically Translated Languages extension */
-        rv_csr_t _reserved1:1;                  /*!< bit:     10 Reserved  */
-        rv_csr_t l:1;                           /*!< bit:     11 Tentatively reserved for Decimal Floating-Point extension  */
-        rv_csr_t m:1;                           /*!< bit:     12 Integer Multiply/Divide extension */
-        rv_csr_t n:1;                           /*!< bit:     13 User-level interrupts supported  */
-        rv_csr_t _reserved2:1;                  /*!< bit:     14 Reserved  */
-        rv_csr_t p:1;                           /*!< bit:     15 Tentatively reserved for Packed-SIMD extension  */
-        rv_csr_t q:1;                           /*!< bit:     16 Quad-precision floating-point extension  */
-        rv_csr_t _resreved3:1;                  /*!< bit:     17 Reserved  */
-        rv_csr_t s:1;                           /*!< bit:     18 Supervisor mode implemented  */
-        rv_csr_t t:1;                           /*!< bit:     19 Tentatively reserved for Transactional Memory extension  */
-        rv_csr_t u:1;                           /*!< bit:     20 User mode implemented  */
-        rv_csr_t v:1;                           /*!< bit:     21 Tentatively reserved for Vector extension  */
-        rv_csr_t _reserved4:1;                  /*!< bit:     22 Reserved  */
-        rv_csr_t x:1;                           /*!< bit:     23 Non-standard extensions present  */
+        rv_csr_t a: 1;                          /*!< bit:     0  Atomic extension */
+        rv_csr_t b: 1;                          /*!< bit:     1  Tentatively reserved for Bit-Manipulation extension */
+        rv_csr_t c: 1;                          /*!< bit:     2  Compressed extension */
+        rv_csr_t d: 1;                          /*!< bit:     3  Double-precision floating-point extension */
+        rv_csr_t e: 1;                          /*!< bit:     4  RV32E base ISA */
+        rv_csr_t f: 1;                          /*!< bit:     5  Single-precision floating-point extension */
+        rv_csr_t g: 1;                          /*!< bit:     6  Additional standard extensions present */
+        rv_csr_t h: 1;                          /*!< bit:     7  Hypervisor extension */
+        rv_csr_t i: 1;                          /*!< bit:     8  RV32I/64I/128I base ISA */
+        rv_csr_t j: 1;                          /*!< bit:     9  Tentatively reserved for Dynamically Translated Languages extension */
+        rv_csr_t _reserved1: 1;                 /*!< bit:     10 Reserved  */
+        rv_csr_t l: 1;                          /*!< bit:     11 Tentatively reserved for Decimal Floating-Point extension  */
+        rv_csr_t m: 1;                          /*!< bit:     12 Integer Multiply/Divide extension */
+        rv_csr_t n: 1;                          /*!< bit:     13 User-level interrupts supported  */
+        rv_csr_t _reserved2: 1;                 /*!< bit:     14 Reserved  */
+        rv_csr_t p: 1;                          /*!< bit:     15 Tentatively reserved for Packed-SIMD extension  */
+        rv_csr_t q: 1;                          /*!< bit:     16 Quad-precision floating-point extension  */
+        rv_csr_t _resreved3: 1;                 /*!< bit:     17 Reserved  */
+        rv_csr_t s: 1;                          /*!< bit:     18 Supervisor mode implemented  */
+        rv_csr_t t: 1;                          /*!< bit:     19 Tentatively reserved for Transactional Memory extension  */
+        rv_csr_t u: 1;                          /*!< bit:     20 User mode implemented  */
+        rv_csr_t v: 1;                          /*!< bit:     21 Tentatively reserved for Vector extension  */
+        rv_csr_t _reserved4: 1;                 /*!< bit:     22 Reserved  */
+        rv_csr_t x: 1;                          /*!< bit:     23 Non-standard extensions present  */
 #if defined(__RISCV_XLEN) && __RISCV_XLEN == 64
-        rv_csr_t _reserved5:38;                 /*!< bit:     24..61 Reserved  */
-        rv_csr_t mxl:2;                         /*!< bit:     62..63 Machine XLEN  */
+        rv_csr_t _reserved5: 38;                /*!< bit:     24..61 Reserved  */
+        rv_csr_t mxl: 2;                        /*!< bit:     62..63 Machine XLEN  */
 #else
-        rv_csr_t _reserved5:6;                  /*!< bit:     24..29 Reserved  */
-        rv_csr_t mxl:2;                         /*!< bit:     30..31 Machine XLEN  */
+        rv_csr_t _reserved5: 6;                 /*!< bit:     24..29 Reserved  */
+        rv_csr_t mxl: 2;                        /*!< bit:     30..31 Machine XLEN  */
 #endif
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
@@ -106,36 +106,36 @@ typedef union {
 typedef union {
     struct {
 #if defined(__RISCV_XLEN) && __RISCV_XLEN == 64
-        rv_csr_t _reserved0:3;                  /*!< bit:     0..2  Reserved */
-        rv_csr_t mie:1;                         /*!< bit:     3  Machine mode interrupt enable flag */
-        rv_csr_t _reserved1:3;                  /*!< bit:     4..6  Reserved */
-        rv_csr_t mpie:1;                        /*!< bit:     7  mirror of MIE flag */
-        rv_csr_t _reserved2:3;                  /*!< bit:     8..10  Reserved */
-        rv_csr_t mpp:2;                         /*!< bit:     11..12 mirror of Privilege Mode */
-        rv_csr_t fs:2;                          /*!< bit:     13..14 FS status flag */
-        rv_csr_t xs:2;                          /*!< bit:     15..16 XS status flag */
-        rv_csr_t mprv:1;                        /*!< bit:     Machine mode PMP */
-        rv_csr_t _reserved3:14;                 /*!< bit:     18..31 Reserved */
-        rv_csr_t uxl:2;                         /*!< bit:     32..33 user mode xlen */
-        rv_csr_t _reserved6:29;                 /*!< bit:     34..62 Reserved  */
-        rv_csr_t sd:1;                          /*!< bit:     Dirty status for XS or FS */
+        rv_csr_t _reserved0: 3;                 /*!< bit:     0..2  Reserved */
+        rv_csr_t mie: 1;                        /*!< bit:     3  Machine mode interrupt enable flag */
+        rv_csr_t _reserved1: 3;                 /*!< bit:     4..6  Reserved */
+        rv_csr_t mpie: 1;                       /*!< bit:     7  mirror of MIE flag */
+        rv_csr_t _reserved2: 3;                 /*!< bit:     8..10  Reserved */
+        rv_csr_t mpp: 2;                        /*!< bit:     11..12 mirror of Privilege Mode */
+        rv_csr_t fs: 2;                         /*!< bit:     13..14 FS status flag */
+        rv_csr_t xs: 2;                         /*!< bit:     15..16 XS status flag */
+        rv_csr_t mprv: 1;                       /*!< bit:     Machine mode PMP */
+        rv_csr_t _reserved3: 14;                /*!< bit:     18..31 Reserved */
+        rv_csr_t uxl: 2;                        /*!< bit:     32..33 user mode xlen */
+        rv_csr_t _reserved6: 29;                /*!< bit:     34..62 Reserved  */
+        rv_csr_t sd: 1;                         /*!< bit:     Dirty status for XS or FS */
 #else
-        rv_csr_t _reserved0:1;                  /*!< bit:     0  Reserved */
-        rv_csr_t sie:1;                         /*!< bit:     1  supervisor interrupt enable flag */
-        rv_csr_t _reserved1:1;                  /*!< bit:     2  Reserved */
-        rv_csr_t mie:1;                         /*!< bit:     3  Machine mode interrupt enable flag */
-        rv_csr_t _reserved2:1;                  /*!< bit:     4  Reserved */
-        rv_csr_t spie:1;                        /*!< bit:     3  Supervisor Privilede mode interrupt enable flag */
-        rv_csr_t _reserved3:1;                  /*!< bit:     Reserved */
-        rv_csr_t mpie:1;                        /*!< bit:     mirror of MIE flag */
-        rv_csr_t _reserved4:3;                  /*!< bit:     Reserved */
-        rv_csr_t mpp:2;                         /*!< bit:     mirror of Privilege Mode */
-        rv_csr_t fs:2;                          /*!< bit:     FS status flag */
-        rv_csr_t xs:2;                          /*!< bit:     XS status flag */
-        rv_csr_t mprv:1;                        /*!< bit:     Machine mode PMP */
-        rv_csr_t sum:1;                         /*!< bit:     Supervisor Mode load and store protection */
-        rv_csr_t _reserved6:12;                 /*!< bit:     19..30 Reserved  */
-        rv_csr_t sd:1;                          /*!< bit:     Dirty status for XS or FS */
+        rv_csr_t _reserved0: 1;                 /*!< bit:     0  Reserved */
+        rv_csr_t sie: 1;                        /*!< bit:     1  supervisor interrupt enable flag */
+        rv_csr_t _reserved1: 1;                 /*!< bit:     2  Reserved */
+        rv_csr_t mie: 1;                        /*!< bit:     3  Machine mode interrupt enable flag */
+        rv_csr_t _reserved2: 1;                 /*!< bit:     4  Reserved */
+        rv_csr_t spie: 1;                       /*!< bit:     3  Supervisor Privilede mode interrupt enable flag */
+        rv_csr_t _reserved3: 1;                 /*!< bit:     Reserved */
+        rv_csr_t mpie: 1;                       /*!< bit:     mirror of MIE flag */
+        rv_csr_t _reserved4: 3;                 /*!< bit:     Reserved */
+        rv_csr_t mpp: 2;                        /*!< bit:     mirror of Privilege Mode */
+        rv_csr_t fs: 2;                         /*!< bit:     FS status flag */
+        rv_csr_t xs: 2;                         /*!< bit:     XS status flag */
+        rv_csr_t mprv: 1;                       /*!< bit:     Machine mode PMP */
+        rv_csr_t sum: 1;                        /*!< bit:     Supervisor Mode load and store protection */
+        rv_csr_t _reserved6: 12;                /*!< bit:     19..30 Reserved  */
+        rv_csr_t sd: 1;                         /*!< bit:     Dirty status for XS or FS */
 #endif
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
@@ -146,11 +146,11 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t mode:6;                        /*!< bit:     0..5   interrupt mode control */
+        rv_csr_t mode: 6;                       /*!< bit:     0..5   interrupt mode control */
 #if defined(__RISCV_XLEN) && __RISCV_XLEN == 64
-        rv_csr_t addr:58;                       /*!< bit:     6..63  mtvec address */
+        rv_csr_t addr: 58;                      /*!< bit:     6..63  mtvec address */
 #else
-        rv_csr_t addr:26;                       /*!< bit:     6..31  mtvec address */
+        rv_csr_t addr: 26;                      /*!< bit:     6..31  mtvec address */
 #endif
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
@@ -161,18 +161,18 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t exccode:12;                    /*!< bit:     11..0  exception or interrupt code */
-        rv_csr_t _reserved0:4;                  /*!< bit:     15..12  Reserved */
-        rv_csr_t mpil:8;                        /*!< bit:     23..16  Previous interrupt level */
-        rv_csr_t _reserved1:3;                  /*!< bit:     26..24  Reserved */
-        rv_csr_t mpie:1;                        /*!< bit:     27  Interrupt enable flag before enter interrupt */
-        rv_csr_t mpp:2;                         /*!< bit:     29..28  Privilede mode flag before enter interrupt */
-        rv_csr_t minhv:1;                       /*!< bit:     30  Machine interrupt vector table */
+        rv_csr_t exccode: 12;                   /*!< bit:     11..0  exception or interrupt code */
+        rv_csr_t _reserved0: 4;                 /*!< bit:     15..12  Reserved */
+        rv_csr_t mpil: 8;                       /*!< bit:     23..16  Previous interrupt level */
+        rv_csr_t _reserved1: 3;                 /*!< bit:     26..24  Reserved */
+        rv_csr_t mpie: 1;                       /*!< bit:     27  Interrupt enable flag before enter interrupt */
+        rv_csr_t mpp: 2;                        /*!< bit:     29..28  Privilede mode flag before enter interrupt */
+        rv_csr_t minhv: 1;                      /*!< bit:     30  Machine interrupt vector table */
 #if defined(__RISCV_XLEN) && __RISCV_XLEN == 64
-        rv_csr_t _reserved2:32;                 /*!< bit:     31..62  Reserved */
-        rv_csr_t interrupt:1;                   /*!< bit:     63  trap type. 0 means exception and 1 means interrupt */
+        rv_csr_t _reserved2: 32;                /*!< bit:     31..62  Reserved */
+        rv_csr_t interrupt: 1;                  /*!< bit:     63  trap type. 0 means exception and 1 means interrupt */
 #else
-        rv_csr_t interrupt:1;                   /*!< bit:     31  trap type. 0 means exception and 1 means interrupt */
+        rv_csr_t interrupt: 1;                  /*!< bit:     31  trap type. 0 means exception and 1 means interrupt */
 #endif
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
@@ -183,13 +183,13 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t cy:1;                          /*!< bit:     0     1 means disable mcycle counter */
-        rv_csr_t _reserved0:1;                  /*!< bit:     1     Reserved */
-        rv_csr_t ir:1;                          /*!< bit:     2     1 means disable minstret counter */
+        rv_csr_t cy: 1;                         /*!< bit:     0     1 means disable mcycle counter */
+        rv_csr_t _reserved0: 1;                 /*!< bit:     1     Reserved */
+        rv_csr_t ir: 1;                         /*!< bit:     2     1 means disable minstret counter */
 #if defined(__RISCV_XLEN) && __RISCV_XLEN == 64
-        rv_csr_t _reserved1:61;                 /*!< bit:     3..63 Reserved */
+        rv_csr_t _reserved1: 61;                /*!< bit:     3..63 Reserved */
 #else
-        rv_csr_t _reserved1:29;                 /*!< bit:     3..31 Reserved */
+        rv_csr_t _reserved1: 29;                /*!< bit:     3..31 Reserved */
 #endif
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
@@ -200,13 +200,13 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t _reserved0:6;                  /*!< bit:     0..5   Reserved */
-        rv_csr_t typ:2;                         /*!< bit:     6..7   current trap type */
-        rv_csr_t ptyp:2;                        /*!< bit:     8..9   previous trap type */
+        rv_csr_t _reserved0: 6;                 /*!< bit:     0..5   Reserved */
+        rv_csr_t typ: 2;                        /*!< bit:     6..7   current trap type */
+        rv_csr_t ptyp: 2;                       /*!< bit:     8..9   previous trap type */
 #if defined(__RISCV_XLEN) && __RISCV_XLEN == 64
-        rv_csr_t _reserved1:54;                 /*!< bit:     10..63 Reserved */
+        rv_csr_t _reserved1: 54;                /*!< bit:     10..63 Reserved */
 #else
-        rv_csr_t _reserved1:22;                 /*!< bit:     10..31 Reserved */
+        rv_csr_t _reserved1: 22;                /*!< bit:     10..31 Reserved */
 #endif
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
@@ -217,8 +217,9 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t mdcause:2;                     /*!< bit:     0..1   More detailed exception information as MCAUSE supplement */
-        rv_csr_t _reserved0:__RISCV_XLEN-2;     /*!< bit:     2..XLEN-1 Reserved */
+        rv_csr_t mdcause: 2;                    /*!< bit:     0..1   More detailed exception information as MCAUSE supplement */
+rv_csr_t _reserved0:
+        __RISCV_XLEN - 2;   /*!< bit:     2..XLEN-1 Reserved */
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MDCAUSE_Type;
@@ -228,16 +229,16 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t _reserved0:3;                  /*!< bit:     0..2  Reserved */
-        rv_csr_t bpu:1;                         /*!< bit:     3     dynamic prediction enable flag */
-        rv_csr_t _reserved1:2;                  /*!< bit:     4..5  Reserved */
-        rv_csr_t misalign:1;                    /*!< bit:     6     misaligned access support flag */
-        rv_csr_t _reserved2:2;                  /*!< bit:     7..8  Reserved */
-        rv_csr_t nmi_cause:1;                   /*!< bit:     9     mnvec control and nmi mcase exccode */
+        rv_csr_t _reserved0: 3;                 /*!< bit:     0..2  Reserved */
+        rv_csr_t bpu: 1;                        /*!< bit:     3     dynamic prediction enable flag */
+        rv_csr_t _reserved1: 2;                 /*!< bit:     4..5  Reserved */
+        rv_csr_t misalign: 1;                   /*!< bit:     6     misaligned access support flag */
+        rv_csr_t _reserved2: 2;                 /*!< bit:     7..8  Reserved */
+        rv_csr_t nmi_cause: 1;                  /*!< bit:     9     mnvec control and nmi mcase exccode */
 #if defined(__RISCV_XLEN) && __RISCV_XLEN == 64
-        rv_csr_t _reserved3:54;                 /*!< bit:     10..63 Reserved */
+        rv_csr_t _reserved3: 54;                /*!< bit:     10..63 Reserved */
 #else
-        rv_csr_t _reserved3:22;                 /*!< bit:     10..31 Reserved */
+        rv_csr_t _reserved3: 22;                /*!< bit:     10..31 Reserved */
 #endif
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
@@ -250,19 +251,20 @@ typedef CSR_MMISCCTRL_Type CSR_MMISCCTL_Type;
  */
 typedef union {
     struct {
-        rv_csr_t ic_en:1;                       /*!< I-Cache enable */
-        rv_csr_t ic_scpd_mod:1;                 /*!< Scratchpad mode, 0: Scratchpad as ICache Data RAM, 1: Scratchpad as ILM SRAM */
-        rv_csr_t ic_ecc_en:1;                   /*!< I-Cache ECC enable */
-        rv_csr_t ic_ecc_excp_en:1;              /*!< I-Cache 2bit ECC error exception enable */
-        rv_csr_t ic_rwtecc:1;                   /*!< Control I-Cache Tag Ram ECC code injection */
-        rv_csr_t ic_rwdecc:1;                   /*!< Control I-Cache Data Ram ECC code injection */
-        rv_csr_t _reserved0:10;
-        rv_csr_t dc_en:1;                       /*!< DCache enable */
-        rv_csr_t dc_ecc_en:1;                   /*!< D-Cache ECC enable */
-        rv_csr_t dc_ecc_excp_en:1;              /*!< D-Cache 2bit ECC error exception enable */
-        rv_csr_t dc_rwtecc:1;                   /*!< Control D-Cache Tag Ram ECC code injection */
-        rv_csr_t dc_rwdecc:1;                   /*!< Control D-Cache Data Ram ECC code injection */
-        rv_csr_t _reserved1:__RISCV_XLEN-21;
+        rv_csr_t ic_en: 1;                      /*!< I-Cache enable */
+        rv_csr_t ic_scpd_mod: 1;                /*!< Scratchpad mode, 0: Scratchpad as ICache Data RAM, 1: Scratchpad as ILM SRAM */
+        rv_csr_t ic_ecc_en: 1;                  /*!< I-Cache ECC enable */
+        rv_csr_t ic_ecc_excp_en: 1;             /*!< I-Cache 2bit ECC error exception enable */
+        rv_csr_t ic_rwtecc: 1;                  /*!< Control I-Cache Tag Ram ECC code injection */
+        rv_csr_t ic_rwdecc: 1;                  /*!< Control I-Cache Data Ram ECC code injection */
+        rv_csr_t _reserved0: 10;
+        rv_csr_t dc_en: 1;                      /*!< DCache enable */
+        rv_csr_t dc_ecc_en: 1;                  /*!< D-Cache ECC enable */
+        rv_csr_t dc_ecc_excp_en: 1;             /*!< D-Cache 2bit ECC error exception enable */
+        rv_csr_t dc_rwtecc: 1;                  /*!< Control D-Cache Tag Ram ECC code injection */
+        rv_csr_t dc_rwdecc: 1;                  /*!< Control D-Cache Data Ram ECC code injection */
+rv_csr_t _reserved1:
+        __RISCV_XLEN - 21;
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MCACHECTL_Type;
@@ -272,18 +274,18 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t mpie1:1;                       /*!< bit:     0     interrupt enable flag of fisrt level NMI/exception nestting */
-        rv_csr_t mpp1:2;                        /*!< bit:     1..2  privilede mode of fisrt level NMI/exception nestting */
-        rv_csr_t _reserved0:3;                  /*!< bit:     3..5  Reserved */
-        rv_csr_t ptyp1:2;                       /*!< bit:     6..7  NMI/exception type of before first nestting */
-        rv_csr_t mpie2:1;                       /*!< bit:     8     interrupt enable flag of second level NMI/exception nestting */
-        rv_csr_t mpp2:2;                        /*!< bit:     9..10 privilede mode of second level NMI/exception nestting */
-        rv_csr_t _reserved1:3;                  /*!< bit:     11..13     Reserved */
-        rv_csr_t ptyp2:2;                       /*!< bit:     14..15     NMI/exception type of before second nestting */
+        rv_csr_t mpie1: 1;                      /*!< bit:     0     interrupt enable flag of fisrt level NMI/exception nestting */
+        rv_csr_t mpp1: 2;                       /*!< bit:     1..2  privilede mode of fisrt level NMI/exception nestting */
+        rv_csr_t _reserved0: 3;                 /*!< bit:     3..5  Reserved */
+        rv_csr_t ptyp1: 2;                      /*!< bit:     6..7  NMI/exception type of before first nestting */
+        rv_csr_t mpie2: 1;                      /*!< bit:     8     interrupt enable flag of second level NMI/exception nestting */
+        rv_csr_t mpp2: 2;                       /*!< bit:     9..10 privilede mode of second level NMI/exception nestting */
+        rv_csr_t _reserved1: 3;                 /*!< bit:     11..13     Reserved */
+        rv_csr_t ptyp2: 2;                      /*!< bit:     14..15     NMI/exception type of before second nestting */
 #if defined(__RISCV_XLEN) && __RISCV_XLEN == 64
-        rv_csr_t _reserved2:48;                 /*!< bit:     16..63 Reserved*/
+        rv_csr_t _reserved2: 48;                /*!< bit:     16..63 Reserved*/
 #else
-        rv_csr_t _reserved2:16;                 /*!< bit:     16..31 Reserved*/
+        rv_csr_t _reserved2: 16;                /*!< bit:     16..31 Reserved*/
 #endif
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t w;                                 /*!< Type      used for csr data access */
@@ -294,12 +296,13 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t ilm_en:1;                      /*!< ILM enable */
-        rv_csr_t ilm_ecc_en:1;                  /*!< ILM ECC eanble */
-        rv_csr_t ilm_ecc_excp_en:1;             /*!< ILM ECC exception enable */
-        rv_csr_t ilm_rwecc:1;                   /*!< Control mecc_code write to ilm, simulate error injection */
-        rv_csr_t _reserved0:6;                  /*!< Reserved */
-        rv_csr_t ilm_bpa:__RISCV_XLEN-10;       /*!< ILM base address */
+        rv_csr_t ilm_en: 1;                     /*!< ILM enable */
+        rv_csr_t ilm_ecc_en: 1;                 /*!< ILM ECC eanble */
+        rv_csr_t ilm_ecc_excp_en: 1;            /*!< ILM ECC exception enable */
+        rv_csr_t ilm_rwecc: 1;                  /*!< Control mecc_code write to ilm, simulate error injection */
+        rv_csr_t _reserved0: 6;                 /*!< Reserved */
+rv_csr_t ilm_bpa:
+        __RISCV_XLEN - 10;     /*!< ILM base address */
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MILMCTL_Type;
@@ -309,12 +312,13 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t dlm_en:1;                      /*!< DLM enable */
-        rv_csr_t dlm_ecc_en:1;                  /*!< DLM ECC eanble */
-        rv_csr_t dlm_ecc_excp_en:1;             /*!< DLM ECC exception enable */
-        rv_csr_t dlm_rwecc:1;                   /*!< Control mecc_code write to dlm, simulate error injection */
-        rv_csr_t _reserved0:6;                  /*!< Reserved */
-        rv_csr_t dlm_bpa:__RISCV_XLEN-10;       /*!< DLM base address */
+        rv_csr_t dlm_en: 1;                     /*!< DLM enable */
+        rv_csr_t dlm_ecc_en: 1;                 /*!< DLM ECC eanble */
+        rv_csr_t dlm_ecc_excp_en: 1;            /*!< DLM ECC exception enable */
+        rv_csr_t dlm_rwecc: 1;                  /*!< Control mecc_code write to dlm, simulate error injection */
+        rv_csr_t _reserved0: 6;                 /*!< Reserved */
+rv_csr_t dlm_bpa:
+        __RISCV_XLEN - 10;     /*!< DLM base address */
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MDLMCTL_Type;
@@ -324,18 +328,19 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t tee:1;                         /*!< TEE present */
-        rv_csr_t ecc:1;                         /*!< ECC present */
-        rv_csr_t clic:1;                        /*!< CLIC present */
-        rv_csr_t plic:1;                        /*!< PLIC present */
-        rv_csr_t fio:1;                         /*!< FIO present */
-        rv_csr_t ppi:1;                         /*!< PPI present */
-        rv_csr_t nice:1;                        /*!< NICE present */
-        rv_csr_t ilm:1;                         /*!< ILM present */
-        rv_csr_t dlm:1;                         /*!< DLM present */
-        rv_csr_t icache:1;                      /*!< ICache present */
-        rv_csr_t dcache:1;                      /*!< DCache present */
-        rv_csr_t _reserved0:__RISCV_XLEN-11;
+        rv_csr_t tee: 1;                        /*!< TEE present */
+        rv_csr_t ecc: 1;                        /*!< ECC present */
+        rv_csr_t clic: 1;                       /*!< CLIC present */
+        rv_csr_t plic: 1;                       /*!< PLIC present */
+        rv_csr_t fio: 1;                        /*!< FIO present */
+        rv_csr_t ppi: 1;                        /*!< PPI present */
+        rv_csr_t nice: 1;                       /*!< NICE present */
+        rv_csr_t ilm: 1;                        /*!< ILM present */
+        rv_csr_t dlm: 1;                        /*!< DLM present */
+        rv_csr_t icache: 1;                     /*!< ICache present */
+        rv_csr_t dcache: 1;                     /*!< DCache present */
+rv_csr_t _reserved0:
+        __RISCV_XLEN - 11;
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MCFGINFO_Type;
@@ -345,15 +350,16 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t set:4;                         /*!< I-Cache sets per way */
-        rv_csr_t way:3;                         /*!< I-Cache way */
-        rv_csr_t lsize:3;                       /*!< I-Cache line size */
-        rv_csr_t cache_ecc:1;                   /*!< I-Cache ECC present */
-        rv_csr_t _reserved0:5;
-        rv_csr_t lm_size:5;                     /*!< ILM size, need to be 2^n size */
-        rv_csr_t lm_xonly:1;                    /*!< ILM Execute only permission */
-        rv_csr_t lm_ecc:1;                      /*!< ILM ECC present */
-        rv_csr_t _reserved1:__RISCV_XLEN-23;
+        rv_csr_t set: 4;                        /*!< I-Cache sets per way */
+        rv_csr_t way: 3;                        /*!< I-Cache way */
+        rv_csr_t lsize: 3;                      /*!< I-Cache line size */
+        rv_csr_t cache_ecc: 1;                  /*!< I-Cache ECC present */
+        rv_csr_t _reserved0: 5;
+        rv_csr_t lm_size: 5;                    /*!< ILM size, need to be 2^n size */
+        rv_csr_t lm_xonly: 1;                   /*!< ILM Execute only permission */
+        rv_csr_t lm_ecc: 1;                     /*!< ILM ECC present */
+rv_csr_t _reserved1:
+        __RISCV_XLEN - 23;
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MICFGINFO_Type;
@@ -363,15 +369,16 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t set:4;                         /*!< D-Cache sets per way */
-        rv_csr_t way:3;                         /*!< D-Cache way */
-        rv_csr_t lsize:3;                       /*!< D-Cache line size */
-        rv_csr_t cache_ecc:1;                   /*!< D-Cache ECC present */
-        rv_csr_t _reserved0:5;
-        rv_csr_t lm_size:5;                     /*!< DLM size, need to be 2^n size */
-        rv_csr_t lm_xonly:1;                    /*!< DLM Execute only permission */
-        rv_csr_t lm_ecc:1;                      /*!< DLM ECC present */
-        rv_csr_t _reserved1:__RISCV_XLEN-23;
+        rv_csr_t set: 4;                        /*!< D-Cache sets per way */
+        rv_csr_t way: 3;                        /*!< D-Cache way */
+        rv_csr_t lsize: 3;                      /*!< D-Cache line size */
+        rv_csr_t cache_ecc: 1;                  /*!< D-Cache ECC present */
+        rv_csr_t _reserved0: 5;
+        rv_csr_t lm_size: 5;                    /*!< DLM size, need to be 2^n size */
+        rv_csr_t lm_xonly: 1;                   /*!< DLM Execute only permission */
+        rv_csr_t lm_ecc: 1;                     /*!< DLM ECC present */
+rv_csr_t _reserved1:
+        __RISCV_XLEN - 23;
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MDCFGINFO_Type;
@@ -381,10 +388,11 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t _reserved0:1;                  /*!< Reserved */
-        rv_csr_t ppi_size:5;                    /*!< PPI size, need to be 2^n size */
-        rv_csr_t _reserved1:4;                  /*!< Reserved */
-        rv_csr_t ppi_bpa:__RISCV_XLEN-10;       /*!< PPI base address */
+        rv_csr_t _reserved0: 1;                 /*!< Reserved */
+        rv_csr_t ppi_size: 5;                   /*!< PPI size, need to be 2^n size */
+        rv_csr_t _reserved1: 4;                 /*!< Reserved */
+rv_csr_t ppi_bpa:
+        __RISCV_XLEN - 10;     /*!< PPI base address */
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MPPICFGINFO_Type;
@@ -394,10 +402,11 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t _reserved0:1;                  /*!< Reserved */
-        rv_csr_t fio_size:5;                    /*!< FIO size, need to be 2^n size */
-        rv_csr_t _reserved1:4;                  /*!< Reserved */
-        rv_csr_t fio_bpa:__RISCV_XLEN-10;       /*!< FIO base address */
+        rv_csr_t _reserved0: 1;                 /*!< Reserved */
+        rv_csr_t fio_size: 5;                   /*!< FIO size, need to be 2^n size */
+        rv_csr_t _reserved1: 4;                 /*!< Reserved */
+rv_csr_t fio_bpa:
+        __RISCV_XLEN - 10;     /*!< FIO base address */
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MFIOCFGINFO_Type;
@@ -407,8 +416,9 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t ecc_lock:1;                    /*!< RW permission, ECC Lock configure */
-        rv_csr_t _reserved0:__RISCV_XLEN-1;     /*!< Reserved */
+        rv_csr_t ecc_lock: 1;                   /*!< RW permission, ECC Lock configure */
+rv_csr_t _reserved0:
+        __RISCV_XLEN - 1;   /*!< Reserved */
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MECCLOCK_Type;
@@ -418,12 +428,13 @@ typedef union {
  */
 typedef union {
     struct {
-        rv_csr_t code:9;                        /*!< Used to inject ECC check code */
-        rv_csr_t _reserved0:7;                  /*!< Reserved */
-        rv_csr_t ramid:5;                       /*!< Indicate 2bit ECC error, software can clear these bits */
-        rv_csr_t _reserved1:3;                  /*!< Reserved */
-        rv_csr_t sramid:5;                      /*!< Indicate 1bit ECC error, software can clear these bits */
-        rv_csr_t _reserved2:__RISCV_XLEN-29;    /*!< Reserved */
+        rv_csr_t code: 9;                       /*!< Used to inject ECC check code */
+        rv_csr_t _reserved0: 7;                 /*!< Reserved */
+        rv_csr_t ramid: 5;                      /*!< Indicate 2bit ECC error, software can clear these bits */
+        rv_csr_t _reserved1: 3;                 /*!< Reserved */
+        rv_csr_t sramid: 5;                     /*!< Indicate 1bit ECC error, software can clear these bits */
+rv_csr_t _reserved2:
+        __RISCV_XLEN - 29;  /*!< Reserved */
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MECCCODE_Type;
@@ -460,9 +471,9 @@ typedef union {
     ({                                                          \
         register rv_csr_t __v = (unsigned long)(val);           \
         __ASM volatile("csrrw %0, " STRINGIFY(csr) ", %1"       \
-                     : "=r"(__v)                                \
-                     : "rK"(__v)                                \
-                     : "memory");                               \
+                       : "=r"(__v)                                \
+                       : "rK"(__v)                                \
+                       : "memory");                               \
         __v;                                                    \
     })
 
@@ -478,9 +489,9 @@ typedef union {
     ({                                                          \
         register rv_csr_t __v;                                  \
         __ASM volatile("csrr %0, " STRINGIFY(csr)               \
-                     : "=r"(__v)                                \
-                     :                                          \
-                     : "memory");                               \
+                       : "=r"(__v)                                \
+                       :                                          \
+                       : "memory");                               \
         __v;                                                    \
     })
 
@@ -496,9 +507,9 @@ typedef union {
     ({                                                          \
         register rv_csr_t __v = (rv_csr_t)(val);                \
         __ASM volatile("csrw " STRINGIFY(csr) ", %0"            \
-                     :                                          \
-                     : "rK"(__v)                                \
-                     : "memory");                               \
+                       :                                          \
+                       : "rK"(__v)                                \
+                       : "memory");                               \
     })
 
 /**
@@ -515,9 +526,9 @@ typedef union {
     ({                                                          \
         register rv_csr_t __v = (rv_csr_t)(val);                \
         __ASM volatile("csrrs %0, " STRINGIFY(csr) ", %1"       \
-                     : "=r"(__v)                                \
-                     : "rK"(__v)                                \
-                     : "memory");                               \
+                       : "=r"(__v)                                \
+                       : "rK"(__v)                                \
+                       : "memory");                               \
         __v;                                                    \
     })
 
@@ -533,9 +544,9 @@ typedef union {
     ({                                                          \
         register rv_csr_t __v = (rv_csr_t)(val);                \
         __ASM volatile("csrs " STRINGIFY(csr) ", %0"            \
-                     :                                          \
-                     : "rK"(__v)                                \
-                     : "memory");                               \
+                       :                                          \
+                       : "rK"(__v)                                \
+                       : "memory");                               \
     })
 
 /**
@@ -552,9 +563,9 @@ typedef union {
     ({                                                          \
         register rv_csr_t __v = (rv_csr_t)(val);                \
         __ASM volatile("csrrc %0, " STRINGIFY(csr) ", %1"       \
-                     : "=r"(__v)                                \
-                     : "rK"(__v)                                \
-                     : "memory");                               \
+                       : "=r"(__v)                                \
+                       : "rK"(__v)                                \
+                       : "memory");                               \
         __v;                                                    \
     })
 
@@ -570,9 +581,9 @@ typedef union {
     ({                                                          \
         register rv_csr_t __v = (rv_csr_t)(val);                \
         __ASM volatile("csrc " STRINGIFY(csr) ", %0"            \
-                     :                                          \
-                     : "rK"(__v)                                \
-                     : "memory");                               \
+                       :                                          \
+                       : "rK"(__v)                                \
+                       : "memory");                               \
     })
 #endif /* __ASSEMBLY__ */
 
@@ -834,7 +845,7 @@ __STATIC_FORCEINLINE void __disable_minstret_counter(void)
  */
 __STATIC_FORCEINLINE void __enable_all_counter(void)
 {
-    __RV_CSR_CLEAR(CSR_MCOUNTINHIBIT, MCOUNTINHIBIT_IR|MCOUNTINHIBIT_CY);
+    __RV_CSR_CLEAR(CSR_MCOUNTINHIBIT, MCOUNTINHIBIT_IR | MCOUNTINHIBIT_CY);
 }
 
 /**
@@ -844,7 +855,7 @@ __STATIC_FORCEINLINE void __enable_all_counter(void)
  */
 __STATIC_FORCEINLINE void __disable_all_counter(void)
 {
-    __RV_CSR_SET(CSR_MCOUNTINHIBIT, MCOUNTINHIBIT_IR|MCOUNTINHIBIT_CY);
+    __RV_CSR_SET(CSR_MCOUNTINHIBIT, MCOUNTINHIBIT_IR | MCOUNTINHIBIT_CY);
 }
 
 /**
@@ -899,11 +910,11 @@ __STATIC_FORCEINLINE void __FENCE_I(void)
  * \param [in]    addr  Address pointer to data
  * \return              value of type uint8_t at (*addr)
  */
-__STATIC_FORCEINLINE uint8_t __LB(volatile void *addr)
+__STATIC_FORCEINLINE uint8_t __LB(volatile void* addr)
 {
     uint8_t result;
 
-    __ASM volatile ("lb %0, 0(%1)" : "=r" (result) : "r" (addr));
+    __ASM volatile("lb %0, 0(%1)" : "=r"(result) : "r"(addr));
     return result;
 }
 
@@ -913,11 +924,11 @@ __STATIC_FORCEINLINE uint8_t __LB(volatile void *addr)
  * \param [in]    addr  Address pointer to data
  * \return              value of type uint16_t at (*addr)
  */
-__STATIC_FORCEINLINE uint16_t __LH(volatile void *addr)
+__STATIC_FORCEINLINE uint16_t __LH(volatile void* addr)
 {
     uint16_t result;
 
-    __ASM volatile ("lh %0, 0(%1)" : "=r" (result) : "r" (addr));
+    __ASM volatile("lh %0, 0(%1)" : "=r"(result) : "r"(addr));
     return result;
 }
 
@@ -927,11 +938,11 @@ __STATIC_FORCEINLINE uint16_t __LH(volatile void *addr)
  * \param [in]    addr  Address pointer to data
  * \return              value of type uint32_t at (*addr)
  */
-__STATIC_FORCEINLINE uint32_t __LW(volatile void *addr)
+__STATIC_FORCEINLINE uint32_t __LW(volatile void* addr)
 {
     uint32_t result;
 
-    __ASM volatile ("lw %0, 0(%1)" : "=r" (result) : "r" (addr));
+    __ASM volatile("lw %0, 0(%1)" : "=r"(result) : "r"(addr));
     return result;
 }
 
@@ -943,10 +954,10 @@ __STATIC_FORCEINLINE uint32_t __LW(volatile void *addr)
  * \return              value of type uint64_t at (*addr)
  * \remarks RV64 only macro
  */
-__STATIC_FORCEINLINE uint64_t __LD(volatile void *addr)
+__STATIC_FORCEINLINE uint64_t __LD(volatile void* addr)
 {
     uint64_t result;
-    __ASM volatile ("ld %0, 0(%1)" : "=r" (result) : "r" (addr));
+    __ASM volatile("ld %0, 0(%1)" : "=r"(result) : "r"(addr));
     return result;
 }
 #endif
@@ -957,9 +968,9 @@ __STATIC_FORCEINLINE uint64_t __LD(volatile void *addr)
  * \param [in]    addr  Address pointer to data
  * \param [in]    val   Value to set
  */
-__STATIC_FORCEINLINE void __SB(volatile void *addr, uint8_t val)
+__STATIC_FORCEINLINE void __SB(volatile void* addr, uint8_t val)
 {
-    __ASM volatile ("sb %0, 0(%1)" : : "r" (val), "r" (addr));
+    __ASM volatile("sb %0, 0(%1)" : : "r"(val), "r"(addr));
 }
 
 /**
@@ -968,9 +979,9 @@ __STATIC_FORCEINLINE void __SB(volatile void *addr, uint8_t val)
  * \param [in]    addr  Address pointer to data
  * \param [in]    val   Value to set
  */
-__STATIC_FORCEINLINE void __SH(volatile void *addr, uint16_t val)
+__STATIC_FORCEINLINE void __SH(volatile void* addr, uint16_t val)
 {
-    __ASM volatile ("sh %0, 0(%1)" : : "r" (val), "r" (addr));
+    __ASM volatile("sh %0, 0(%1)" : : "r"(val), "r"(addr));
 }
 
 /**
@@ -979,9 +990,9 @@ __STATIC_FORCEINLINE void __SH(volatile void *addr, uint16_t val)
  * \param [in]    addr  Address pointer to data
  * \param [in]    val   Value to set
  */
-__STATIC_FORCEINLINE void __SW(volatile void *addr, uint32_t val)
+__STATIC_FORCEINLINE void __SW(volatile void* addr, uint32_t val)
 {
-    __ASM volatile ("sw %0, 0(%1)" : : "r" (val), "r" (addr));
+    __ASM volatile("sw %0, 0(%1)" : : "r"(val), "r"(addr));
 }
 
 #if __RISCV_XLEN != 32
@@ -991,9 +1002,9 @@ __STATIC_FORCEINLINE void __SW(volatile void *addr, uint32_t val)
  * \param [in]    addr  Address pointer to data
  * \param [in]    val   Value to set
  */
-__STATIC_FORCEINLINE void __SD(volatile void *addr, uint64_t val)
+__STATIC_FORCEINLINE void __SD(volatile void* addr, uint64_t val)
 {
-    __ASM volatile ("sd %0, 0(%1)" : : "r" (val), "r" (addr));
+    __ASM volatile("sd %0, 0(%1)" : : "r"(val), "r"(addr));
 }
 #endif
 
@@ -1008,20 +1019,20 @@ __STATIC_FORCEINLINE void __SD(volatile void *addr, uint64_t val)
  * \param [in]    newval    New value to be stored into the address
  * \return  return the initial value in memory
  */
-__STATIC_FORCEINLINE uint32_t __CAS_W(volatile uint32_t *addr, uint32_t oldval, uint32_t newval)
+__STATIC_FORCEINLINE uint32_t __CAS_W(volatile uint32_t* addr, uint32_t oldval, uint32_t newval)
 {
     register uint32_t result;
     register uint32_t rc;
 
-    __ASM volatile (                                \
-            "0:     lr.w %0, %2      \n"            \
-            "       bne  %0, %z3, 1f \n"            \
-            "       sc.w %1, %z4, %2 \n"            \
-            "       bnez %1, 0b      \n"            \
-            "1:\n"                                  \
-            : "=&r"(result), "=&r"(rc), "+A"(*addr) \
-            : "r"(oldval), "r"(newval)              \
-            : "memory");
+    __ASM volatile(\
+                   "0:     lr.w %0, %2      \n"            \
+                   "       bne  %0, %z3, 1f \n"            \
+                   "       sc.w %1, %z4, %2 \n"            \
+                   "       bnez %1, 0b      \n"            \
+                   "1:\n"                                  \
+                   : "=&r"(result), "=&r"(rc), "+A"(*addr) \
+                   : "r"(oldval), "r"(newval)              \
+                   : "memory");
     return result;
 }
 
@@ -1032,12 +1043,12 @@ __STATIC_FORCEINLINE uint32_t __CAS_W(volatile uint32_t *addr, uint32_t oldval, 
  * \param [in]    newval    New value to be stored into the address
  * \return  return the original value in memory
  */
-__STATIC_FORCEINLINE uint32_t __AMOSWAP_W(volatile uint32_t *addr, uint32_t newval)
+__STATIC_FORCEINLINE uint32_t __AMOSWAP_W(volatile uint32_t* addr, uint32_t newval)
 {
     register uint32_t result;
 
-    __ASM volatile ("amoswap.w %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(newval) : "memory");
+    __ASM volatile("amoswap.w %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(newval) : "memory");
     return result;
 }
 
@@ -1048,12 +1059,12 @@ __STATIC_FORCEINLINE uint32_t __AMOSWAP_W(volatile uint32_t *addr, uint32_t newv
  * \param [in]    value  value to be ADDed
  * \return  return memory value + add value
  */
-__STATIC_FORCEINLINE int32_t __AMOADD_W(volatile int32_t *addr, int32_t value)
+__STATIC_FORCEINLINE int32_t __AMOADD_W(volatile int32_t* addr, int32_t value)
 {
     register int32_t result;
 
-    __ASM volatile ("amoadd.w %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(value) : "memory");
+    __ASM volatile("amoadd.w %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(value) : "memory");
     return *addr;
 }
 
@@ -1064,12 +1075,12 @@ __STATIC_FORCEINLINE int32_t __AMOADD_W(volatile int32_t *addr, int32_t value)
  * \param [in]    value  value to be ANDed
  * \return  return memory value & and value
  */
-__STATIC_FORCEINLINE int32_t __AMOAND_W(volatile int32_t *addr, int32_t value)
+__STATIC_FORCEINLINE int32_t __AMOAND_W(volatile int32_t* addr, int32_t value)
 {
     register int32_t result;
 
-    __ASM volatile ("amoand.w %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(value) : "memory");
+    __ASM volatile("amoand.w %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(value) : "memory");
     return *addr;
 }
 
@@ -1080,12 +1091,12 @@ __STATIC_FORCEINLINE int32_t __AMOAND_W(volatile int32_t *addr, int32_t value)
  * \param [in]    value  value to be ORed
  * \return  return memory value | and value
  */
-__STATIC_FORCEINLINE int32_t __AMOOR_W(volatile int32_t *addr, int32_t value)
+__STATIC_FORCEINLINE int32_t __AMOOR_W(volatile int32_t* addr, int32_t value)
 {
     register int32_t result;
 
-    __ASM volatile ("amoor.w %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(value) : "memory");
+    __ASM volatile("amoor.w %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(value) : "memory");
     return *addr;
 }
 
@@ -1096,12 +1107,12 @@ __STATIC_FORCEINLINE int32_t __AMOOR_W(volatile int32_t *addr, int32_t value)
  * \param [in]    value  value to be XORed
  * \return  return memory value ^ and value
  */
-__STATIC_FORCEINLINE int32_t __AMOXOR_W(volatile int32_t *addr, int32_t value)
+__STATIC_FORCEINLINE int32_t __AMOXOR_W(volatile int32_t* addr, int32_t value)
 {
     register int32_t result;
 
-    __ASM volatile ("amoxor.w %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(value) : "memory");
+    __ASM volatile("amoxor.w %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(value) : "memory");
     return *addr;
 }
 
@@ -1112,12 +1123,12 @@ __STATIC_FORCEINLINE int32_t __AMOXOR_W(volatile int32_t *addr, int32_t value)
  * \param [in]    value  value to be compared
  * \return  return the bigger value
  */
-__STATIC_FORCEINLINE uint32_t __AMOMAXU_W(volatile uint32_t *addr, uint32_t value)
+__STATIC_FORCEINLINE uint32_t __AMOMAXU_W(volatile uint32_t* addr, uint32_t value)
 {
     register uint32_t result;
 
-    __ASM volatile ("amomaxu.w %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(value) : "memory");
+    __ASM volatile("amomaxu.w %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(value) : "memory");
     return *addr;
 }
 
@@ -1128,12 +1139,12 @@ __STATIC_FORCEINLINE uint32_t __AMOMAXU_W(volatile uint32_t *addr, uint32_t valu
  * \param [in]    value  value to be compared
  * \return the bigger value
  */
-__STATIC_FORCEINLINE int32_t __AMOMAX_W(volatile int32_t *addr, int32_t value)
+__STATIC_FORCEINLINE int32_t __AMOMAX_W(volatile int32_t* addr, int32_t value)
 {
     register int32_t result;
 
-    __ASM volatile ("amomax.w %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(value) : "memory");
+    __ASM volatile("amomax.w %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(value) : "memory");
     return *addr;
 }
 
@@ -1144,12 +1155,12 @@ __STATIC_FORCEINLINE int32_t __AMOMAX_W(volatile int32_t *addr, int32_t value)
  * \param [in]    value  value to be compared
  * \return the smaller value
  */
-__STATIC_FORCEINLINE uint32_t __AMOMINU_W(volatile uint32_t *addr, uint32_t value)
+__STATIC_FORCEINLINE uint32_t __AMOMINU_W(volatile uint32_t* addr, uint32_t value)
 {
     register uint32_t result;
 
-    __ASM volatile ("amominu.w %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(value) : "memory");
+    __ASM volatile("amominu.w %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(value) : "memory");
     return *addr;
 }
 
@@ -1160,12 +1171,12 @@ __STATIC_FORCEINLINE uint32_t __AMOMINU_W(volatile uint32_t *addr, uint32_t valu
  * \param [in]    value  value to be compared
  * \return  the smaller value
  */
-__STATIC_FORCEINLINE int32_t __AMOMIN_W(volatile int32_t *addr, int32_t value)
+__STATIC_FORCEINLINE int32_t __AMOMIN_W(volatile int32_t* addr, int32_t value)
 {
     register int32_t result;
 
-    __ASM volatile ("amomin.w %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(value) : "memory");
+    __ASM volatile("amomin.w %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(value) : "memory");
     return *addr;
 }
 
@@ -1181,20 +1192,20 @@ __STATIC_FORCEINLINE int32_t __AMOMIN_W(volatile int32_t *addr, int32_t value)
  * \param [in]    newval    New value to be stored into the address
  * \return  return the initial value in memory
  */
-__STATIC_FORCEINLINE uint64_t __CAS_D(volatile uint64_t *addr, uint64_t oldval, uint64_t newval)
+__STATIC_FORCEINLINE uint64_t __CAS_D(volatile uint64_t* addr, uint64_t oldval, uint64_t newval)
 {
     register uint64_t result;
     register uint64_t rc;
 
-    __ASM volatile (                                \
-            "0:     lr.d %0, %2      \n"            \
-            "       bne  %0, %z3, 1f \n"            \
-            "       sc.d %1, %z4, %2 \n"            \
-            "       bnez %1, 0b      \n"            \
-            "1:\n"                                  \
-            : "=&r"(result), "=&r"(rc), "+A"(*addr) \
-            : "r"(oldval), "r"(newval)              \
-            : "memory");
+    __ASM volatile(\
+                   "0:     lr.d %0, %2      \n"            \
+                   "       bne  %0, %z3, 1f \n"            \
+                   "       sc.d %1, %z4, %2 \n"            \
+                   "       bnez %1, 0b      \n"            \
+                   "1:\n"                                  \
+                   : "=&r"(result), "=&r"(rc), "+A"(*addr) \
+                   : "r"(oldval), "r"(newval)              \
+                   : "memory");
     return result;
 }
 
@@ -1205,12 +1216,12 @@ __STATIC_FORCEINLINE uint64_t __CAS_D(volatile uint64_t *addr, uint64_t oldval, 
  * \param [in]    newval    New value to be stored into the address
  * \return  return the original value in memory
  */
-__STATIC_FORCEINLINE uint64_t __AMOSWAP_D(volatile uint64_t *addr, uint64_t newval)
+__STATIC_FORCEINLINE uint64_t __AMOSWAP_D(volatile uint64_t* addr, uint64_t newval)
 {
     register uint64_t result;
 
-    __ASM volatile ("amoswap.d %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(newval) : "memory");
+    __ASM volatile("amoswap.d %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(newval) : "memory");
     return result;
 }
 
@@ -1221,12 +1232,12 @@ __STATIC_FORCEINLINE uint64_t __AMOSWAP_D(volatile uint64_t *addr, uint64_t newv
  * \param [in]    value  value to be ADDed
  * \return  return memory value + add value
  */
-__STATIC_FORCEINLINE int64_t __AMOADD_D(volatile int64_t *addr, int64_t value)
+__STATIC_FORCEINLINE int64_t __AMOADD_D(volatile int64_t* addr, int64_t value)
 {
     register int64_t result;
 
-    __ASM volatile ("amoadd.d %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(value) : "memory");
+    __ASM volatile("amoadd.d %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(value) : "memory");
     return *addr;
 }
 
@@ -1237,12 +1248,12 @@ __STATIC_FORCEINLINE int64_t __AMOADD_D(volatile int64_t *addr, int64_t value)
  * \param [in]    value  value to be ANDed
  * \return  return memory value & and value
  */
-__STATIC_FORCEINLINE int64_t __AMOAND_D(volatile int64_t *addr, int64_t value)
+__STATIC_FORCEINLINE int64_t __AMOAND_D(volatile int64_t* addr, int64_t value)
 {
     register int64_t result;
 
-    __ASM volatile ("amoand.d %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(value) : "memory");
+    __ASM volatile("amoand.d %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(value) : "memory");
     return *addr;
 }
 
@@ -1253,12 +1264,12 @@ __STATIC_FORCEINLINE int64_t __AMOAND_D(volatile int64_t *addr, int64_t value)
  * \param [in]    value  value to be ORed
  * \return  return memory value | and value
  */
-__STATIC_FORCEINLINE int64_t __AMOOR_D(volatile int64_t *addr, int64_t value)
+__STATIC_FORCEINLINE int64_t __AMOOR_D(volatile int64_t* addr, int64_t value)
 {
     register int64_t result;
 
-    __ASM volatile ("amoor.d %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(value) : "memory");
+    __ASM volatile("amoor.d %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(value) : "memory");
     return *addr;
 }
 
@@ -1269,12 +1280,12 @@ __STATIC_FORCEINLINE int64_t __AMOOR_D(volatile int64_t *addr, int64_t value)
  * \param [in]    value  value to be XORed
  * \return  return memory value ^ and value
  */
-__STATIC_FORCEINLINE int64_t __AMOXOR_D(volatile int64_t *addr, int64_t value)
+__STATIC_FORCEINLINE int64_t __AMOXOR_D(volatile int64_t* addr, int64_t value)
 {
     register int64_t result;
 
-    __ASM volatile ("amoxor.d %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(value) : "memory");
+    __ASM volatile("amoxor.d %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(value) : "memory");
     return *addr;
 }
 
@@ -1285,12 +1296,12 @@ __STATIC_FORCEINLINE int64_t __AMOXOR_D(volatile int64_t *addr, int64_t value)
  * \param [in]    value  value to be compared
  * \return  return the bigger value
  */
-__STATIC_FORCEINLINE uint64_t __AMOMAXU_D(volatile uint64_t *addr, uint64_t value)
+__STATIC_FORCEINLINE uint64_t __AMOMAXU_D(volatile uint64_t* addr, uint64_t value)
 {
     register uint64_t result;
 
-    __ASM volatile ("amomaxu.d %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(value) : "memory");
+    __ASM volatile("amomaxu.d %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(value) : "memory");
     return *addr;
 }
 
@@ -1301,12 +1312,12 @@ __STATIC_FORCEINLINE uint64_t __AMOMAXU_D(volatile uint64_t *addr, uint64_t valu
  * \param [in]    value  value to be compared
  * \return the bigger value
  */
-__STATIC_FORCEINLINE int64_t __AMOMAX_D(volatile int64_t *addr, int64_t value)
+__STATIC_FORCEINLINE int64_t __AMOMAX_D(volatile int64_t* addr, int64_t value)
 {
     register int64_t result;
 
-    __ASM volatile ("amomax.d %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(value) : "memory");
+    __ASM volatile("amomax.d %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(value) : "memory");
     return *addr;
 }
 
@@ -1317,12 +1328,12 @@ __STATIC_FORCEINLINE int64_t __AMOMAX_D(volatile int64_t *addr, int64_t value)
  * \param [in]    value  value to be compared
  * \return the smaller value
  */
-__STATIC_FORCEINLINE uint64_t __AMOMINU_D(volatile uint64_t *addr, uint64_t value)
+__STATIC_FORCEINLINE uint64_t __AMOMINU_D(volatile uint64_t* addr, uint64_t value)
 {
     register uint64_t result;
 
-    __ASM volatile ("amominu.d %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(value) : "memory");
+    __ASM volatile("amominu.d %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(value) : "memory");
     return *addr;
 }
 
@@ -1333,12 +1344,12 @@ __STATIC_FORCEINLINE uint64_t __AMOMINU_D(volatile uint64_t *addr, uint64_t valu
  * \param [in]    value  value to be compared
  * \return  the smaller value
  */
-__STATIC_FORCEINLINE int64_t __AMOMIN_D(volatile int64_t *addr, int64_t value)
+__STATIC_FORCEINLINE int64_t __AMOMIN_D(volatile int64_t* addr, int64_t value)
 {
     register int64_t result;
 
-    __ASM volatile ("amomin.d %0, %2, %1" : \
-            "=r"(result), "+A"(*addr) : "r"(value) : "memory");
+    __ASM volatile("amomin.d %0, %2, %1" : \
+                   "=r"(result), "+A"(*addr) : "r"(value) : "memory");
     return *addr;
 }
 #endif /* __RISCV_XLEN == 64  */

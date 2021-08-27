@@ -477,7 +477,7 @@ void ECLIC_Init(void)
  */
 void Exception_DumpFrame(unsigned long sp)
 {
-    EXC_Frame_Type *exc_frame = (EXC_Frame_Type *)sp;
+    EXC_Frame_Type* exc_frame = (EXC_Frame_Type*)sp;
 
 #ifndef __riscv_32e
     printf("ra: 0x%x, tp: 0x%x, t0: 0x%x, t1: 0x%x, t2: 0x%x, t3: 0x%x, t4: 0x%x, t5: 0x%x, t6: 0x%x\n" \

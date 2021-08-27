@@ -35,20 +35,19 @@
 #include "dsp/utils.h"
 
 #ifdef   __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
-  /**
-   * @brief Macros required for SINE and COSINE Fast math approximations
-   */
+/**
+ * @brief Macros required for SINE and COSINE Fast math approximations
+ */
 
 #define FAST_MATH_TABLE_SIZE  512
 #define FAST_MATH_Q31_SHIFT   (32 - 10)
 #define FAST_MATH_Q15_SHIFT   (16 - 10)
 
 #ifndef PI
-  #define PI               3.14159265358979f
+#define PI               3.14159265358979f
 #endif
 
 
@@ -61,9 +60,9 @@ extern "C"
  *
  */
 
-  /**
-   * @ingroup groupFastMath
-   */
+/**
+ * @ingroup groupFastMath
+ */
 
 
 /**
@@ -76,26 +75,26 @@ extern "C"
    * @param[in] x  input value in radians.
    * @return  sin(x).
    */
-  float32_t riscv_sin_f32(
-  float32_t x);
+float32_t riscv_sin_f32(
+    float32_t x);
 
 
-  /**
-   * @brief  Fast approximation to the trigonometric sine function for Q31 data.
-   * @param[in] x  Scaled input value in radians.
-   * @return  sin(x).
-   */
-  q31_t riscv_sin_q31(
-  q31_t x);
+/**
+ * @brief  Fast approximation to the trigonometric sine function for Q31 data.
+ * @param[in] x  Scaled input value in radians.
+ * @return  sin(x).
+ */
+q31_t riscv_sin_q31(
+    q31_t x);
 
 
-  /**
-   * @brief  Fast approximation to the trigonometric sine function for Q15 data.
-   * @param[in] x  Scaled input value in radians.
-   * @return  sin(x).
-   */
-  q15_t riscv_sin_q15(
-  q15_t x);
+/**
+ * @brief  Fast approximation to the trigonometric sine function for Q15 data.
+ * @param[in] x  Scaled input value in radians.
+ * @return  sin(x).
+ */
+q15_t riscv_sin_q15(
+    q15_t x);
 
 /**
   @} end of sin group
@@ -106,31 +105,31 @@ extern "C"
   @{
  */
 
-  /**
-   * @brief  Fast approximation to the trigonometric cosine function for floating-point data.
-   * @param[in] x  input value in radians.
-   * @return  cos(x).
-   */
-  float32_t riscv_cos_f32(
-  float32_t x);
+/**
+ * @brief  Fast approximation to the trigonometric cosine function for floating-point data.
+ * @param[in] x  input value in radians.
+ * @return  cos(x).
+ */
+float32_t riscv_cos_f32(
+    float32_t x);
 
 
-  /**
-   * @brief Fast approximation to the trigonometric cosine function for Q31 data.
-   * @param[in] x  Scaled input value in radians.
-   * @return  cos(x).
-   */
-  q31_t riscv_cos_q31(
-  q31_t x);
+/**
+ * @brief Fast approximation to the trigonometric cosine function for Q31 data.
+ * @param[in] x  Scaled input value in radians.
+ * @return  cos(x).
+ */
+q31_t riscv_cos_q31(
+    q31_t x);
 
 
-  /**
-   * @brief  Fast approximation to the trigonometric cosine function for Q15 data.
-   * @param[in] x  Scaled input value in radians.
-   * @return  cos(x).
-   */
-  q15_t riscv_cos_q15(
-  q15_t x);
+/**
+ * @brief  Fast approximation to the trigonometric cosine function for Q15 data.
+ * @param[in] x  Scaled input value in radians.
+ * @return  cos(x).
+ */
+q15_t riscv_cos_q15(
+    q15_t x);
 
 /**
   @} end of cos group
@@ -144,10 +143,10 @@ extern "C"
   @param[in]     blockSize  number of samples in each vector
   @return        none
  */
-  void riscv_vlog_f32(
-  const float32_t * pSrc,
-        float32_t * pDst,
-        uint32_t blockSize);
+void riscv_vlog_f32(
+    const float32_t* pSrc,
+    float32_t* pDst,
+    uint32_t blockSize);
 
 /**
   @brief         Floating-point vector of exp values.
@@ -156,36 +155,36 @@ extern "C"
   @param[in]     blockSize  number of samples in each vector
   @return        none
  */
-  void riscv_vexp_f32(
-  const float32_t * pSrc,
-        float32_t * pDst,
-        uint32_t blockSize);
+void riscv_vexp_f32(
+    const float32_t* pSrc,
+    float32_t* pDst,
+    uint32_t blockSize);
 
- /**
-   * @defgroup SQRT Square Root
-   *
-   * Computes the square root of a number.
-   * There are separate functions for Q15, Q31, and floating-point data types.
-   * The square root function is computed using the Newton-Raphson algorithm.
-   * This is an iterative algorithm of the form:
-   * <pre>
-   *      x1 = x0 - f(x0)/f'(x0)
-   * </pre>
-   * where <code>x1</code> is the current estimate,
-   * <code>x0</code> is the previous estimate, and
-   * <code>f'(x0)</code> is the derivative of <code>f()</code> evaluated at <code>x0</code>.
-   * For the square root function, the algorithm reduces to:
-   * <pre>
-   *     x0 = in/2                         [initial guess]
-   *     x1 = 1/2 * ( x0 + in / x0)        [each iteration]
-   * </pre>
-   */
+/**
+  * @defgroup SQRT Square Root
+  *
+  * Computes the square root of a number.
+  * There are separate functions for Q15, Q31, and floating-point data types.
+  * The square root function is computed using the Newton-Raphson algorithm.
+  * This is an iterative algorithm of the form:
+  * <pre>
+  *      x1 = x0 - f(x0)/f'(x0)
+  * </pre>
+  * where <code>x1</code> is the current estimate,
+  * <code>x0</code> is the previous estimate, and
+  * <code>f'(x0)</code> is the derivative of <code>f()</code> evaluated at <code>x0</code>.
+  * For the square root function, the algorithm reduces to:
+  * <pre>
+  *     x0 = in/2                         [initial guess]
+  *     x1 = 1/2 * ( x0 + in / x0)        [each iteration]
+  * </pre>
+  */
 
 
-  /**
-   * @addtogroup SQRT
-   * @{
-   */
+/**
+ * @addtogroup SQRT
+ * @{
+ */
 
 /**
   @brief         Floating-point square root function.
@@ -196,27 +195,24 @@ extern "C"
                    - \ref RISCV_MATH_ARGUMENT_ERROR : input value is negative; *pOut is set to 0
  */
 __STATIC_FORCEINLINE riscv_status riscv_sqrt_f32(
-  float32_t in,
-  float32_t * pOut)
-  {
-    if (in >= 0.0f)
-    {
+    float32_t in,
+    float32_t* pOut)
+{
+    if (in >= 0.0f) {
 
 #if defined ( __RISCV_FLEN )
-      __ASM volatile("fsqrt.s %0, %1" : "=f"(*pOut) : "f"(in));
+        __ASM volatile("fsqrt.s %0, %1" : "=f"(*pOut) : "f"(in));
 
 #else
-      *pOut = sqrtf(in);
+        *pOut = sqrtf(in);
 #endif
 
-      return (RISCV_MATH_SUCCESS);
+        return (RISCV_MATH_SUCCESS);
+    } else {
+        *pOut = 0.0f;
+        return (RISCV_MATH_ARGUMENT_ERROR);
     }
-    else
-    {
-      *pOut = 0.0f;
-      return (RISCV_MATH_ARGUMENT_ERROR);
-    }
-  }
+}
 
 
 /**
@@ -228,8 +224,8 @@ __STATIC_FORCEINLINE riscv_status riscv_sqrt_f32(
                    - \ref RISCV_MATH_ARGUMENT_ERROR : input value is negative; *pOut is set to 0
  */
 riscv_status riscv_sqrt_q31(
-  q31_t in,
-  q31_t * pOut);
+    q31_t in,
+    q31_t* pOut);
 
 
 /**
@@ -241,52 +237,52 @@ riscv_status riscv_sqrt_q31(
                    - \ref RISCV_MATH_ARGUMENT_ERROR : input value is negative; *pOut is set to 0
  */
 riscv_status riscv_sqrt_q15(
-  q15_t in,
-  q15_t * pOut);
+    q15_t in,
+    q15_t* pOut);
 
-  /**
-   * @brief  Vector Floating-point square root function.
-   * @param[in]  pIn   input vector.
-   * @param[out] pOut  vector of square roots of input elements.
-   * @param[in]  len   length of input vector.
-   * @return The function returns RISCV_MATH_SUCCESS if input value is positive value or RISCV_MATH_ARGUMENT_ERROR if
-   * <code>in</code> is negative value and returns zero output for negative values.
-   */
-  void riscv_vsqrt_f32(
-  float32_t * pIn,
-  float32_t * pOut,
-  uint16_t len);
+/**
+ * @brief  Vector Floating-point square root function.
+ * @param[in]  pIn   input vector.
+ * @param[out] pOut  vector of square roots of input elements.
+ * @param[in]  len   length of input vector.
+ * @return The function returns RISCV_MATH_SUCCESS if input value is positive value or RISCV_MATH_ARGUMENT_ERROR if
+ * <code>in</code> is negative value and returns zero output for negative values.
+ */
+void riscv_vsqrt_f32(
+    float32_t* pIn,
+    float32_t* pOut,
+    uint16_t len);
 
-  void riscv_vsqrt_q31(
-  q31_t * pIn,
-  q31_t * pOut,
-  uint16_t len);
+void riscv_vsqrt_q31(
+    q31_t* pIn,
+    q31_t* pOut,
+    uint16_t len);
 
-  void riscv_vsqrt_q15(
-  q15_t * pIn,
-  q15_t * pOut,
-  uint16_t len);
+void riscv_vsqrt_q15(
+    q15_t* pIn,
+    q15_t* pOut,
+    uint16_t len);
 
-  /**
-   * @} end of SQRT group
-   */
-
-  /**
-  @brief         Fixed point division
-  @param[in]     numerator    Numerator
-  @param[in]     denominator  Denominator
-  @param[out]    quotient     Quotient value normalized between -1.0 and 1.0
-  @param[out]    shift        Shift left value to get the unnormalized quotient
-  @return        error status
-
-  When dividing by 0, an error RISCV_MATH_NANINF is returned. And the quotient is forced
-  to the saturated negative or positive value.
+/**
+ * @} end of SQRT group
  */
 
+/**
+@brief         Fixed point division
+@param[in]     numerator    Numerator
+@param[in]     denominator  Denominator
+@param[out]    quotient     Quotient value normalized between -1.0 and 1.0
+@param[out]    shift        Shift left value to get the unnormalized quotient
+@return        error status
+
+When dividing by 0, an error RISCV_MATH_NANINF is returned. And the quotient is forced
+to the saturated negative or positive value.
+*/
+
 riscv_status riscv_divide_q15(q15_t numerator,
-  q15_t denominator,
-  q15_t *quotient,
-  int16_t *shift);
+                              q15_t denominator,
+                              q15_t* quotient,
+                              int16_t* shift);
 
 
 #ifdef   __cplusplus

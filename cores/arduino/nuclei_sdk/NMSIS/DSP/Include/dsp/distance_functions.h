@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef _DISTANCE_FUNCTIONS_H_
 #define _DISTANCE_FUNCTIONS_H_
 
@@ -39,8 +39,7 @@
 #include "dsp/fast_math_functions.h"
 
 #ifdef   __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -63,7 +62,7 @@ extern "C"
  *
  */
 
-float32_t riscv_euclidean_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize);
+float32_t riscv_euclidean_distance_f32(const float32_t* pA, const float32_t* pB, uint32_t blockSize);
 
 /**
  * @brief        Bray-Curtis distance between two vectors
@@ -73,7 +72,7 @@ float32_t riscv_euclidean_distance_f32(const float32_t *pA,const float32_t *pB, 
  * @return distance
  *
  */
-float32_t riscv_braycurtis_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize);
+float32_t riscv_braycurtis_distance_f32(const float32_t* pA, const float32_t* pB, uint32_t blockSize);
 
 /**
  * @brief        Canberra distance between two vectors
@@ -88,7 +87,7 @@ float32_t riscv_braycurtis_distance_f32(const float32_t *pA,const float32_t *pB,
  * @return distance
  *
  */
-float32_t riscv_canberra_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize);
+float32_t riscv_canberra_distance_f32(const float32_t* pA, const float32_t* pB, uint32_t blockSize);
 
 
 /**
@@ -99,7 +98,7 @@ float32_t riscv_canberra_distance_f32(const float32_t *pA,const float32_t *pB, u
  * @return distance
  *
  */
-float32_t riscv_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize);
+float32_t riscv_chebyshev_distance_f32(const float32_t* pA, const float32_t* pB, uint32_t blockSize);
 
 
 /**
@@ -110,7 +109,7 @@ float32_t riscv_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, 
  * @return distance
  *
  */
-float32_t riscv_cityblock_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize);
+float32_t riscv_cityblock_distance_f32(const float32_t* pA, const float32_t* pB, uint32_t blockSize);
 
 /**
  * @brief        Correlation distance between two vectors
@@ -123,7 +122,7 @@ float32_t riscv_cityblock_distance_f32(const float32_t *pA,const float32_t *pB, 
  * @return distance
  *
  */
-float32_t riscv_correlation_distance_f32(float32_t *pA,float32_t *pB, uint32_t blockSize);
+float32_t riscv_correlation_distance_f32(float32_t* pA, float32_t* pB, uint32_t blockSize);
 
 /**
  * @brief        Cosine distance between two vectors
@@ -135,7 +134,7 @@ float32_t riscv_correlation_distance_f32(float32_t *pA,float32_t *pB, uint32_t b
  *
  */
 
-float32_t riscv_cosine_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize);
+float32_t riscv_cosine_distance_f32(const float32_t* pA, const float32_t* pB, uint32_t blockSize);
 
 /**
  * @brief        Jensen-Shannon distance between two vectors
@@ -157,7 +156,7 @@ float32_t riscv_cosine_distance_f32(const float32_t *pA,const float32_t *pB, uin
  *
  */
 
-float32_t riscv_jensenshannon_distance_f32(const float32_t *pA,const float32_t *pB,uint32_t blockSize);
+float32_t riscv_jensenshannon_distance_f32(const float32_t* pA, const float32_t* pB, uint32_t blockSize);
 
 /**
  * @brief        Minkowski distance between two vectors
@@ -172,7 +171,7 @@ float32_t riscv_jensenshannon_distance_f32(const float32_t *pA,const float32_t *
 
 
 
-float32_t riscv_minkowski_distance_f32(const float32_t *pA,const float32_t *pB, int32_t order, uint32_t blockSize);
+float32_t riscv_minkowski_distance_f32(const float32_t* pA, const float32_t* pB, int32_t order, uint32_t blockSize);
 
 /**
  * @brief        Dice distance between two vectors
@@ -186,7 +185,7 @@ float32_t riscv_minkowski_distance_f32(const float32_t *pA,const float32_t *pB, 
  */
 
 
-float32_t riscv_dice_distance(const uint32_t *pA, const uint32_t *pB, uint32_t numberOfBools);
+float32_t riscv_dice_distance(const uint32_t* pA, const uint32_t* pB, uint32_t numberOfBools);
 
 /**
  * @brief        Hamming distance between two vectors
@@ -198,7 +197,7 @@ float32_t riscv_dice_distance(const uint32_t *pA, const uint32_t *pB, uint32_t n
  *
  */
 
-float32_t riscv_hamming_distance(const uint32_t *pA, const uint32_t *pB, uint32_t numberOfBools);
+float32_t riscv_hamming_distance(const uint32_t* pA, const uint32_t* pB, uint32_t numberOfBools);
 
 /**
  * @brief        Jaccard distance between two vectors
@@ -210,7 +209,7 @@ float32_t riscv_hamming_distance(const uint32_t *pA, const uint32_t *pB, uint32_
  *
  */
 
-float32_t riscv_jaccard_distance(const uint32_t *pA, const uint32_t *pB, uint32_t numberOfBools);
+float32_t riscv_jaccard_distance(const uint32_t* pA, const uint32_t* pB, uint32_t numberOfBools);
 
 /**
  * @brief        Kulsinski distance between two vectors
@@ -222,7 +221,7 @@ float32_t riscv_jaccard_distance(const uint32_t *pA, const uint32_t *pB, uint32_
  *
  */
 
-float32_t riscv_kulsinski_distance(const uint32_t *pA, const uint32_t *pB, uint32_t numberOfBools);
+float32_t riscv_kulsinski_distance(const uint32_t* pA, const uint32_t* pB, uint32_t numberOfBools);
 
 /**
  * @brief        Roger Stanimoto distance between two vectors
@@ -234,7 +233,7 @@ float32_t riscv_kulsinski_distance(const uint32_t *pA, const uint32_t *pB, uint3
  *
  */
 
-float32_t riscv_rogerstanimoto_distance(const uint32_t *pA, const uint32_t *pB, uint32_t numberOfBools);
+float32_t riscv_rogerstanimoto_distance(const uint32_t* pA, const uint32_t* pB, uint32_t numberOfBools);
 
 /**
  * @brief        Russell-Rao distance between two vectors
@@ -246,7 +245,7 @@ float32_t riscv_rogerstanimoto_distance(const uint32_t *pA, const uint32_t *pB, 
  *
  */
 
-float32_t riscv_russellrao_distance(const uint32_t *pA, const uint32_t *pB, uint32_t numberOfBools);
+float32_t riscv_russellrao_distance(const uint32_t* pA, const uint32_t* pB, uint32_t numberOfBools);
 
 /**
  * @brief        Sokal-Michener distance between two vectors
@@ -258,7 +257,7 @@ float32_t riscv_russellrao_distance(const uint32_t *pA, const uint32_t *pB, uint
  *
  */
 
-float32_t riscv_sokalmichener_distance(const uint32_t *pA, const uint32_t *pB, uint32_t numberOfBools);
+float32_t riscv_sokalmichener_distance(const uint32_t* pA, const uint32_t* pB, uint32_t numberOfBools);
 
 /**
  * @brief        Sokal-Sneath distance between two vectors
@@ -270,7 +269,7 @@ float32_t riscv_sokalmichener_distance(const uint32_t *pA, const uint32_t *pB, u
  *
  */
 
-float32_t riscv_sokalsneath_distance(const uint32_t *pA, const uint32_t *pB, uint32_t numberOfBools);
+float32_t riscv_sokalsneath_distance(const uint32_t* pA, const uint32_t* pB, uint32_t numberOfBools);
 
 /**
  * @brief        Yule distance between two vectors
@@ -282,7 +281,7 @@ float32_t riscv_sokalsneath_distance(const uint32_t *pA, const uint32_t *pB, uin
  *
  */
 
-float32_t riscv_yule_distance(const uint32_t *pA, const uint32_t *pB, uint32_t numberOfBools);
+float32_t riscv_yule_distance(const uint32_t* pA, const uint32_t* pB, uint32_t numberOfBools);
 
 
 

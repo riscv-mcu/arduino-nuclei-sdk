@@ -24,13 +24,12 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef _CONTROLLER_FUNCTIONS_F16_H_
 #define _CONTROLLER_FUNCTIONS_F16_H_
 
 #ifdef   __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #if defined(RISCV_FLOAT16_SUPPORTED)

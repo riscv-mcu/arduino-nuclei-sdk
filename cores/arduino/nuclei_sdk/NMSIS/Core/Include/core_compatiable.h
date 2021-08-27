@@ -22,7 +22,7 @@
  * @brief    ARM compatiable function definitions header file
  */
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 /* ===== ARM Compatiable Functions ===== */
@@ -121,10 +121,10 @@ __STATIC_FORCEINLINE uint32_t __REV(uint32_t value)
 {
     uint32_t result;
 
-    result =  ((value & 0xff000000) >> 24)
-        | ((value & 0x00ff0000) >> 8 )
-        | ((value & 0x0000ff00) << 8 )
-        | ((value & 0x000000ff) << 24);
+    result = ((value & 0xff000000) >> 24)
+             | ((value & 0x00ff0000) >> 8)
+             | ((value & 0x0000ff00) << 8)
+             | ((value & 0x000000ff) << 24);
     return result;
 }
 
@@ -138,10 +138,10 @@ __STATIC_FORCEINLINE uint32_t __REV(uint32_t value)
 __STATIC_FORCEINLINE uint32_t __REV16(uint32_t value)
 {
     uint32_t result;
-    result =  ((value & 0xff000000) >> 8)
-        | ((value & 0x00ff00000) << 8 )
-        | ((value & 0x0000ff00) >> 8 )
-        | ((value & 0x000000ff) << 8) ;
+    result = ((value & 0xff000000) >> 8)
+             | ((value & 0x00ff00000) << 8)
+             | ((value & 0x0000ff00) >> 8)
+             | ((value & 0x000000ff) << 8) ;
 
     return result;
 }
@@ -173,7 +173,7 @@ __STATIC_FORCEINLINE uint32_t __ROR(uint32_t op1, uint32_t op2)
 {
     op2 = op2 & 0x1F;
     if (op2 == 0U) {
-      return op1;
+        return op1;
     }
     return (op1 >> op2) | (op1 << (32U - op2));
 }
@@ -217,8 +217,8 @@ __STATIC_FORCEINLINE uint8_t __CLZ(uint32_t data)
     uint8_t ret = 0;
     uint32_t temp = ~data;
     while (temp & 0x80000000) {
-          temp <<= 1;
-          ret++;
+        temp <<= 1;
+        ret++;
     }
     return ret;
 }

@@ -111,8 +111,7 @@ extern "C" {
  * @brief Struct for specifying activation function types
  *
  */
-typedef enum
-{
+typedef enum {
     RISCV_SIGMOID = 0,
     /**< Sigmoid activation function */
     RISCV_TANH = 1,
@@ -163,17 +162,17 @@ typedef enum
  *                  <code>RISCV_MATH_SUCCESS</code> on successful completion.
  *
  */
-riscv_status riscv_convolve_wrapper_s8(const nmsis_nn_context *ctx,
-                                   const nmsis_nn_conv_params *conv_params,
-                                   const nmsis_nn_per_channel_quant_params *quant_params,
-                                   const nmsis_nn_dims *input_dims,
-                                   const q7_t *input_data,
-                                   const nmsis_nn_dims *filter_dims,
-                                   const q7_t *filter_data,
-                                   const nmsis_nn_dims *bias_dims,
-                                   const int32_t *bias_data,
-                                   const nmsis_nn_dims *output_dims,
-                                   q7_t *output_data);
+riscv_status riscv_convolve_wrapper_s8(const nmsis_nn_context* ctx,
+                                       const nmsis_nn_conv_params* conv_params,
+                                       const nmsis_nn_per_channel_quant_params* quant_params,
+                                       const nmsis_nn_dims* input_dims,
+                                       const q7_t* input_data,
+                                       const nmsis_nn_dims* filter_dims,
+                                       const q7_t* filter_data,
+                                       const nmsis_nn_dims* bias_dims,
+                                       const int32_t* bias_data,
+                                       const nmsis_nn_dims* output_dims,
+                                       q7_t* output_data);
 
 /**
  * @brief Get the required buffer size for riscv_convolve_wrapper_s8
@@ -189,10 +188,10 @@ riscv_status riscv_convolve_wrapper_s8(const nmsis_nn_context *ctx,
  * @return         The function returns  required buffer size(bytes)
  *
  */
-int32_t riscv_convolve_wrapper_s8_get_buffer_size(const nmsis_nn_conv_params *conv_params,
-                                                const nmsis_nn_dims *input_dims,
-                                                const nmsis_nn_dims *filter_dims,
-                                                const nmsis_nn_dims *output_dims);
+int32_t riscv_convolve_wrapper_s8_get_buffer_size(const nmsis_nn_conv_params* conv_params,
+                                                  const nmsis_nn_dims* input_dims,
+                                                  const nmsis_nn_dims* filter_dims,
+                                                  const nmsis_nn_dims* output_dims);
 
 /**
  * @brief Basic s8 convolution function
@@ -221,17 +220,17 @@ int32_t riscv_convolve_wrapper_s8_get_buffer_size(const nmsis_nn_conv_params *co
  *    3. Additional memory is required for optimization. Refer to argument 'ctx' for details.
  *
  */
-riscv_status riscv_convolve_s8(const nmsis_nn_context *ctx,
-                           const nmsis_nn_conv_params *conv_params,
-                           const nmsis_nn_per_channel_quant_params *quant_params,
-                           const nmsis_nn_dims *input_dims,
-                           const q7_t *input_data,
-                           const nmsis_nn_dims *filter_dims,
-                           const q7_t *filter_data,
-                           const nmsis_nn_dims *bias_dims,
-                           const int32_t *bias_data,
-                           const nmsis_nn_dims *output_dims,
-                           q7_t *output_data);
+riscv_status riscv_convolve_s8(const nmsis_nn_context* ctx,
+                               const nmsis_nn_conv_params* conv_params,
+                               const nmsis_nn_per_channel_quant_params* quant_params,
+                               const nmsis_nn_dims* input_dims,
+                               const q7_t* input_data,
+                               const nmsis_nn_dims* filter_dims,
+                               const q7_t* filter_data,
+                               const nmsis_nn_dims* bias_dims,
+                               const int32_t* bias_data,
+                               const nmsis_nn_dims* output_dims,
+                               q7_t* output_data);
 
 /**
  * @brief Get the required buffer size for s8 convolution function
@@ -242,7 +241,7 @@ riscv_status riscv_convolve_s8(const nmsis_nn_context *ctx,
  * @return          The function returns  required buffer size(bytes)
  *
  */
-int32_t riscv_convolve_s8_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims);
+int32_t riscv_convolve_s8_get_buffer_size(const nmsis_nn_dims* input_dims, const nmsis_nn_dims* filter_dims);
 
 /**
  * @brief Basic Q7 convolution function
@@ -264,21 +263,21 @@ int32_t riscv_convolve_s8_get_buffer_size(const nmsis_nn_dims *input_dims, const
  * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
  *
  */
-riscv_status riscv_convolve_HWC_q7_basic(const q7_t *Im_in,
-                                     const uint16_t dim_im_in,
-                                     const uint16_t ch_im_in,
-                                     const q7_t *wt,
-                                     const uint16_t ch_im_out,
-                                     const uint16_t dim_kernel,
-                                     const uint16_t padding,
-                                     const uint16_t stride,
-                                     const q7_t *bias,
-                                     const uint16_t bias_shift,
-                                     const uint16_t out_shift,
-                                     q7_t *Im_out,
-                                     const uint16_t dim_im_out,
-                                     q15_t *bufferA,
-                                     q7_t *bufferB);
+riscv_status riscv_convolve_HWC_q7_basic(const q7_t* Im_in,
+                                         const uint16_t dim_im_in,
+                                         const uint16_t ch_im_in,
+                                         const q7_t* wt,
+                                         const uint16_t ch_im_out,
+                                         const uint16_t dim_kernel,
+                                         const uint16_t padding,
+                                         const uint16_t stride,
+                                         const q7_t* bias,
+                                         const uint16_t bias_shift,
+                                         const uint16_t out_shift,
+                                         q7_t* Im_out,
+                                         const uint16_t dim_im_out,
+                                         q15_t* bufferA,
+                                         q7_t* bufferB);
 
 /**
  * @brief Basic Q7 convolution function (non-square shape)
@@ -304,26 +303,26 @@ riscv_status riscv_convolve_HWC_q7_basic(const q7_t *Im_in,
  * @param[in,out]   bufferB      pointer to buffer space for output
  * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
  */
-riscv_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
-                                               const uint16_t dim_im_in_x,
-                                               const uint16_t dim_im_in_y,
-                                               const uint16_t ch_im_in,
-                                               const q7_t *wt,
-                                               const uint16_t ch_im_out,
-                                               const uint16_t dim_kernel_x,
-                                               const uint16_t dim_kernel_y,
-                                               const uint16_t padding_x,
-                                               const uint16_t padding_y,
-                                               const uint16_t stride_x,
-                                               const uint16_t stride_y,
-                                               const q7_t *bias,
-                                               const uint16_t bias_shift,
-                                               const uint16_t out_shift,
-                                               q7_t *Im_out,
-                                               const uint16_t dim_im_out_x,
-                                               const uint16_t dim_im_out_y,
-                                               q15_t *bufferA,
-                                               q7_t *bufferB);
+riscv_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t* Im_in,
+                                                   const uint16_t dim_im_in_x,
+                                                   const uint16_t dim_im_in_y,
+                                                   const uint16_t ch_im_in,
+                                                   const q7_t* wt,
+                                                   const uint16_t ch_im_out,
+                                                   const uint16_t dim_kernel_x,
+                                                   const uint16_t dim_kernel_y,
+                                                   const uint16_t padding_x,
+                                                   const uint16_t padding_y,
+                                                   const uint16_t stride_x,
+                                                   const uint16_t stride_y,
+                                                   const q7_t* bias,
+                                                   const uint16_t bias_shift,
+                                                   const uint16_t out_shift,
+                                                   q7_t* Im_out,
+                                                   const uint16_t dim_im_out_x,
+                                                   const uint16_t dim_im_out_y,
+                                                   q15_t* bufferA,
+                                                   q7_t* bufferB);
 
 /**
  * @brief Basic Q15 convolution function
@@ -345,21 +344,21 @@ riscv_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
  * @return     The function returns <code>RISCV_MATH_SUCCESS</code>
  *
  */
-riscv_status riscv_convolve_HWC_q15_basic(const q15_t *Im_in,
-                                      const uint16_t dim_im_in,
-                                      const uint16_t ch_im_in,
-                                      const q15_t *wt,
-                                      const uint16_t ch_im_out,
-                                      const uint16_t dim_kernel,
-                                      const uint16_t padding,
-                                      const uint16_t stride,
-                                      const q15_t *bias,
-                                      const uint16_t bias_shift,
-                                      const uint16_t out_shift,
-                                      q15_t *Im_out,
-                                      const uint16_t dim_im_out,
-                                      q15_t *bufferA,
-                                      q7_t *bufferB);
+riscv_status riscv_convolve_HWC_q15_basic(const q15_t* Im_in,
+                                          const uint16_t dim_im_in,
+                                          const uint16_t ch_im_in,
+                                          const q15_t* wt,
+                                          const uint16_t ch_im_out,
+                                          const uint16_t dim_kernel,
+                                          const uint16_t padding,
+                                          const uint16_t stride,
+                                          const q15_t* bias,
+                                          const uint16_t bias_shift,
+                                          const uint16_t out_shift,
+                                          q15_t* Im_out,
+                                          const uint16_t dim_im_out,
+                                          q15_t* bufferA,
+                                          q7_t* bufferB);
 
 /**
  * @brief Fast Q7 convolution function
@@ -386,21 +385,21 @@ riscv_status riscv_convolve_HWC_q15_basic(const q15_t *Im_in,
  *   ch_im_in is multiple of 4
  *   ch_im_out is multiple of 2
  */
-riscv_status riscv_convolve_HWC_q7_fast(const q7_t *Im_in,
-                                    const uint16_t dim_im_in,
-                                    const uint16_t ch_im_in,
-                                    const q7_t *wt,
-                                    const uint16_t ch_im_out,
-                                    const uint16_t dim_kernel,
-                                    const uint16_t padding,
-                                    const uint16_t stride,
-                                    const q7_t *bias,
-                                    const uint16_t bias_shift,
-                                    const uint16_t out_shift,
-                                    q7_t *Im_out,
-                                    const uint16_t dim_im_out,
-                                    q15_t *bufferA,
-                                    q7_t *bufferB);
+riscv_status riscv_convolve_HWC_q7_fast(const q7_t* Im_in,
+                                        const uint16_t dim_im_in,
+                                        const uint16_t ch_im_in,
+                                        const q7_t* wt,
+                                        const uint16_t ch_im_out,
+                                        const uint16_t dim_kernel,
+                                        const uint16_t padding,
+                                        const uint16_t stride,
+                                        const q7_t* bias,
+                                        const uint16_t bias_shift,
+                                        const uint16_t out_shift,
+                                        q7_t* Im_out,
+                                        const uint16_t dim_im_out,
+                                        q15_t* bufferA,
+                                        q7_t* bufferB);
 
 /**
  * @brief Fast Q7 convolution function (non-sqaure shape)
@@ -433,26 +432,26 @@ riscv_status riscv_convolve_HWC_q7_fast(const q7_t *Im_in,
  *   ch_im_out is multiple of 2
  */
 
-riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
-                                              const uint16_t dim_im_in_x,
-                                              const uint16_t dim_im_in_y,
-                                              const uint16_t ch_im_in,
-                                              const q7_t *wt,
-                                              const uint16_t ch_im_out,
-                                              const uint16_t dim_kernel_x,
-                                              const uint16_t dim_kernel_y,
-                                              const uint16_t padding_x,
-                                              const uint16_t padding_y,
-                                              const uint16_t stride_x,
-                                              const uint16_t stride_y,
-                                              const q7_t *bias,
-                                              const uint16_t bias_shift,
-                                              const uint16_t out_shift,
-                                              q7_t *Im_out,
-                                              const uint16_t dim_im_out_x,
-                                              const uint16_t dim_im_out_y,
-                                              q15_t *bufferA,
-                                              q7_t *bufferB);
+riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t* Im_in,
+                                                  const uint16_t dim_im_in_x,
+                                                  const uint16_t dim_im_in_y,
+                                                  const uint16_t ch_im_in,
+                                                  const q7_t* wt,
+                                                  const uint16_t ch_im_out,
+                                                  const uint16_t dim_kernel_x,
+                                                  const uint16_t dim_kernel_y,
+                                                  const uint16_t padding_x,
+                                                  const uint16_t padding_y,
+                                                  const uint16_t stride_x,
+                                                  const uint16_t stride_y,
+                                                  const q7_t* bias,
+                                                  const uint16_t bias_shift,
+                                                  const uint16_t out_shift,
+                                                  q7_t* Im_out,
+                                                  const uint16_t dim_im_out_x,
+                                                  const uint16_t dim_im_out_y,
+                                                  q15_t* bufferA,
+                                                  q7_t* bufferB);
 
 /**
  * @brief Fast Q7 version of 1x1 convolution (non-sqaure shape)
@@ -489,26 +488,26 @@ riscv_status riscv_convolve_HWC_q7_fast_nonsquare(const q7_t *Im_in,
  *   ch_im_in is multiple of 4
  *   ch_im_out is multiple of 2
  */
-riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
-                                                  const uint16_t dim_im_in_x,
-                                                  const uint16_t dim_im_in_y,
-                                                  const uint16_t ch_im_in,
-                                                  const q7_t *wt,
-                                                  const uint16_t ch_im_out,
-                                                  const uint16_t dim_kernel_x,
-                                                  const uint16_t dim_kernel_y,
-                                                  const uint16_t padding_x,
-                                                  const uint16_t padding_y,
-                                                  const uint16_t stride_x,
-                                                  const uint16_t stride_y,
-                                                  const q7_t *bias,
-                                                  const uint16_t bias_shift,
-                                                  const uint16_t out_shift,
-                                                  q7_t *Im_out,
-                                                  const uint16_t dim_im_out_x,
-                                                  const uint16_t dim_im_out_y,
-                                                  q15_t *bufferA,
-                                                  q7_t *bufferB);
+riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t* Im_in,
+                                                      const uint16_t dim_im_in_x,
+                                                      const uint16_t dim_im_in_y,
+                                                      const uint16_t ch_im_in,
+                                                      const q7_t* wt,
+                                                      const uint16_t ch_im_out,
+                                                      const uint16_t dim_kernel_x,
+                                                      const uint16_t dim_kernel_y,
+                                                      const uint16_t padding_x,
+                                                      const uint16_t padding_y,
+                                                      const uint16_t stride_x,
+                                                      const uint16_t stride_y,
+                                                      const q7_t* bias,
+                                                      const uint16_t bias_shift,
+                                                      const uint16_t out_shift,
+                                                      q7_t* Im_out,
+                                                      const uint16_t dim_im_out_x,
+                                                      const uint16_t dim_im_out_y,
+                                                      q15_t* bufferA,
+                                                      q7_t* bufferB);
 
 /**
  * @brief Fast s8 version for 1x1 convolution (non-square shape)
@@ -541,17 +540,17 @@ riscv_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in,
  *      -# conv_params->stride.w = conv_params->stride.h = 1
  *
  */
-riscv_status riscv_convolve_1x1_s8_fast(const nmsis_nn_context *ctx,
-                                    const nmsis_nn_conv_params *conv_params,
-                                    const nmsis_nn_per_channel_quant_params *quant_params,
-                                    const nmsis_nn_dims *input_dims,
-                                    const q7_t *input_data,
-                                    const nmsis_nn_dims *filter_dims,
-                                    const q7_t *filter_data,
-                                    const nmsis_nn_dims *bias_dims,
-                                    const int32_t *bias_data,
-                                    const nmsis_nn_dims *output_dims,
-                                    q7_t *output_data);
+riscv_status riscv_convolve_1x1_s8_fast(const nmsis_nn_context* ctx,
+                                        const nmsis_nn_conv_params* conv_params,
+                                        const nmsis_nn_per_channel_quant_params* quant_params,
+                                        const nmsis_nn_dims* input_dims,
+                                        const q7_t* input_data,
+                                        const nmsis_nn_dims* filter_dims,
+                                        const q7_t* filter_data,
+                                        const nmsis_nn_dims* bias_dims,
+                                        const int32_t* bias_data,
+                                        const nmsis_nn_dims* output_dims,
+                                        q7_t* output_data);
 
 /**
  * @brief Get the required buffer size for riscv_convolve_1x1_s8_fast
@@ -560,7 +559,7 @@ riscv_status riscv_convolve_1x1_s8_fast(const nmsis_nn_context *ctx,
  * @return          The function returns the required buffer size in bytes
  *
  */
-int32_t riscv_convolve_1x1_s8_fast_get_buffer_size(const nmsis_nn_dims *input_dims);
+int32_t riscv_convolve_1x1_s8_fast_get_buffer_size(const nmsis_nn_dims* input_dims);
 
 /**
  * @brief 1xn convolution
@@ -598,17 +597,17 @@ int32_t riscv_convolve_1x1_s8_fast_get_buffer_size(const nmsis_nn_dims *input_di
  *@todo  Remove constraint on output_dims->w to make the function generic.
  *
  */
-riscv_status riscv_convolve_1_x_n_s8(const nmsis_nn_context *ctx,
-                                 const nmsis_nn_conv_params *conv_params,
-                                 const nmsis_nn_per_channel_quant_params *quant_params,
-                                 const nmsis_nn_dims *input_dims,
-                                 const q7_t *input_data,
-                                 const nmsis_nn_dims *filter_dims,
-                                 const q7_t *filter_data,
-                                 const nmsis_nn_dims *bias_dims,
-                                 const int32_t *bias_data,
-                                 const nmsis_nn_dims *output_dims,
-                                 q7_t *output_data);
+riscv_status riscv_convolve_1_x_n_s8(const nmsis_nn_context* ctx,
+                                     const nmsis_nn_conv_params* conv_params,
+                                     const nmsis_nn_per_channel_quant_params* quant_params,
+                                     const nmsis_nn_dims* input_dims,
+                                     const q7_t* input_data,
+                                     const nmsis_nn_dims* filter_dims,
+                                     const q7_t* filter_data,
+                                     const nmsis_nn_dims* bias_dims,
+                                     const int32_t* bias_data,
+                                     const nmsis_nn_dims* output_dims,
+                                     q7_t* output_data);
 
 /**
  * @brief Get the required additional buffer size for 1xn convolution
@@ -619,7 +618,7 @@ riscv_status riscv_convolve_1_x_n_s8(const nmsis_nn_context *ctx,
  * @return          The function returns  required buffer size(bytes)
  *
  */
-int32_t riscv_convolve_1_x_n_s8_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims);
+int32_t riscv_convolve_1_x_n_s8_get_buffer_size(const nmsis_nn_dims* input_dims, const nmsis_nn_dims* filter_dims);
 
 /**
  * @brief Q7 version of convolution for RGB image
@@ -646,21 +645,21 @@ int32_t riscv_convolve_1_x_n_s8_get_buffer_size(const nmsis_nn_dims *input_dims,
  * image with RGB format.
  */
 
-riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
-                                   const uint16_t dim_im_in,
-                                   const uint16_t ch_im_in,
-                                   const q7_t *wt,
-                                   const uint16_t ch_im_out,
-                                   const uint16_t dim_kernel,
-                                   const uint16_t padding,
-                                   const uint16_t stride,
-                                   const q7_t *bias,
-                                   const uint16_t bias_shift,
-                                   const uint16_t out_shift,
-                                   q7_t *Im_out,
-                                   const uint16_t dim_im_out,
-                                   q15_t *bufferA,
-                                   q7_t *bufferB);
+riscv_status riscv_convolve_HWC_q7_RGB(const q7_t* Im_in,
+                                       const uint16_t dim_im_in,
+                                       const uint16_t ch_im_in,
+                                       const q7_t* wt,
+                                       const uint16_t ch_im_out,
+                                       const uint16_t dim_kernel,
+                                       const uint16_t padding,
+                                       const uint16_t stride,
+                                       const q7_t* bias,
+                                       const uint16_t bias_shift,
+                                       const uint16_t out_shift,
+                                       q7_t* Im_out,
+                                       const uint16_t dim_im_out,
+                                       q15_t* bufferA,
+                                       q7_t* bufferB);
 
 /**
  * @brief Fast Q15 convolution function
@@ -688,21 +687,21 @@ riscv_status riscv_convolve_HWC_q7_RGB(const q7_t *Im_in,
  *   ch_im_out is multiple of 2
  */
 
-riscv_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
-                                     const uint16_t dim_im_in,
-                                     const uint16_t ch_im_in,
-                                     const q15_t *wt,
-                                     const uint16_t ch_im_out,
-                                     const uint16_t dim_kernel,
-                                     const uint16_t padding,
-                                     const uint16_t stride,
-                                     const q15_t *bias,
-                                     const uint16_t bias_shift,
-                                     const uint16_t out_shift,
-                                     q15_t *Im_out,
-                                     const uint16_t dim_im_out,
-                                     q15_t *bufferA,
-                                     q7_t *bufferB);
+riscv_status riscv_convolve_HWC_q15_fast(const q15_t* Im_in,
+                                         const uint16_t dim_im_in,
+                                         const uint16_t ch_im_in,
+                                         const q15_t* wt,
+                                         const uint16_t ch_im_out,
+                                         const uint16_t dim_kernel,
+                                         const uint16_t padding,
+                                         const uint16_t stride,
+                                         const q15_t* bias,
+                                         const uint16_t bias_shift,
+                                         const uint16_t out_shift,
+                                         q15_t* Im_out,
+                                         const uint16_t dim_im_out,
+                                         q15_t* bufferA,
+                                         q7_t* bufferB);
 
 /**
  * @brief Fast Q15 convolution function (non-sqaure shape)
@@ -745,26 +744,26 @@ riscv_status riscv_convolve_HWC_q15_fast(const q15_t *Im_in,
  *
  */
 
-riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
-                                               const uint16_t dim_im_in_x,
-                                               const uint16_t dim_im_in_y,
-                                               const uint16_t ch_im_in,
-                                               const q15_t *wt,
-                                               const uint16_t ch_im_out,
-                                               const uint16_t dim_kernel_x,
-                                               const uint16_t dim_kernel_y,
-                                               const uint16_t padding_x,
-                                               const uint16_t padding_y,
-                                               const uint16_t stride_x,
-                                               const uint16_t stride_y,
-                                               const q15_t *bias,
-                                               const uint16_t bias_shift,
-                                               const uint16_t out_shift,
-                                               q15_t *Im_out,
-                                               const uint16_t dim_im_out_x,
-                                               const uint16_t dim_im_out_y,
-                                               q15_t *bufferA,
-                                               q7_t *bufferB);
+riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t* Im_in,
+                                                   const uint16_t dim_im_in_x,
+                                                   const uint16_t dim_im_in_y,
+                                                   const uint16_t ch_im_in,
+                                                   const q15_t* wt,
+                                                   const uint16_t ch_im_out,
+                                                   const uint16_t dim_kernel_x,
+                                                   const uint16_t dim_kernel_y,
+                                                   const uint16_t padding_x,
+                                                   const uint16_t padding_y,
+                                                   const uint16_t stride_x,
+                                                   const uint16_t stride_y,
+                                                   const q15_t* bias,
+                                                   const uint16_t bias_shift,
+                                                   const uint16_t out_shift,
+                                                   q15_t* Im_out,
+                                                   const uint16_t dim_im_out_x,
+                                                   const uint16_t dim_im_out_y,
+                                                   q15_t* bufferA,
+                                                   q7_t* bufferB);
 
 /**
  * @brief Q7 depthwise separable convolution function
@@ -792,21 +791,21 @@ riscv_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
  *   ch_im_out is multiple of 2
  */
 
-riscv_status riscv_depthwise_separable_conv_HWC_q7(const q7_t *Im_in,
-                                               const uint16_t dim_im_in,
-                                               const uint16_t ch_im_in,
-                                               const q7_t *wt,
-                                               const uint16_t ch_im_out,
-                                               const uint16_t dim_kernel,
-                                               const uint16_t padding,
-                                               const uint16_t stride,
-                                               const q7_t *bias,
-                                               const uint16_t bias_shift,
-                                               const uint16_t out_shift,
-                                               q7_t *Im_out,
-                                               const uint16_t dim_im_out,
-                                               q15_t *bufferA,
-                                               q7_t *bufferB);
+riscv_status riscv_depthwise_separable_conv_HWC_q7(const q7_t* Im_in,
+                                                   const uint16_t dim_im_in,
+                                                   const uint16_t ch_im_in,
+                                                   const q7_t* wt,
+                                                   const uint16_t ch_im_out,
+                                                   const uint16_t dim_kernel,
+                                                   const uint16_t padding,
+                                                   const uint16_t stride,
+                                                   const q7_t* bias,
+                                                   const uint16_t bias_shift,
+                                                   const uint16_t out_shift,
+                                                   q7_t* Im_out,
+                                                   const uint16_t dim_im_out,
+                                                   q15_t* bufferA,
+                                                   q7_t* bufferB);
 
 /**
  * @brief Q7 depthwise separable convolution function (non-square shape)
@@ -838,26 +837,26 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7(const q7_t *Im_in,
  *   ch_im_in is multiple of 2
  *   ch_im_out is multiple of 2
  */
-riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t *Im_in,
-                                                         const uint16_t dim_im_in_x,
-                                                         const uint16_t dim_im_in_y,
-                                                         const uint16_t ch_im_in,
-                                                         const q7_t *wt,
-                                                         const uint16_t ch_im_out,
-                                                         const uint16_t dim_kernel_x,
-                                                         const uint16_t dim_kernel_y,
-                                                         const uint16_t padding_x,
-                                                         const uint16_t padding_y,
-                                                         const uint16_t stride_x,
-                                                         const uint16_t stride_y,
-                                                         const q7_t *bias,
-                                                         const uint16_t bias_shift,
-                                                         const uint16_t out_shift,
-                                                         q7_t *Im_out,
-                                                         const uint16_t dim_im_out_x,
-                                                         const uint16_t dim_im_out_y,
-                                                         q15_t *bufferA,
-                                                         q7_t *bufferB);
+riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t* Im_in,
+                                                             const uint16_t dim_im_in_x,
+                                                             const uint16_t dim_im_in_y,
+                                                             const uint16_t ch_im_in,
+                                                             const q7_t* wt,
+                                                             const uint16_t ch_im_out,
+                                                             const uint16_t dim_kernel_x,
+                                                             const uint16_t dim_kernel_y,
+                                                             const uint16_t padding_x,
+                                                             const uint16_t padding_y,
+                                                             const uint16_t stride_x,
+                                                             const uint16_t stride_y,
+                                                             const q7_t* bias,
+                                                             const uint16_t bias_shift,
+                                                             const uint16_t out_shift,
+                                                             q7_t* Im_out,
+                                                             const uint16_t dim_im_out_x,
+                                                             const uint16_t dim_im_out_y,
+                                                             q15_t* bufferA,
+                                                             q7_t* bufferB);
 
 /**
  * @brief Wrapper function to pick the right optimized s8 depthwise convolution function
@@ -895,17 +894,17 @@ riscv_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t *Im_in,
  *    - Check details of riscv_depthwise_conv_s8_opt() for potential data that can be accessed outside of the
  * boundary.
  */
-riscv_status riscv_depthwise_conv_wrapper_s8(const nmsis_nn_context *ctx,
-                                         const nmsis_nn_dw_conv_params *dw_conv_params,
-                                         const nmsis_nn_per_channel_quant_params *quant_params,
-                                         const nmsis_nn_dims *input_dims,
-                                         const q7_t *input_data,
-                                         const nmsis_nn_dims *filter_dims,
-                                         const q7_t *filter_data,
-                                         const nmsis_nn_dims *bias_dims,
-                                         const int32_t *bias_data,
-                                         const nmsis_nn_dims *output_dims,
-                                         q7_t *output_data);
+riscv_status riscv_depthwise_conv_wrapper_s8(const nmsis_nn_context* ctx,
+                                             const nmsis_nn_dw_conv_params* dw_conv_params,
+                                             const nmsis_nn_per_channel_quant_params* quant_params,
+                                             const nmsis_nn_dims* input_dims,
+                                             const q7_t* input_data,
+                                             const nmsis_nn_dims* filter_dims,
+                                             const q7_t* filter_data,
+                                             const nmsis_nn_dims* bias_dims,
+                                             const int32_t* bias_data,
+                                             const nmsis_nn_dims* output_dims,
+                                             q7_t* output_data);
 
 /**
  * @brief Get size of additional buffer required by riscv_depthwise_conv_wrapper_s8()
@@ -921,10 +920,10 @@ riscv_status riscv_depthwise_conv_wrapper_s8(const nmsis_nn_context *ctx,
  * @return                        Size of additional memory required for optimizations in bytes.
  *
  */
-int32_t riscv_depthwise_conv_wrapper_s8_get_buffer_size(const nmsis_nn_dw_conv_params *dw_conv_params,
-                                                      const nmsis_nn_dims *input_dims,
-                                                      const nmsis_nn_dims *filter_dims,
-                                                      const nmsis_nn_dims *output_dims);
+int32_t riscv_depthwise_conv_wrapper_s8_get_buffer_size(const nmsis_nn_dw_conv_params* dw_conv_params,
+                                                        const nmsis_nn_dims* input_dims,
+                                                        const nmsis_nn_dims* filter_dims,
+                                                        const nmsis_nn_dims* output_dims);
 
 /**
  * @brief Basic s8 depthwise convolution function that doesn't have any constraints on the input dimensions.
@@ -956,17 +955,17 @@ int32_t riscv_depthwise_conv_wrapper_s8_get_buffer_size(const nmsis_nn_dw_conv_p
  *    - Supported framework: TensorFlow Lite
  *    - q7 is used as data type eventhough it is s8 data. It is done so to be consistent with existing APIs.
  */
-riscv_status riscv_depthwise_conv_s8(const nmsis_nn_context *ctx,
-                                 const nmsis_nn_dw_conv_params *dw_conv_params,
-                                 const nmsis_nn_per_channel_quant_params *quant_params,
-                                 const nmsis_nn_dims *input_dims,
-                                 const q7_t *input_data,
-                                 const nmsis_nn_dims *filter_dims,
-                                 const q7_t *filter_data,
-                                 const nmsis_nn_dims *bias_dims,
-                                 const int32_t *bias_data,
-                                 const nmsis_nn_dims *output_dims,
-                                 q7_t *output_data);
+riscv_status riscv_depthwise_conv_s8(const nmsis_nn_context* ctx,
+                                     const nmsis_nn_dw_conv_params* dw_conv_params,
+                                     const nmsis_nn_per_channel_quant_params* quant_params,
+                                     const nmsis_nn_dims* input_dims,
+                                     const q7_t* input_data,
+                                     const nmsis_nn_dims* filter_dims,
+                                     const q7_t* filter_data,
+                                     const nmsis_nn_dims* bias_dims,
+                                     const int32_t* bias_data,
+                                     const nmsis_nn_dims* output_dims,
+                                     q7_t* output_data);
 
 /**
  * @brief Optimized s8 depthwise convolution function for 3x3 kernel size with some constraints on
@@ -986,17 +985,17 @@ riscv_status riscv_depthwise_conv_s8(const nmsis_nn_context *ctx,
  *      -# Padding along x is either 0 or 1.
  *
  */
-riscv_status riscv_depthwise_conv_3x3_s8(const nmsis_nn_context *ctx,
-                                     const nmsis_nn_dw_conv_params *dw_conv_params,
-                                     const nmsis_nn_per_channel_quant_params *quant_params,
-                                     const nmsis_nn_dims *input_dims,
-                                     const q7_t *input_data,
-                                     const nmsis_nn_dims *filter_dims,
-                                     const q7_t *filter_data,
-                                     const nmsis_nn_dims *bias_dims,
-                                     const int32_t *bias_data,
-                                     const nmsis_nn_dims *output_dims,
-                                     q7_t *output_data);
+riscv_status riscv_depthwise_conv_3x3_s8(const nmsis_nn_context* ctx,
+                                         const nmsis_nn_dw_conv_params* dw_conv_params,
+                                         const nmsis_nn_per_channel_quant_params* quant_params,
+                                         const nmsis_nn_dims* input_dims,
+                                         const q7_t* input_data,
+                                         const nmsis_nn_dims* filter_dims,
+                                         const q7_t* filter_data,
+                                         const nmsis_nn_dims* bias_dims,
+                                         const int32_t* bias_data,
+                                         const nmsis_nn_dims* output_dims,
+                                         q7_t* output_data);
 
 /**
  * @brief Optimized s8 depthwise convolution function with constraint that in_channel equals out_channel.
@@ -1021,17 +1020,17 @@ riscv_status riscv_depthwise_conv_3x3_s8(const nmsis_nn_context *ctx,
  *    - Reccomended when number of channels is 4 or greater.
  *
  */
-riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
-                                     const nmsis_nn_dw_conv_params *dw_conv_params,
-                                     const nmsis_nn_per_channel_quant_params *quant_params,
-                                     const nmsis_nn_dims *input_dims,
-                                     const q7_t *input_data,
-                                     const nmsis_nn_dims *filter_dims,
-                                     const q7_t *filter_data,
-                                     const nmsis_nn_dims *bias_dims,
-                                     const int32_t *bias_data,
-                                     const nmsis_nn_dims *output_dims,
-                                     q7_t *output_data);
+riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context* ctx,
+                                         const nmsis_nn_dw_conv_params* dw_conv_params,
+                                         const nmsis_nn_per_channel_quant_params* quant_params,
+                                         const nmsis_nn_dims* input_dims,
+                                         const q7_t* input_data,
+                                         const nmsis_nn_dims* filter_dims,
+                                         const q7_t* filter_data,
+                                         const nmsis_nn_dims* bias_dims,
+                                         const int32_t* bias_data,
+                                         const nmsis_nn_dims* output_dims,
+                                         q7_t* output_data);
 
 /**
  * @brief Get the required buffer size for optimized s8 depthwise convolution
@@ -1042,7 +1041,7 @@ riscv_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
  * @return          The function returns  required buffer size in bytes
  *
  */
-int32_t riscv_depthwise_conv_s8_opt_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims);
+int32_t riscv_depthwise_conv_s8_opt_get_buffer_size(const nmsis_nn_dims* input_dims, const nmsis_nn_dims* filter_dims);
 
 /**
  * @defgroup FC Fully-connected Layer Functions
@@ -1075,15 +1074,15 @@ int32_t riscv_depthwise_conv_s8_opt_get_buffer_size(const nmsis_nn_dims *input_d
  *
  */
 
-riscv_status riscv_fully_connected_q7(const q7_t *pV,
-                                  const q7_t *pM,
-                                  const uint16_t dim_vec,
-                                  const uint16_t num_of_rows,
-                                  const uint16_t bias_shift,
-                                  const uint16_t out_shift,
-                                  const q7_t *bias,
-                                  q7_t *pOut,
-                                  q15_t *vec_buffer);
+riscv_status riscv_fully_connected_q7(const q7_t* pV,
+                                      const q7_t* pM,
+                                      const uint16_t dim_vec,
+                                      const uint16_t num_of_rows,
+                                      const uint16_t bias_shift,
+                                      const uint16_t out_shift,
+                                      const q7_t* bias,
+                                      q7_t* pOut,
+                                      q15_t* vec_buffer);
 
 /**
  * @brief Basic s8 Fully Connected function.
@@ -1120,17 +1119,17 @@ riscv_status riscv_fully_connected_q7(const q7_t *pV,
  *    - Supported framework: TensorFlow Lite
  *    - q7 is used as data type eventhough it is s8 data. It is done so to be consistent with existing APIs.
  */
-riscv_status riscv_fully_connected_s8(const nmsis_nn_context *ctx,
-                                  const nmsis_nn_fc_params *fc_params,
-                                  const nmsis_nn_per_tensor_quant_params *quant_params,
-                                  const nmsis_nn_dims *input_dims,
-                                  const q7_t *input_data,
-                                  const nmsis_nn_dims *filter_dims,
-                                  const q7_t *filter_data,
-                                  const nmsis_nn_dims *bias_dims,
-                                  const int32_t *bias_data,
-                                  const nmsis_nn_dims *output_dims,
-                                  q7_t *output_data);
+riscv_status riscv_fully_connected_s8(const nmsis_nn_context* ctx,
+                                      const nmsis_nn_fc_params* fc_params,
+                                      const nmsis_nn_per_tensor_quant_params* quant_params,
+                                      const nmsis_nn_dims* input_dims,
+                                      const q7_t* input_data,
+                                      const nmsis_nn_dims* filter_dims,
+                                      const q7_t* filter_data,
+                                      const nmsis_nn_dims* bias_dims,
+                                      const int32_t* bias_data,
+                                      const nmsis_nn_dims* output_dims,
+                                      q7_t* output_data);
 
 /**
  * @brief Get the required buffer size for S8 basic fully-connected and
@@ -1139,7 +1138,7 @@ riscv_status riscv_fully_connected_s8(const nmsis_nn_context *ctx,
  * @return         The function returns    required buffer size in bytes
  *
  */
-int32_t riscv_fully_connected_s8_get_buffer_size(const nmsis_nn_dims *filter_dims);
+int32_t riscv_fully_connected_s8_get_buffer_size(const nmsis_nn_dims* filter_dims);
 
 /**
  * @brief Q7 opt fully-connected layer function
@@ -1156,15 +1155,15 @@ int32_t riscv_fully_connected_s8_get_buffer_size(const nmsis_nn_dims *filter_dim
  *
  */
 
-riscv_status riscv_fully_connected_q7_opt(const q7_t *pV,
-                                      const q7_t *pM,
-                                      const uint16_t dim_vec,
-                                      const uint16_t num_of_rows,
-                                      const uint16_t bias_shift,
-                                      const uint16_t out_shift,
-                                      const q7_t *bias,
-                                      q7_t *pOut,
-                                      q15_t *vec_buffer);
+riscv_status riscv_fully_connected_q7_opt(const q7_t* pV,
+                                          const q7_t* pM,
+                                          const uint16_t dim_vec,
+                                          const uint16_t num_of_rows,
+                                          const uint16_t bias_shift,
+                                          const uint16_t out_shift,
+                                          const q7_t* bias,
+                                          q7_t* pOut,
+                                          q15_t* vec_buffer);
 
 /**
  * @brief Q15 basic fully-connected layer function
@@ -1181,15 +1180,15 @@ riscv_status riscv_fully_connected_q7_opt(const q7_t *pV,
  *
  */
 
-riscv_status riscv_fully_connected_q15(const q15_t *pV,
-                                   const q15_t *pM,
-                                   const uint16_t dim_vec,
-                                   const uint16_t num_of_rows,
-                                   const uint16_t bias_shift,
-                                   const uint16_t out_shift,
-                                   const q15_t *bias,
-                                   q15_t *pOut,
-                                   q15_t *vec_buffer);
+riscv_status riscv_fully_connected_q15(const q15_t* pV,
+                                       const q15_t* pM,
+                                       const uint16_t dim_vec,
+                                       const uint16_t num_of_rows,
+                                       const uint16_t bias_shift,
+                                       const uint16_t out_shift,
+                                       const q15_t* bias,
+                                       q15_t* pOut,
+                                       q15_t* vec_buffer);
 
 /**
  * @brief Q15 opt fully-connected layer function
@@ -1206,15 +1205,15 @@ riscv_status riscv_fully_connected_q15(const q15_t *pV,
  *
  */
 
-riscv_status riscv_fully_connected_q15_opt(const q15_t *pV,
-                                       const q15_t *pM,
-                                       const uint16_t dim_vec,
-                                       const uint16_t num_of_rows,
-                                       const uint16_t bias_shift,
-                                       const uint16_t out_shift,
-                                       const q15_t *bias,
-                                       q15_t *pOut,
-                                       q15_t *vec_buffer);
+riscv_status riscv_fully_connected_q15_opt(const q15_t* pV,
+                                           const q15_t* pM,
+                                           const uint16_t dim_vec,
+                                           const uint16_t num_of_rows,
+                                           const uint16_t bias_shift,
+                                           const uint16_t out_shift,
+                                           const q15_t* bias,
+                                           q15_t* pOut,
+                                           q15_t* vec_buffer);
 
 /**
  * @brief Mixed Q15-Q7 fully-connected layer function
@@ -1231,15 +1230,15 @@ riscv_status riscv_fully_connected_q15_opt(const q15_t *pV,
  *
  */
 
-riscv_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
-                                              const q7_t *pM,
-                                              const uint16_t dim_vec,
-                                              const uint16_t num_of_rows,
-                                              const uint16_t bias_shift,
-                                              const uint16_t out_shift,
-                                              const q7_t *bias,
-                                              q15_t *pOut,
-                                              q15_t *vec_buffer);
+riscv_status riscv_fully_connected_mat_q7_vec_q15(const q15_t* pV,
+                                                  const q7_t* pM,
+                                                  const uint16_t dim_vec,
+                                                  const uint16_t num_of_rows,
+                                                  const uint16_t bias_shift,
+                                                  const uint16_t out_shift,
+                                                  const q7_t* bias,
+                                                  q15_t* pOut,
+                                                  q15_t* vec_buffer);
 
 /**
  * @brief Mixed Q15-Q7 opt fully-connected layer function
@@ -1256,15 +1255,15 @@ riscv_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
  *
  */
 
-riscv_status riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t *pV,
-                                                  const q7_t *pM,
-                                                  const uint16_t dim_vec,
-                                                  const uint16_t num_of_rows,
-                                                  const uint16_t bias_shift,
-                                                  const uint16_t out_shift,
-                                                  const q7_t *bias,
-                                                  q15_t *pOut,
-                                                  q15_t *vec_buffer);
+riscv_status riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t* pV,
+                                                      const q7_t* pM,
+                                                      const uint16_t dim_vec,
+                                                      const uint16_t num_of_rows,
+                                                      const uint16_t bias_shift,
+                                                      const uint16_t out_shift,
+                                                      const q7_t* bias,
+                                                      q15_t* pOut,
+                                                      q15_t* vec_buffer);
 
 /**
  * @brief Matrix-Multiplication Kernels for Convolution
@@ -1291,185 +1290,185 @@ riscv_status riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t *pV,
  * @return     The function returns the incremented output pointer
  */
 
-    q7_t     *riscv_nn_mat_mult_kernel_q7_q15(const q7_t * pA,
-                                            const q15_t * pInBuffer,
-                                            const uint16_t ch_im_out,
-                                            const uint16_t numCol_A,
-                                            const uint16_t bias_shift,
-                                            const uint16_t out_shift,
-                                            const q7_t * bias,
-                                            q7_t * pOut);
+q7_t*     riscv_nn_mat_mult_kernel_q7_q15(const q7_t* pA,
+                                          const q15_t* pInBuffer,
+                                          const uint16_t ch_im_out,
+                                          const uint16_t numCol_A,
+                                          const uint16_t bias_shift,
+                                          const uint16_t out_shift,
+                                          const q7_t* bias,
+                                          q7_t* pOut);
 
-   /**
-   * @brief Matrix-multiplication function for convolution
-   * @param[in]       pA          pointer to operand A, q7 type
-   * @param[in]       pInBuffer   pointer to operand B, q7 type
-   * @param[in]       ch_im_out   numRow of A
-   * @param[in]       numCol_A    numCol of A
-   * @param[in]       bias_shift  amount of left-shift for bias
-   * @param[in]       out_shift   amount of right-shift for output
-   * @param[in]       bias        the bias
-   * @param[in,out]   pOut        pointer to output
-   * @return     The function returns the incremented output pointer
-   */
-    q7_t     *riscv_nn_mat_mult_kernel_q7(const q7_t * pA,
-                                            const q7_t * pInBuffer,
-                                            const uint16_t ch_im_out,
-                                            const uint16_t numCol_A,
-                                            const uint16_t bias_shift,
-                                            const uint16_t out_shift,
-                                            const q7_t * bias,
-                                            q7_t * pOut);
+/**
+* @brief Matrix-multiplication function for convolution
+* @param[in]       pA          pointer to operand A, q7 type
+* @param[in]       pInBuffer   pointer to operand B, q7 type
+* @param[in]       ch_im_out   numRow of A
+* @param[in]       numCol_A    numCol of A
+* @param[in]       bias_shift  amount of left-shift for bias
+* @param[in]       out_shift   amount of right-shift for output
+* @param[in]       bias        the bias
+* @param[in,out]   pOut        pointer to output
+* @return     The function returns the incremented output pointer
+*/
+q7_t*     riscv_nn_mat_mult_kernel_q7(const q7_t* pA,
+                                      const q7_t* pInBuffer,
+                                      const uint16_t ch_im_out,
+                                      const uint16_t numCol_A,
+                                      const uint16_t bias_shift,
+                                      const uint16_t out_shift,
+                                      const q7_t* bias,
+                                      q7_t* pOut);
 
-   /**
-   * @brief Matrix-multiplication function for convolution with per-channel requantization.
-   * @param[in]       input_a     pointer to operand A
-   * @param[in]       input_b     pointer to operand B, always consists of 2 vectors.
-   * @param[in]       output_ch   number of rows of A
-   * @param[in]       out_shift  pointer to per output channel requantization shift parameter.
-   * @param[in]       out_mult   pointer to per output channel requantization multiplier parameter.
-   * @param[in]       out_offset      output tensor offset.
-   * @param[in]       activation_min   minimum value to clamp the output to. Range : int8
-   * @param[in]       activation_max   maximum value to clamp the output to. Range : int8
-   * @param[in]       num_col_a   number of columns of A
-   * @param[in]       output_bias per output channel bias. Range : int32
-   * @param[in,out]   out_0       pointer to output
-   * @return     The function returns one of the two
-   *              1. The incremented output pointer for a successful operation or
-   *              2. NULL if implementation is not available.
-   *
-   * @details   This function does the matrix multiplication of weight matrix for all output channels
-   *            with 2 columns from im2col and produces two elements/output_channel. The outputs are
-   *            clamped in the range provided by activation min and max.
-   *            Supported framework: TensorFlow Lite micro.
-   */
-    q7_t *riscv_nn_mat_mult_kernel_s8_s16(const q7_t *input_a,
-                                        const q15_t *input_b,
-                                        const uint16_t output_ch,
-                                        const int32_t *out_shift,
-                                        const int32_t *out_mult,
-                                        const int32_t out_offset,
-                                        const int16_t activation_min,
-                                        const int16_t activation_max,
-                                        const uint16_t num_col_a,
-                                        const int32_t *const output_bias,
-                                        q7_t *out_0);
+/**
+* @brief Matrix-multiplication function for convolution with per-channel requantization.
+* @param[in]       input_a     pointer to operand A
+* @param[in]       input_b     pointer to operand B, always consists of 2 vectors.
+* @param[in]       output_ch   number of rows of A
+* @param[in]       out_shift  pointer to per output channel requantization shift parameter.
+* @param[in]       out_mult   pointer to per output channel requantization multiplier parameter.
+* @param[in]       out_offset      output tensor offset.
+* @param[in]       activation_min   minimum value to clamp the output to. Range : int8
+* @param[in]       activation_max   maximum value to clamp the output to. Range : int8
+* @param[in]       num_col_a   number of columns of A
+* @param[in]       output_bias per output channel bias. Range : int32
+* @param[in,out]   out_0       pointer to output
+* @return     The function returns one of the two
+*              1. The incremented output pointer for a successful operation or
+*              2. NULL if implementation is not available.
+*
+* @details   This function does the matrix multiplication of weight matrix for all output channels
+*            with 2 columns from im2col and produces two elements/output_channel. The outputs are
+*            clamped in the range provided by activation min and max.
+*            Supported framework: TensorFlow Lite micro.
+*/
+q7_t* riscv_nn_mat_mult_kernel_s8_s16(const q7_t* input_a,
+                                      const q15_t* input_b,
+                                      const uint16_t output_ch,
+                                      const int32_t* out_shift,
+                                      const int32_t* out_mult,
+                                      const int32_t out_offset,
+                                      const int16_t activation_min,
+                                      const int16_t activation_max,
+                                      const uint16_t num_col_a,
+                                      const int32_t* const output_bias,
+                                      q7_t* out_0);
 
-   /**
-   * @brief Matrix-multiplication function for convolution with per-channel requantization.
-   * @param[in]       input_a     pointer to operand A
-   * @param[in]       input_b     pointer to operand B, always consists of 2 vectors.
-   * @param[in]       output_ch   number of rows of A
-   * @param[in]       out_shift  pointer to per output channel requantization shift parameter.
-   * @param[in]       out_mult   pointer to per output channel requantization multiplier parameter.
-   * @param[in]       out_offset      output tensor offset.
-   * @param[in]       activation_min   minimum value to clamp the output to. Range : int8
-   * @param[in]       activation_max   maximum value to clamp the output to. Range : int8
-   * @param[in]       num_col_a   number of columns of A
-   * @param[in]       output_bias per output channel bias. Range : int32
-   * @param[in,out]   out_0       pointer to output
-   * @return     The function returns one of the two
-   *              1. The incremented output pointer for a successful operation or
-   *              2. NULL if implementation is not available.
-   *
-   * @details   This function does the matrix multiplication of weight matrix for all output channels
-   *            with 2 columns from im2col and produces two elements/output_channel. The outputs are
-   *            clamped in the range provided by activation min and max.
-   *            Supported framework: TensorFlow Lite micro.
-   */
-    q7_t *riscv_nn_mat_mult_kernel_s8(const q7_t *input_a,
-                                    const q7_t *input_b,
-                                    const uint16_t output_ch,
-                                    const int32_t *out_shift,
-                                    const int32_t *out_mult,
-                                    const int32_t out_offset,
-                                    const int16_t activation_min,
-                                    const int16_t activation_max,
-                                    const uint16_t num_col_a,
-                                    const int32_t *const output_bias,
-                                    q7_t *out_0);
+/**
+* @brief Matrix-multiplication function for convolution with per-channel requantization.
+* @param[in]       input_a     pointer to operand A
+* @param[in]       input_b     pointer to operand B, always consists of 2 vectors.
+* @param[in]       output_ch   number of rows of A
+* @param[in]       out_shift  pointer to per output channel requantization shift parameter.
+* @param[in]       out_mult   pointer to per output channel requantization multiplier parameter.
+* @param[in]       out_offset      output tensor offset.
+* @param[in]       activation_min   minimum value to clamp the output to. Range : int8
+* @param[in]       activation_max   maximum value to clamp the output to. Range : int8
+* @param[in]       num_col_a   number of columns of A
+* @param[in]       output_bias per output channel bias. Range : int32
+* @param[in,out]   out_0       pointer to output
+* @return     The function returns one of the two
+*              1. The incremented output pointer for a successful operation or
+*              2. NULL if implementation is not available.
+*
+* @details   This function does the matrix multiplication of weight matrix for all output channels
+*            with 2 columns from im2col and produces two elements/output_channel. The outputs are
+*            clamped in the range provided by activation min and max.
+*            Supported framework: TensorFlow Lite micro.
+*/
+q7_t* riscv_nn_mat_mult_kernel_s8(const q7_t* input_a,
+                                  const q7_t* input_b,
+                                  const uint16_t output_ch,
+                                  const int32_t* out_shift,
+                                  const int32_t* out_mult,
+                                  const int32_t out_offset,
+                                  const int16_t activation_min,
+                                  const int16_t activation_max,
+                                  const uint16_t num_col_a,
+                                  const int32_t* const output_bias,
+                                  q7_t* out_0);
 
-   /**
-   * @brief Matrix-multiplication of re-ordered input B with A.
-   *
-   * @details  For arguments, refer riscv_nn_mat_mult_kernel_s8_s16. The re-ordering is a consequence
-   *           of sign extension done by the SXTB16 command on input_b. The outputs are clamped in the range
-   *           provided by activation min and max.
-   *   * @details
-   *   - Supported framework : TensorFlow Lite Micro
-   *   - The following constrains on the arguments apply
-   *      -# num_col_a is a multiple of 4
-   *      -# output_ch is a multiple of 2
-   *
-   */
-    q7_t *riscv_nn_mat_mult_kernel_s8_s16_reordered(const q7_t *input_a,
-                                                  const q15_t *input_b,
-                                                  const uint16_t output_ch,
-                                                  const int32_t *out_shift,
-                                                  const int32_t *out_mult,
-                                                  const int32_t out_offset,
-                                                  const int16_t activation_min,
-                                                  const int16_t activation_max,
-                                                  const uint16_t num_col_a,
-                                                  const int32_t *const output_bias,
-                                                  q7_t *out_0);
+/**
+* @brief Matrix-multiplication of re-ordered input B with A.
+*
+* @details  For arguments, refer riscv_nn_mat_mult_kernel_s8_s16. The re-ordering is a consequence
+*           of sign extension done by the SXTB16 command on input_b. The outputs are clamped in the range
+*           provided by activation min and max.
+*   * @details
+*   - Supported framework : TensorFlow Lite Micro
+*   - The following constrains on the arguments apply
+*      -# num_col_a is a multiple of 4
+*      -# output_ch is a multiple of 2
+*
+*/
+q7_t* riscv_nn_mat_mult_kernel_s8_s16_reordered(const q7_t* input_a,
+                                                const q15_t* input_b,
+                                                const uint16_t output_ch,
+                                                const int32_t* out_shift,
+                                                const int32_t* out_mult,
+                                                const int32_t out_offset,
+                                                const int16_t activation_min,
+                                                const int16_t activation_max,
+                                                const uint16_t num_col_a,
+                                                const int32_t* const output_bias,
+                                                q7_t* out_0);
 
-   /**
-   * @brief Matrix-multiplication of re-ordered input B with A.
-   *
-   * @details  For arguments, refer riscv_nn_mat_mult_kernel_s8_s16. The re-ordering is a consequence
-   *           of sign extension done by the SXTB16 command on input_b. The outputs are clamped in the range
-   *           provided by activation min and max.
-   *   * @details
-   *   - Supported framework : TensorFlow Lite Micro
-   *   - The following constrains on the arguments apply
-   *      -# num_col_a is a multiple of 4
-   *      -# output_ch is a multiple of 2
-   *
-   */
-    q7_t *riscv_nn_mat_mult_kernel_s8_reordered(const q7_t *input_a,
-                                              const q7_t *input_b,
-                                              const uint16_t output_ch,
-                                              const int32_t *out_shift,
-                                              const int32_t *out_mult,
-                                              const int32_t out_offset,
-                                              const int16_t activation_min,
-                                              const int16_t activation_max,
-                                              const uint16_t num_col_a,
-                                              const int32_t *const output_bias,
-                                              q7_t *out_0);
+/**
+* @brief Matrix-multiplication of re-ordered input B with A.
+*
+* @details  For arguments, refer riscv_nn_mat_mult_kernel_s8_s16. The re-ordering is a consequence
+*           of sign extension done by the SXTB16 command on input_b. The outputs are clamped in the range
+*           provided by activation min and max.
+*   * @details
+*   - Supported framework : TensorFlow Lite Micro
+*   - The following constrains on the arguments apply
+*      -# num_col_a is a multiple of 4
+*      -# output_ch is a multiple of 2
+*
+*/
+q7_t* riscv_nn_mat_mult_kernel_s8_reordered(const q7_t* input_a,
+                                            const q7_t* input_b,
+                                            const uint16_t output_ch,
+                                            const int32_t* out_shift,
+                                            const int32_t* out_mult,
+                                            const int32_t out_offset,
+                                            const int16_t activation_min,
+                                            const int16_t activation_max,
+                                            const uint16_t num_col_a,
+                                            const int32_t* const output_bias,
+                                            q7_t* out_0);
 
-    /**
-   * @brief Matrix-multiplication function for convolution with reordered columns
-   * @param[in]       pA          pointer to operand A
-   * @param[in]       pInBuffer   pointer to operand B, always conssists of 2 vectors
-   * @param[in]       ch_im_out   numRow of A
-   * @param[in]       numCol_A    numCol of A
-   * @param[in]       bias_shift  amount of left-shift for bias
-   * @param[in]       out_shift   amount of right-shift for output
-   * @param[in]       bias        the bias
-   * @param[in,out]   pOut        pointer to output
-   * @return     The function returns the incremented output pointer
-   *
-   * @details  This function assumes that data in pInBuffer are reordered
-   */
-    q7_t     *riscv_nn_mat_mult_kernel_q7_q15_reordered(const q7_t * pA,
-                                                      const q15_t * pInBuffer,
-                                                      const uint16_t ch_im_out,
-                                                      const uint16_t numCol_A,
-                                                      const uint16_t bias_shift,
-                                                      const uint16_t out_shift,
-                                                      const q7_t * bias,
-                                                      q7_t * pOut);
+/**
+* @brief Matrix-multiplication function for convolution with reordered columns
+* @param[in]       pA          pointer to operand A
+* @param[in]       pInBuffer   pointer to operand B, always conssists of 2 vectors
+* @param[in]       ch_im_out   numRow of A
+* @param[in]       numCol_A    numCol of A
+* @param[in]       bias_shift  amount of left-shift for bias
+* @param[in]       out_shift   amount of right-shift for output
+* @param[in]       bias        the bias
+* @param[in,out]   pOut        pointer to output
+* @return     The function returns the incremented output pointer
+*
+* @details  This function assumes that data in pInBuffer are reordered
+*/
+q7_t*     riscv_nn_mat_mult_kernel_q7_q15_reordered(const q7_t* pA,
+                                                    const q15_t* pInBuffer,
+                                                    const uint16_t ch_im_out,
+                                                    const uint16_t numCol_A,
+                                                    const uint16_t bias_shift,
+                                                    const uint16_t out_shift,
+                                                    const q7_t* bias,
+                                                    q7_t* pOut);
 
-    q7_t     *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
-                                                      const q7_t * pInBuffer,
-                                                      const uint16_t ch_im_out,
-                                                      const uint16_t numCol_A,
-                                                      const uint16_t bias_shift,
-                                                      const uint16_t out_shift,
-                                                      const q7_t * bias,
-                                                      q7_t * pOut);
+q7_t*     riscv_nn_mat_mult_kernel_q7_reordered(const q7_t* pA,
+                                                const q7_t* pInBuffer,
+                                                const uint16_t ch_im_out,
+                                                const uint16_t numCol_A,
+                                                const uint16_t bias_shift,
+                                                const uint16_t out_shift,
+                                                const q7_t* bias,
+                                                q7_t* pOut);
 
 #ifdef __cplusplus
 }
@@ -1512,22 +1511,22 @@ extern "C" {
  * @param[in]       block_size              number of samples
  * @return          The function returns    RISCV_MATH_SUCCESS
  */
-riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
-                                  const int8_t *input_2_vect,
-                                  const int32_t input_1_offset,
-                                  const int32_t input_1_mult,
-                                  const int32_t input_1_shift,
-                                  const int32_t input_2_offset,
-                                  const int32_t input_2_mult,
-                                  const int32_t input_2_shift,
-                                  const int32_t left_shift,
-                                  int8_t *output,
-                                  const int32_t out_offset,
-                                  const int32_t out_mult,
-                                  const int32_t out_shift,
-                                  const int32_t out_activation_min,
-                                  const int32_t out_activation_max,
-                                  const uint32_t block_size);
+riscv_status riscv_elementwise_add_s8(const int8_t* input_1_vect,
+                                      const int8_t* input_2_vect,
+                                      const int32_t input_1_offset,
+                                      const int32_t input_1_mult,
+                                      const int32_t input_1_shift,
+                                      const int32_t input_2_offset,
+                                      const int32_t input_2_mult,
+                                      const int32_t input_2_shift,
+                                      const int32_t left_shift,
+                                      int8_t* output,
+                                      const int32_t out_offset,
+                                      const int32_t out_mult,
+                                      const int32_t out_shift,
+                                      const int32_t out_activation_min,
+                                      const int32_t out_activation_max,
+                                      const uint32_t block_size);
 
 /**
  * @brief s8 element wise multiplication
@@ -1546,17 +1545,17 @@ riscv_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
  *
  * @details   Supported framework: TensorFlow Lite micro
  */
-riscv_status riscv_elementwise_mul_s8(const int8_t *input_1_vect,
-                                  const int8_t *input_2_vect,
-                                  const int32_t input_1_offset,
-                                  const int32_t input_2_offset,
-                                  int8_t *output,
-                                  const int32_t out_offset,
-                                  const int32_t out_mult,
-                                  const int32_t out_shift,
-                                  const int32_t out_activation_min,
-                                  const int32_t out_activation_max,
-                                  const uint32_t block_size);
+riscv_status riscv_elementwise_mul_s8(const int8_t* input_1_vect,
+                                      const int8_t* input_2_vect,
+                                      const int32_t input_1_offset,
+                                      const int32_t input_2_offset,
+                                      int8_t* output,
+                                      const int32_t out_offset,
+                                      const int32_t out_mult,
+                                      const int32_t out_shift,
+                                      const int32_t out_activation_min,
+                                      const int32_t out_activation_max,
+                                      const uint32_t block_size);
 /**
  * @defgroup Acti Activation Functions
  *
@@ -1572,7 +1571,7 @@ riscv_status riscv_elementwise_mul_s8(const int8_t *input_1_vect,
  * @return none.
  */
 
-void riscv_relu_q7(q7_t *data, uint16_t size);
+void riscv_relu_q7(q7_t* data, uint16_t size);
 
 /**
  * @brief s8 ReLU6 function
@@ -1580,7 +1579,7 @@ void riscv_relu_q7(q7_t *data, uint16_t size);
  * @param[in]       size        number of elements
  */
 
-void riscv_relu6_s8(q7_t *data, uint16_t size);
+void riscv_relu6_s8(q7_t* data, uint16_t size);
 
 /**
  * @brief Q15 RELU function
@@ -1589,7 +1588,7 @@ void riscv_relu6_s8(q7_t *data, uint16_t size);
  * @return none.
  */
 
-void riscv_relu_q15(q15_t *data, uint16_t size);
+void riscv_relu_q15(q15_t* data, uint16_t size);
 
 /**
  * @brief Q7 neural network activation function using direct table look-up
@@ -1600,7 +1599,7 @@ void riscv_relu_q15(q15_t *data, uint16_t size);
  * @return none.
  */
 
-void riscv_nn_activations_direct_q7(q7_t *data, uint16_t size, uint16_t int_width, riscv_nn_activation_type type);
+void riscv_nn_activations_direct_q7(q7_t* data, uint16_t size, uint16_t int_width, riscv_nn_activation_type type);
 
 /**
  * @brief Q15 neural network activation function using direct table look-up
@@ -1619,7 +1618,7 @@ void riscv_nn_activations_direct_q7(q7_t *data, uint16_t size, uint16_t int_widt
  * saturation followed by any of these activation functions.
  */
 
-void riscv_nn_activations_direct_q15(q15_t *data, uint16_t size, uint16_t int_width, riscv_nn_activation_type type);
+void riscv_nn_activations_direct_q15(q15_t* data, uint16_t size, uint16_t int_width, riscv_nn_activation_type type);
 
 /**
  * @defgroup Pooling Pooling Functions
@@ -1643,15 +1642,15 @@ void riscv_nn_activations_direct_q15(q15_t *data, uint16_t size, uint16_t int_wi
  *
  */
 
-void riscv_maxpool_q7_HWC(q7_t *Im_in,
-                        const uint16_t dim_im_in,
-                        const uint16_t ch_im_in,
-                        const uint16_t dim_kernel,
-                        const uint16_t padding,
-                        const uint16_t stride,
-                        const uint16_t dim_im_out,
-                        q7_t *bufferA,
-                        q7_t *Im_out);
+void riscv_maxpool_q7_HWC(q7_t* Im_in,
+                          const uint16_t dim_im_in,
+                          const uint16_t ch_im_in,
+                          const uint16_t dim_kernel,
+                          const uint16_t padding,
+                          const uint16_t stride,
+                          const uint16_t dim_im_out,
+                          q7_t* bufferA,
+                          q7_t* Im_out);
 
 /**
  * @brief Q7 average pooling function
@@ -1668,15 +1667,15 @@ void riscv_maxpool_q7_HWC(q7_t *Im_in,
  *
  */
 
-void riscv_avepool_q7_HWC(q7_t *Im_in,
-                        const uint16_t dim_im_in,
-                        const uint16_t ch_im_in,
-                        const uint16_t dim_kernel,
-                        const uint16_t padding,
-                        const uint16_t stride,
-                        const uint16_t dim_im_out,
-                        q7_t *bufferA,
-                        q7_t *Im_out);
+void riscv_avepool_q7_HWC(q7_t* Im_in,
+                          const uint16_t dim_im_in,
+                          const uint16_t ch_im_in,
+                          const uint16_t dim_kernel,
+                          const uint16_t padding,
+                          const uint16_t stride,
+                          const uint16_t dim_im_out,
+                          q7_t* bufferA,
+                          q7_t* Im_out);
 
 /**
  * @brief s8 average pooling function.
@@ -1702,13 +1701,13 @@ void riscv_avepool_q7_HWC(q7_t *Im_in,
  *    - Supported Framework: TensorFlow Lite
  *
  */
-riscv_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
-                          const nmsis_nn_pool_params *pool_params,
-                          const nmsis_nn_dims *input_dims,
-                          const q7_t *input_data,
-                          const nmsis_nn_dims *filter_dims,
-                          const nmsis_nn_dims *output_dims,
-                          q7_t *output_data);
+riscv_status riscv_avgpool_s8(const nmsis_nn_context* ctx,
+                              const nmsis_nn_pool_params* pool_params,
+                              const nmsis_nn_dims* input_dims,
+                              const q7_t* input_data,
+                              const nmsis_nn_dims* filter_dims,
+                              const nmsis_nn_dims* output_dims,
+                              q7_t* output_data);
 
 /**
  * @brief Get the required buffer size for S8 average pooling function
@@ -1743,13 +1742,13 @@ int32_t riscv_avgpool_s8_get_buffer_size(const int dim_dst_width, const int ch_s
  *    - Supported Framework: TensorFlow Lite
  *
  */
-riscv_status riscv_max_pool_s8(const nmsis_nn_context *ctx,
-                           const nmsis_nn_pool_params *pool_params,
-                           const nmsis_nn_dims *input_dims,
-                           const q7_t *input_data,
-                           const nmsis_nn_dims *filter_dims,
-                           const nmsis_nn_dims *output_dims,
-                           q7_t *output_data);
+riscv_status riscv_max_pool_s8(const nmsis_nn_context* ctx,
+                               const nmsis_nn_pool_params* pool_params,
+                               const nmsis_nn_dims* input_dims,
+                               const q7_t* input_data,
+                               const nmsis_nn_dims* filter_dims,
+                               const nmsis_nn_dims* output_dims,
+                               q7_t* output_data);
 /**
  * @defgroup Softmax Softmax Functions
  *
@@ -1768,7 +1767,7 @@ riscv_status riscv_max_pool_s8(const nmsis_nn_context *ctx,
  *
  */
 
-void riscv_softmax_q7(const q7_t *vec_in, const uint16_t dim_vec, q7_t *p_out);
+void riscv_softmax_q7(const q7_t* vec_in, const uint16_t dim_vec, q7_t* p_out);
 
 /**
  * @brief Q7 softmax function with batch parameter
@@ -1783,7 +1782,7 @@ void riscv_softmax_q7(const q7_t *vec_in, const uint16_t dim_vec, q7_t *p_out);
  *
  */
 
-void riscv_softmax_with_batch_q7(const q7_t *vec_in, const uint16_t nb_batches, const uint16_t dim_vec, q7_t *p_out);
+void riscv_softmax_with_batch_q7(const q7_t* vec_in, const uint16_t nb_batches, const uint16_t dim_vec, q7_t* p_out);
 /**
  * @brief Q15 softmax function
  * @param[in]       vec_in      pointer to input vector
@@ -1796,7 +1795,7 @@ void riscv_softmax_with_batch_q7(const q7_t *vec_in, const uint16_t nb_batches, 
  *
  */
 
-void riscv_softmax_q15(const q15_t *vec_in, const uint16_t dim_vec, q15_t *p_out);
+void riscv_softmax_q15(const q15_t* vec_in, const uint16_t dim_vec, q15_t* p_out);
 
 /**
  * @brief S8 softmax function
@@ -1813,13 +1812,13 @@ void riscv_softmax_q15(const q15_t *vec_in, const uint16_t dim_vec, q15_t *p_out
  *
  */
 
-void riscv_softmax_s8(const int8_t *input,
-                    const int32_t num_rows,
-                    const int32_t row_size,
-                    const int32_t mult,
-                    const int32_t shift,
-                    const int32_t diff_min,
-                    int8_t *output);
+void riscv_softmax_s8(const int8_t* input,
+                      const int32_t num_rows,
+                      const int32_t row_size,
+                      const int32_t mult,
+                      const int32_t shift,
+                      const int32_t diff_min,
+                      int8_t* output);
 
 /**
  * @brief U8 softmax function
@@ -1836,13 +1835,13 @@ void riscv_softmax_s8(const int8_t *input,
  *
  */
 
-void riscv_softmax_u8(const uint8_t *input,
-                    const int32_t num_rows,
-                    const int32_t row_size,
-                    const int32_t mult,
-                    const int32_t shift,
-                    const int32_t diff_min,
-                    uint8_t *output);
+void riscv_softmax_u8(const uint8_t* input,
+                      const int32_t num_rows,
+                      const int32_t row_size,
+                      const int32_t mult,
+                      const int32_t shift,
+                      const int32_t diff_min,
+                      uint8_t* output);
 
 /**
  * @brief uint8 depthwise convolution function with asymmetric quantization
@@ -1878,31 +1877,31 @@ void riscv_softmax_u8(const uint8_t *input,
  *                <code>RISCV_MATH_SUCCESS</code> - Successful operation
  *
  */
-riscv_status riscv_depthwise_conv_u8_basic_ver1(const uint8_t *input,
-                                            const uint16_t input_x,
-                                            const uint16_t input_y,
-                                            const uint16_t input_ch,
-                                            const uint8_t *kernel,
-                                            const uint16_t kernel_x,
-                                            const uint16_t kernel_y,
-                                            const int16_t ch_mult,
-                                            const int16_t pad_x,
-                                            const int16_t pad_y,
-                                            const int16_t stride_x,
-                                            const int16_t stride_y,
-                                            const int16_t dilation_x,
-                                            const int16_t dilation_y,
-                                            const int32_t *bias,
-                                            const int32_t input_offset,
-                                            const int32_t filter_offset,
-                                            const int32_t output_offset,
-                                            uint8_t *output,
-                                            const uint16_t output_x,
-                                            const uint16_t output_y,
-                                            const int32_t output_activation_min,
-                                            const int32_t output_activation_max,
-                                            const int32_t out_shift,
-                                            const int32_t out_mult);
+riscv_status riscv_depthwise_conv_u8_basic_ver1(const uint8_t* input,
+                                                const uint16_t input_x,
+                                                const uint16_t input_y,
+                                                const uint16_t input_ch,
+                                                const uint8_t* kernel,
+                                                const uint16_t kernel_x,
+                                                const uint16_t kernel_y,
+                                                const int16_t ch_mult,
+                                                const int16_t pad_x,
+                                                const int16_t pad_y,
+                                                const int16_t stride_x,
+                                                const int16_t stride_y,
+                                                const int16_t dilation_x,
+                                                const int16_t dilation_y,
+                                                const int32_t* bias,
+                                                const int32_t input_offset,
+                                                const int32_t filter_offset,
+                                                const int32_t output_offset,
+                                                uint8_t* output,
+                                                const uint16_t output_x,
+                                                const uint16_t output_y,
+                                                const int32_t output_activation_min,
+                                                const int32_t output_activation_max,
+                                                const int32_t out_shift,
+                                                const int32_t out_mult);
 
 /**
  * @defgroup Reshape Reshape Functions
@@ -1918,7 +1917,7 @@ riscv_status riscv_depthwise_conv_u8_basic_ver1(const uint8_t *input,
  * @note The output is expected to be in a memory area that does not overlap with the input's
  *
  */
-void riscv_reshape_s8(const int8_t *input, int8_t *output, const uint32_t total_size);
+void riscv_reshape_s8(const int8_t* input, int8_t* output, const uint32_t total_size);
 
 /**
  * @defgroup Concatenation Concatenation Functions
@@ -1961,14 +1960,14 @@ void riscv_reshape_s8(const int8_t *input, int8_t *output, const uint32_t total_
  * offset_x is less than output_x
  *
  */
-void riscv_concatenation_s8_x(const int8_t *input,
-                            const uint16_t input_x,
-                            const uint16_t input_y,
-                            const uint16_t input_z,
-                            const uint16_t input_w,
-                            int8_t *output,
-                            const uint16_t output_x,
-                            const uint32_t offset_x);
+void riscv_concatenation_s8_x(const int8_t* input,
+                              const uint16_t input_x,
+                              const uint16_t input_y,
+                              const uint16_t input_z,
+                              const uint16_t input_w,
+                              int8_t* output,
+                              const uint16_t output_x,
+                              const uint32_t offset_x);
 
 /**
  * @brief int8/uint8 concatenation function to be used for concatenating N-tensors along the Y axis
@@ -2006,14 +2005,14 @@ void riscv_concatenation_s8_x(const int8_t *input,
  * offset_y is less than output_y
  *
  */
-void riscv_concatenation_s8_y(const int8_t *input,
-                            const uint16_t input_x,
-                            const uint16_t input_y,
-                            const uint16_t input_z,
-                            const uint16_t input_w,
-                            int8_t *output,
-                            const uint16_t output_y,
-                            const uint32_t offset_y);
+void riscv_concatenation_s8_y(const int8_t* input,
+                              const uint16_t input_x,
+                              const uint16_t input_y,
+                              const uint16_t input_z,
+                              const uint16_t input_w,
+                              int8_t* output,
+                              const uint16_t output_y,
+                              const uint32_t offset_y);
 
 /**
  * @brief int8/uint8 concatenation function to be used for concatenating N-tensors along the Z axis
@@ -2051,14 +2050,14 @@ void riscv_concatenation_s8_y(const int8_t *input,
  * offset_z is less than output_z
  *
  */
-void riscv_concatenation_s8_z(const int8_t *input,
-                            const uint16_t input_x,
-                            const uint16_t input_y,
-                            const uint16_t input_z,
-                            const uint16_t input_w,
-                            int8_t *output,
-                            const uint16_t output_z,
-                            const uint32_t offset_z);
+void riscv_concatenation_s8_z(const int8_t* input,
+                              const uint16_t input_x,
+                              const uint16_t input_y,
+                              const uint16_t input_z,
+                              const uint16_t input_w,
+                              int8_t* output,
+                              const uint16_t output_z,
+                              const uint32_t offset_z);
 
 /**
  * @brief int8/uint8 concatenation function to be used for concatenating N-tensors along the W axis (Batch size)
@@ -2092,13 +2091,13 @@ void riscv_concatenation_s8_z(const int8_t *input,
  *                      It is user responsibility to provide the correct value
  *
  */
-void riscv_concatenation_s8_w(const int8_t *input,
-                            const uint16_t input_x,
-                            const uint16_t input_y,
-                            const uint16_t input_z,
-                            const uint16_t input_w,
-                            int8_t *output,
-                            const uint32_t offset_w);
+void riscv_concatenation_s8_w(const int8_t* input,
+                              const uint16_t input_x,
+                              const uint16_t input_y,
+                              const uint16_t input_z,
+                              const uint16_t input_w,
+                              int8_t* output,
+                              const uint32_t offset_w);
 /**
  * @defgroup SVDF SVDF Layer Functions
  *
@@ -2134,23 +2133,23 @@ void riscv_concatenation_s8_w(const int8_t *input,
  *    2. q7 is used as data type eventhough it is s8 data. It is done so to be consistent with existing APIs.
  *
  */
-riscv_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
-                       const nmsis_nn_context *output_ctx,
-                       const nmsis_nn_svdf_params *svdf_params,
-                       const nmsis_nn_per_tensor_quant_params *input_quant_params,
-                       const nmsis_nn_per_tensor_quant_params *output_quant_params,
-                       const nmsis_nn_dims *input_dims,
-                       const q7_t *input_data,
-                       const nmsis_nn_dims *state_dims,
-                       q15_t *state_data,
-                       const nmsis_nn_dims *weights_feature_dims,
-                       const q7_t *weights_feature_data,
-                       const nmsis_nn_dims *weights_time_dims,
-                       const q15_t *weights_time_data,
-                       const nmsis_nn_dims *bias_dims,
-                       const q31_t *bias_data,
-                       const nmsis_nn_dims *output_dims,
-                       q7_t *output_data);
+riscv_status riscv_svdf_s8(const nmsis_nn_context* input_ctx,
+                           const nmsis_nn_context* output_ctx,
+                           const nmsis_nn_svdf_params* svdf_params,
+                           const nmsis_nn_per_tensor_quant_params* input_quant_params,
+                           const nmsis_nn_per_tensor_quant_params* output_quant_params,
+                           const nmsis_nn_dims* input_dims,
+                           const q7_t* input_data,
+                           const nmsis_nn_dims* state_dims,
+                           q15_t* state_data,
+                           const nmsis_nn_dims* weights_feature_dims,
+                           const q7_t* weights_feature_data,
+                           const nmsis_nn_dims* weights_time_dims,
+                           const q15_t* weights_time_data,
+                           const nmsis_nn_dims* bias_dims,
+                           const q31_t* bias_data,
+                           const nmsis_nn_dims* output_dims,
+                           q7_t* output_data);
 
 #ifdef __cplusplus
 }

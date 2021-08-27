@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef _TRANSFORM_FUNCTIONS_H_
 #define _TRANSFORM_FUNCTIONS_H_
 
@@ -38,8 +38,7 @@
 #include "dsp/complex_math_functions.h"
 
 #ifdef   __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 
@@ -48,509 +47,491 @@ extern "C"
  */
 
 
-  /**
-   * @brief Instance structure for the Q15 CFFT/CIFFT function.
-   */
-  typedef struct
-  {
-          uint16_t fftLen;                 /**< length of the FFT. */
-          uint8_t ifftFlag;                /**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. */
-          uint8_t bitReverseFlag;          /**< flag that enables (bitReverseFlag=1) or disables (bitReverseFlag=0) bit reversal of output. */
-    const q15_t *pTwiddle;                 /**< points to the Sin twiddle factor table. */
-    const uint16_t *pBitRevTable;          /**< points to the bit reversal table. */
-          uint16_t twidCoefModifier;       /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
-          uint16_t bitRevFactor;           /**< bit reversal modifier that supports different size FFTs with the same bit reversal table. */
-  } riscv_cfft_radix2_instance_q15;
+/**
+ * @brief Instance structure for the Q15 CFFT/CIFFT function.
+ */
+typedef struct {
+    uint16_t fftLen;                 /**< length of the FFT. */
+    uint8_t ifftFlag;                /**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. */
+    uint8_t bitReverseFlag;          /**< flag that enables (bitReverseFlag=1) or disables (bitReverseFlag=0) bit reversal of output. */
+    const q15_t* pTwiddle;                 /**< points to the Sin twiddle factor table. */
+    const uint16_t* pBitRevTable;          /**< points to the bit reversal table. */
+    uint16_t twidCoefModifier;       /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
+    uint16_t bitRevFactor;           /**< bit reversal modifier that supports different size FFTs with the same bit reversal table. */
+} riscv_cfft_radix2_instance_q15;
 
 /* Deprecated */
-  riscv_status riscv_cfft_radix2_init_q15(
-        riscv_cfft_radix2_instance_q15 * S,
-        uint16_t fftLen,
-        uint8_t ifftFlag,
-        uint8_t bitReverseFlag);
+riscv_status riscv_cfft_radix2_init_q15(
+    riscv_cfft_radix2_instance_q15* S,
+    uint16_t fftLen,
+    uint8_t ifftFlag,
+    uint8_t bitReverseFlag);
 
 /* Deprecated */
-  void riscv_cfft_radix2_q15(
-  const riscv_cfft_radix2_instance_q15 * S,
-        q15_t * pSrc);
+void riscv_cfft_radix2_q15(
+    const riscv_cfft_radix2_instance_q15* S,
+    q15_t* pSrc);
 
 
-  /**
-   * @brief Instance structure for the Q15 CFFT/CIFFT function.
-   */
-  typedef struct
-  {
-          uint16_t fftLen;                 /**< length of the FFT. */
-          uint8_t ifftFlag;                /**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. */
-          uint8_t bitReverseFlag;          /**< flag that enables (bitReverseFlag=1) or disables (bitReverseFlag=0) bit reversal of output. */
-    const q15_t *pTwiddle;                 /**< points to the twiddle factor table. */
-    const uint16_t *pBitRevTable;          /**< points to the bit reversal table. */
-          uint16_t twidCoefModifier;       /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
-          uint16_t bitRevFactor;           /**< bit reversal modifier that supports different size FFTs with the same bit reversal table. */
-  } riscv_cfft_radix4_instance_q15;
-
-/* Deprecated */
-  riscv_status riscv_cfft_radix4_init_q15(
-        riscv_cfft_radix4_instance_q15 * S,
-        uint16_t fftLen,
-        uint8_t ifftFlag,
-        uint8_t bitReverseFlag);
+/**
+ * @brief Instance structure for the Q15 CFFT/CIFFT function.
+ */
+typedef struct {
+    uint16_t fftLen;                 /**< length of the FFT. */
+    uint8_t ifftFlag;                /**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. */
+    uint8_t bitReverseFlag;          /**< flag that enables (bitReverseFlag=1) or disables (bitReverseFlag=0) bit reversal of output. */
+    const q15_t* pTwiddle;                 /**< points to the twiddle factor table. */
+    const uint16_t* pBitRevTable;          /**< points to the bit reversal table. */
+    uint16_t twidCoefModifier;       /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
+    uint16_t bitRevFactor;           /**< bit reversal modifier that supports different size FFTs with the same bit reversal table. */
+} riscv_cfft_radix4_instance_q15;
 
 /* Deprecated */
-  void riscv_cfft_radix4_q15(
-  const riscv_cfft_radix4_instance_q15 * S,
-        q15_t * pSrc);
-
-  /**
-   * @brief Instance structure for the Radix-2 Q31 CFFT/CIFFT function.
-   */
-  typedef struct
-  {
-          uint16_t fftLen;                 /**< length of the FFT. */
-          uint8_t ifftFlag;                /**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. */
-          uint8_t bitReverseFlag;          /**< flag that enables (bitReverseFlag=1) or disables (bitReverseFlag=0) bit reversal of output. */
-    const q31_t *pTwiddle;                 /**< points to the Twiddle factor table. */
-    const uint16_t *pBitRevTable;          /**< points to the bit reversal table. */
-          uint16_t twidCoefModifier;       /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
-          uint16_t bitRevFactor;           /**< bit reversal modifier that supports different size FFTs with the same bit reversal table. */
-  } riscv_cfft_radix2_instance_q31;
+riscv_status riscv_cfft_radix4_init_q15(
+    riscv_cfft_radix4_instance_q15* S,
+    uint16_t fftLen,
+    uint8_t ifftFlag,
+    uint8_t bitReverseFlag);
 
 /* Deprecated */
-  riscv_status riscv_cfft_radix2_init_q31(
-        riscv_cfft_radix2_instance_q31 * S,
-        uint16_t fftLen,
-        uint8_t ifftFlag,
-        uint8_t bitReverseFlag);
+void riscv_cfft_radix4_q15(
+    const riscv_cfft_radix4_instance_q15* S,
+    q15_t* pSrc);
+
+/**
+ * @brief Instance structure for the Radix-2 Q31 CFFT/CIFFT function.
+ */
+typedef struct {
+    uint16_t fftLen;                 /**< length of the FFT. */
+    uint8_t ifftFlag;                /**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. */
+    uint8_t bitReverseFlag;          /**< flag that enables (bitReverseFlag=1) or disables (bitReverseFlag=0) bit reversal of output. */
+    const q31_t* pTwiddle;                 /**< points to the Twiddle factor table. */
+    const uint16_t* pBitRevTable;          /**< points to the bit reversal table. */
+    uint16_t twidCoefModifier;       /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
+    uint16_t bitRevFactor;           /**< bit reversal modifier that supports different size FFTs with the same bit reversal table. */
+} riscv_cfft_radix2_instance_q31;
 
 /* Deprecated */
-  void riscv_cfft_radix2_q31(
-  const riscv_cfft_radix2_instance_q31 * S,
-        q31_t * pSrc);
-
-  /**
-   * @brief Instance structure for the Q31 CFFT/CIFFT function.
-   */
-  typedef struct
-  {
-          uint16_t fftLen;                 /**< length of the FFT. */
-          uint8_t ifftFlag;                /**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. */
-          uint8_t bitReverseFlag;          /**< flag that enables (bitReverseFlag=1) or disables (bitReverseFlag=0) bit reversal of output. */
-    const q31_t *pTwiddle;                 /**< points to the twiddle factor table. */
-    const uint16_t *pBitRevTable;          /**< points to the bit reversal table. */
-          uint16_t twidCoefModifier;       /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
-          uint16_t bitRevFactor;           /**< bit reversal modifier that supports different size FFTs with the same bit reversal table. */
-  } riscv_cfft_radix4_instance_q31;
+riscv_status riscv_cfft_radix2_init_q31(
+    riscv_cfft_radix2_instance_q31* S,
+    uint16_t fftLen,
+    uint8_t ifftFlag,
+    uint8_t bitReverseFlag);
 
 /* Deprecated */
-  void riscv_cfft_radix4_q31(
-  const riscv_cfft_radix4_instance_q31 * S,
-        q31_t * pSrc);
+void riscv_cfft_radix2_q31(
+    const riscv_cfft_radix2_instance_q31* S,
+    q31_t* pSrc);
+
+/**
+ * @brief Instance structure for the Q31 CFFT/CIFFT function.
+ */
+typedef struct {
+    uint16_t fftLen;                 /**< length of the FFT. */
+    uint8_t ifftFlag;                /**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. */
+    uint8_t bitReverseFlag;          /**< flag that enables (bitReverseFlag=1) or disables (bitReverseFlag=0) bit reversal of output. */
+    const q31_t* pTwiddle;                 /**< points to the twiddle factor table. */
+    const uint16_t* pBitRevTable;          /**< points to the bit reversal table. */
+    uint16_t twidCoefModifier;       /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
+    uint16_t bitRevFactor;           /**< bit reversal modifier that supports different size FFTs with the same bit reversal table. */
+} riscv_cfft_radix4_instance_q31;
 
 /* Deprecated */
-  riscv_status riscv_cfft_radix4_init_q31(
-        riscv_cfft_radix4_instance_q31 * S,
-        uint16_t fftLen,
-        uint8_t ifftFlag,
-        uint8_t bitReverseFlag);
+void riscv_cfft_radix4_q31(
+    const riscv_cfft_radix4_instance_q31* S,
+    q31_t* pSrc);
 
-  /**
-   * @brief Instance structure for the floating-point CFFT/CIFFT function.
-   */
-  typedef struct
-  {
-          uint16_t fftLen;                   /**< length of the FFT. */
-          uint8_t ifftFlag;                  /**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. */
-          uint8_t bitReverseFlag;            /**< flag that enables (bitReverseFlag=1) or disables (bitReverseFlag=0) bit reversal of output. */
-    const float32_t *pTwiddle;               /**< points to the Twiddle factor table. */
-    const uint16_t *pBitRevTable;            /**< points to the bit reversal table. */
-          uint16_t twidCoefModifier;         /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
-          uint16_t bitRevFactor;             /**< bit reversal modifier that supports different size FFTs with the same bit reversal table. */
-          float32_t onebyfftLen;             /**< value of 1/fftLen. */
-  } riscv_cfft_radix2_instance_f32;
+/* Deprecated */
+riscv_status riscv_cfft_radix4_init_q31(
+    riscv_cfft_radix4_instance_q31* S,
+    uint16_t fftLen,
+    uint8_t ifftFlag,
+    uint8_t bitReverseFlag);
+
+/**
+ * @brief Instance structure for the floating-point CFFT/CIFFT function.
+ */
+typedef struct {
+    uint16_t fftLen;                   /**< length of the FFT. */
+    uint8_t ifftFlag;                  /**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. */
+    uint8_t bitReverseFlag;            /**< flag that enables (bitReverseFlag=1) or disables (bitReverseFlag=0) bit reversal of output. */
+    const float32_t* pTwiddle;               /**< points to the Twiddle factor table. */
+    const uint16_t* pBitRevTable;            /**< points to the bit reversal table. */
+    uint16_t twidCoefModifier;         /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
+    uint16_t bitRevFactor;             /**< bit reversal modifier that supports different size FFTs with the same bit reversal table. */
+    float32_t onebyfftLen;             /**< value of 1/fftLen. */
+} riscv_cfft_radix2_instance_f32;
 
 
 /* Deprecated */
-  riscv_status riscv_cfft_radix2_init_f32(
-        riscv_cfft_radix2_instance_f32 * S,
-        uint16_t fftLen,
-        uint8_t ifftFlag,
-        uint8_t bitReverseFlag);
+riscv_status riscv_cfft_radix2_init_f32(
+    riscv_cfft_radix2_instance_f32* S,
+    uint16_t fftLen,
+    uint8_t ifftFlag,
+    uint8_t bitReverseFlag);
 
 /* Deprecated */
-  void riscv_cfft_radix2_f32(
-  const riscv_cfft_radix2_instance_f32 * S,
-        float32_t * pSrc);
+void riscv_cfft_radix2_f32(
+    const riscv_cfft_radix2_instance_f32* S,
+    float32_t* pSrc);
 
-  /**
-   * @brief Instance structure for the floating-point CFFT/CIFFT function.
-   */
-  typedef struct
-  {
-          uint16_t fftLen;                   /**< length of the FFT. */
-          uint8_t ifftFlag;                  /**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. */
-          uint8_t bitReverseFlag;            /**< flag that enables (bitReverseFlag=1) or disables (bitReverseFlag=0) bit reversal of output. */
-    const float32_t *pTwiddle;               /**< points to the Twiddle factor table. */
-    const uint16_t *pBitRevTable;            /**< points to the bit reversal table. */
-          uint16_t twidCoefModifier;         /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
-          uint16_t bitRevFactor;             /**< bit reversal modifier that supports different size FFTs with the same bit reversal table. */
-          float32_t onebyfftLen;             /**< value of 1/fftLen. */
-  } riscv_cfft_radix4_instance_f32;
+/**
+ * @brief Instance structure for the floating-point CFFT/CIFFT function.
+ */
+typedef struct {
+    uint16_t fftLen;                   /**< length of the FFT. */
+    uint8_t ifftFlag;                  /**< flag that selects forward (ifftFlag=0) or inverse (ifftFlag=1) transform. */
+    uint8_t bitReverseFlag;            /**< flag that enables (bitReverseFlag=1) or disables (bitReverseFlag=0) bit reversal of output. */
+    const float32_t* pTwiddle;               /**< points to the Twiddle factor table. */
+    const uint16_t* pBitRevTable;            /**< points to the bit reversal table. */
+    uint16_t twidCoefModifier;         /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
+    uint16_t bitRevFactor;             /**< bit reversal modifier that supports different size FFTs with the same bit reversal table. */
+    float32_t onebyfftLen;             /**< value of 1/fftLen. */
+} riscv_cfft_radix4_instance_f32;
 
 
 
 /* Deprecated */
-  riscv_status riscv_cfft_radix4_init_f32(
-        riscv_cfft_radix4_instance_f32 * S,
-        uint16_t fftLen,
-        uint8_t ifftFlag,
-        uint8_t bitReverseFlag);
+riscv_status riscv_cfft_radix4_init_f32(
+    riscv_cfft_radix4_instance_f32* S,
+    uint16_t fftLen,
+    uint8_t ifftFlag,
+    uint8_t bitReverseFlag);
 
 /* Deprecated */
-  void riscv_cfft_radix4_f32(
-  const riscv_cfft_radix4_instance_f32 * S,
-        float32_t * pSrc);
+void riscv_cfft_radix4_f32(
+    const riscv_cfft_radix4_instance_f32* S,
+    float32_t* pSrc);
 
-  /**
-   * @brief Instance structure for the fixed-point CFFT/CIFFT function.
-   */
-  typedef struct
-  {
-          uint16_t fftLen;                   /**< length of the FFT. */
-    const q15_t *pTwiddle;             /**< points to the Twiddle factor table. */
-    const uint16_t *pBitRevTable;      /**< points to the bit reversal table. */
-          uint16_t bitRevLength;             /**< bit reversal table length. */
-  } riscv_cfft_instance_q15;
+/**
+ * @brief Instance structure for the fixed-point CFFT/CIFFT function.
+ */
+typedef struct {
+    uint16_t fftLen;                   /**< length of the FFT. */
+    const q15_t* pTwiddle;             /**< points to the Twiddle factor table. */
+    const uint16_t* pBitRevTable;      /**< points to the bit reversal table. */
+    uint16_t bitRevLength;             /**< bit reversal table length. */
+} riscv_cfft_instance_q15;
 
 riscv_status riscv_cfft_init_q15(
-  riscv_cfft_instance_q15 * S,
-  uint16_t fftLen);
+    riscv_cfft_instance_q15* S,
+    uint16_t fftLen);
 
 void riscv_cfft_q15(
-    const riscv_cfft_instance_q15 * S,
-          q15_t * p1,
-          uint8_t ifftFlag,
-          uint8_t bitReverseFlag);
+    const riscv_cfft_instance_q15* S,
+    q15_t* p1,
+    uint8_t ifftFlag,
+    uint8_t bitReverseFlag);
 
-  /**
-   * @brief Instance structure for the fixed-point CFFT/CIFFT function.
-   */
-  typedef struct
-  {
-          uint16_t fftLen;                   /**< length of the FFT. */
-    const q31_t *pTwiddle;             /**< points to the Twiddle factor table. */
-    const uint16_t *pBitRevTable;      /**< points to the bit reversal table. */
-          uint16_t bitRevLength;             /**< bit reversal table length. */
-  } riscv_cfft_instance_q31;
+/**
+ * @brief Instance structure for the fixed-point CFFT/CIFFT function.
+ */
+typedef struct {
+    uint16_t fftLen;                   /**< length of the FFT. */
+    const q31_t* pTwiddle;             /**< points to the Twiddle factor table. */
+    const uint16_t* pBitRevTable;      /**< points to the bit reversal table. */
+    uint16_t bitRevLength;             /**< bit reversal table length. */
+} riscv_cfft_instance_q31;
 
 riscv_status riscv_cfft_init_q31(
-  riscv_cfft_instance_q31 * S,
-  uint16_t fftLen);
+    riscv_cfft_instance_q31* S,
+    uint16_t fftLen);
 
 void riscv_cfft_q31(
-    const riscv_cfft_instance_q31 * S,
-          q31_t * p1,
-          uint8_t ifftFlag,
-          uint8_t bitReverseFlag);
+    const riscv_cfft_instance_q31* S,
+    q31_t* p1,
+    uint8_t ifftFlag,
+    uint8_t bitReverseFlag);
 
-  /**
-   * @brief Instance structure for the floating-point CFFT/CIFFT function.
-   */
-  typedef struct
-  {
-          uint16_t fftLen;                   /**< length of the FFT. */
-    const float32_t *pTwiddle;         /**< points to the Twiddle factor table. */
-    const uint16_t *pBitRevTable;      /**< points to the bit reversal table. */
-          uint16_t bitRevLength;             /**< bit reversal table length. */
-  } riscv_cfft_instance_f32;
-
+/**
+ * @brief Instance structure for the floating-point CFFT/CIFFT function.
+ */
+typedef struct {
+    uint16_t fftLen;                   /**< length of the FFT. */
+    const float32_t* pTwiddle;         /**< points to the Twiddle factor table. */
+    const uint16_t* pBitRevTable;      /**< points to the bit reversal table. */
+    uint16_t bitRevLength;             /**< bit reversal table length. */
+} riscv_cfft_instance_f32;
 
 
-  riscv_status riscv_cfft_init_f32(
-  riscv_cfft_instance_f32 * S,
-  uint16_t fftLen);
 
-  void riscv_cfft_f32(
-  const riscv_cfft_instance_f32 * S,
-        float32_t * p1,
-        uint8_t ifftFlag,
-        uint8_t bitReverseFlag);
+riscv_status riscv_cfft_init_f32(
+    riscv_cfft_instance_f32* S,
+    uint16_t fftLen);
+
+void riscv_cfft_f32(
+    const riscv_cfft_instance_f32* S,
+    float32_t* p1,
+    uint8_t ifftFlag,
+    uint8_t bitReverseFlag);
 
 
-  /**
-   * @brief Instance structure for the Double Precision Floating-point CFFT/CIFFT function.
-   */
-  typedef struct
-  {
-          uint16_t fftLen;                   /**< length of the FFT. */
-    const float64_t *pTwiddle;         /**< points to the Twiddle factor table. */
-    const uint16_t *pBitRevTable;      /**< points to the bit reversal table. */
-          uint16_t bitRevLength;             /**< bit reversal table length. */
-  } riscv_cfft_instance_f64;
+/**
+ * @brief Instance structure for the Double Precision Floating-point CFFT/CIFFT function.
+ */
+typedef struct {
+    uint16_t fftLen;                   /**< length of the FFT. */
+    const float64_t* pTwiddle;         /**< points to the Twiddle factor table. */
+    const uint16_t* pBitRevTable;      /**< points to the bit reversal table. */
+    uint16_t bitRevLength;             /**< bit reversal table length. */
+} riscv_cfft_instance_f64;
 
-  riscv_status riscv_cfft_init_f64(
-  riscv_cfft_instance_f64 * S,
-  uint16_t fftLen);
-  
-  void riscv_cfft_f64(
-  const riscv_cfft_instance_f64 * S,
-        float64_t * p1,
-        uint8_t ifftFlag,
-        uint8_t bitReverseFlag);
+riscv_status riscv_cfft_init_f64(
+    riscv_cfft_instance_f64* S,
+    uint16_t fftLen);
 
-  /**
-   * @brief Instance structure for the Q15 RFFT/RIFFT function.
-   */
-  typedef struct
-  {
-          uint32_t fftLenReal;                      /**< length of the real FFT. */
-          uint8_t ifftFlagR;                        /**< flag that selects forward (ifftFlagR=0) or inverse (ifftFlagR=1) transform. */
-          uint8_t bitReverseFlagR;                  /**< flag that enables (bitReverseFlagR=1) or disables (bitReverseFlagR=0) bit reversal of output. */
-          uint32_t twidCoefRModifier;               /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
-    const q15_t *pTwiddleAReal;                     /**< points to the real twiddle factor table. */
-    const q15_t *pTwiddleBReal;                     /**< points to the imag twiddle factor table. */
-    const riscv_cfft_instance_q15 *pCfft;       /**< points to the complex FFT instance. */
-  } riscv_rfft_instance_q15;
+void riscv_cfft_f64(
+    const riscv_cfft_instance_f64* S,
+    float64_t* p1,
+    uint8_t ifftFlag,
+    uint8_t bitReverseFlag);
 
-  riscv_status riscv_rfft_init_q15(
-        riscv_rfft_instance_q15 * S,
-        uint32_t fftLenReal,
-        uint32_t ifftFlagR,
-        uint32_t bitReverseFlag);
+/**
+ * @brief Instance structure for the Q15 RFFT/RIFFT function.
+ */
+typedef struct {
+    uint32_t fftLenReal;                      /**< length of the real FFT. */
+    uint8_t ifftFlagR;                        /**< flag that selects forward (ifftFlagR=0) or inverse (ifftFlagR=1) transform. */
+    uint8_t bitReverseFlagR;                  /**< flag that enables (bitReverseFlagR=1) or disables (bitReverseFlagR=0) bit reversal of output. */
+    uint32_t twidCoefRModifier;               /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
+    const q15_t* pTwiddleAReal;                     /**< points to the real twiddle factor table. */
+    const q15_t* pTwiddleBReal;                     /**< points to the imag twiddle factor table. */
+    const riscv_cfft_instance_q15* pCfft;       /**< points to the complex FFT instance. */
+} riscv_rfft_instance_q15;
 
-  void riscv_rfft_q15(
-  const riscv_rfft_instance_q15 * S,
-        q15_t * pSrc,
-        q15_t * pDst);
+riscv_status riscv_rfft_init_q15(
+    riscv_rfft_instance_q15* S,
+    uint32_t fftLenReal,
+    uint32_t ifftFlagR,
+    uint32_t bitReverseFlag);
 
-  /**
-   * @brief Instance structure for the Q31 RFFT/RIFFT function.
-   */
-  typedef struct
-  {
-          uint32_t fftLenReal;                        /**< length of the real FFT. */
-          uint8_t ifftFlagR;                          /**< flag that selects forward (ifftFlagR=0) or inverse (ifftFlagR=1) transform. */
-          uint8_t bitReverseFlagR;                    /**< flag that enables (bitReverseFlagR=1) or disables (bitReverseFlagR=0) bit reversal of output. */
-          uint32_t twidCoefRModifier;                 /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
-    const q31_t *pTwiddleAReal;                       /**< points to the real twiddle factor table. */
-    const q31_t *pTwiddleBReal;                       /**< points to the imag twiddle factor table. */
-    const riscv_cfft_instance_q31 *pCfft;         /**< points to the complex FFT instance. */
-  } riscv_rfft_instance_q31;
+void riscv_rfft_q15(
+    const riscv_rfft_instance_q15* S,
+    q15_t* pSrc,
+    q15_t* pDst);
 
-  riscv_status riscv_rfft_init_q31(
-        riscv_rfft_instance_q31 * S,
-        uint32_t fftLenReal,
-        uint32_t ifftFlagR,
-        uint32_t bitReverseFlag);
+/**
+ * @brief Instance structure for the Q31 RFFT/RIFFT function.
+ */
+typedef struct {
+    uint32_t fftLenReal;                        /**< length of the real FFT. */
+    uint8_t ifftFlagR;                          /**< flag that selects forward (ifftFlagR=0) or inverse (ifftFlagR=1) transform. */
+    uint8_t bitReverseFlagR;                    /**< flag that enables (bitReverseFlagR=1) or disables (bitReverseFlagR=0) bit reversal of output. */
+    uint32_t twidCoefRModifier;                 /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
+    const q31_t* pTwiddleAReal;                       /**< points to the real twiddle factor table. */
+    const q31_t* pTwiddleBReal;                       /**< points to the imag twiddle factor table. */
+    const riscv_cfft_instance_q31* pCfft;         /**< points to the complex FFT instance. */
+} riscv_rfft_instance_q31;
 
-  void riscv_rfft_q31(
-  const riscv_rfft_instance_q31 * S,
-        q31_t * pSrc,
-        q31_t * pDst);
+riscv_status riscv_rfft_init_q31(
+    riscv_rfft_instance_q31* S,
+    uint32_t fftLenReal,
+    uint32_t ifftFlagR,
+    uint32_t bitReverseFlag);
 
-  /**
-   * @brief Instance structure for the floating-point RFFT/RIFFT function.
-   */
-  typedef struct
-  {
-          uint32_t fftLenReal;                        /**< length of the real FFT. */
-          uint16_t fftLenBy2;                         /**< length of the complex FFT. */
-          uint8_t ifftFlagR;                          /**< flag that selects forward (ifftFlagR=0) or inverse (ifftFlagR=1) transform. */
-          uint8_t bitReverseFlagR;                    /**< flag that enables (bitReverseFlagR=1) or disables (bitReverseFlagR=0) bit reversal of output. */
-          uint32_t twidCoefRModifier;                     /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
-    const float32_t *pTwiddleAReal;                   /**< points to the real twiddle factor table. */
-    const float32_t *pTwiddleBReal;                   /**< points to the imag twiddle factor table. */
-          riscv_cfft_radix4_instance_f32 *pCfft;        /**< points to the complex FFT instance. */
-  } riscv_rfft_instance_f32;
+void riscv_rfft_q31(
+    const riscv_rfft_instance_q31* S,
+    q31_t* pSrc,
+    q31_t* pDst);
 
-  riscv_status riscv_rfft_init_f32(
-        riscv_rfft_instance_f32 * S,
-        riscv_cfft_radix4_instance_f32 * S_CFFT,
-        uint32_t fftLenReal,
-        uint32_t ifftFlagR,
-        uint32_t bitReverseFlag);
+/**
+ * @brief Instance structure for the floating-point RFFT/RIFFT function.
+ */
+typedef struct {
+    uint32_t fftLenReal;                        /**< length of the real FFT. */
+    uint16_t fftLenBy2;                         /**< length of the complex FFT. */
+    uint8_t ifftFlagR;                          /**< flag that selects forward (ifftFlagR=0) or inverse (ifftFlagR=1) transform. */
+    uint8_t bitReverseFlagR;                    /**< flag that enables (bitReverseFlagR=1) or disables (bitReverseFlagR=0) bit reversal of output. */
+    uint32_t twidCoefRModifier;                     /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
+    const float32_t* pTwiddleAReal;                   /**< points to the real twiddle factor table. */
+    const float32_t* pTwiddleBReal;                   /**< points to the imag twiddle factor table. */
+    riscv_cfft_radix4_instance_f32* pCfft;        /**< points to the complex FFT instance. */
+} riscv_rfft_instance_f32;
 
-  void riscv_rfft_f32(
-  const riscv_rfft_instance_f32 * S,
-        float32_t * pSrc,
-        float32_t * pDst);
+riscv_status riscv_rfft_init_f32(
+    riscv_rfft_instance_f32* S,
+    riscv_cfft_radix4_instance_f32* S_CFFT,
+    uint32_t fftLenReal,
+    uint32_t ifftFlagR,
+    uint32_t bitReverseFlag);
 
-  /**
-   * @brief Instance structure for the Double Precision Floating-point RFFT/RIFFT function.
-   */
-typedef struct
-  {
-          riscv_cfft_instance_f64 Sint;      /**< Internal CFFT structure. */
-          uint16_t fftLenRFFT;             /**< length of the real sequence */
-    const float64_t * pTwiddleRFFT;        /**< Twiddle factors real stage  */
-  } riscv_rfft_fast_instance_f64 ;
+void riscv_rfft_f32(
+    const riscv_rfft_instance_f32* S,
+    float32_t* pSrc,
+    float32_t* pDst);
 
-riscv_status riscv_rfft_fast_init_f64 (
-         riscv_rfft_fast_instance_f64 * S,
-         uint16_t fftLen);
+/**
+ * @brief Instance structure for the Double Precision Floating-point RFFT/RIFFT function.
+ */
+typedef struct {
+    riscv_cfft_instance_f64 Sint;      /**< Internal CFFT structure. */
+    uint16_t fftLenRFFT;             /**< length of the real sequence */
+    const float64_t* pTwiddleRFFT;         /**< Twiddle factors real stage  */
+} riscv_rfft_fast_instance_f64 ;
+
+riscv_status riscv_rfft_fast_init_f64(
+    riscv_rfft_fast_instance_f64* S,
+    uint16_t fftLen);
 
 
 void riscv_rfft_fast_f64(
-    riscv_rfft_fast_instance_f64 * S,
-    float64_t * p, float64_t * pOut,
+    riscv_rfft_fast_instance_f64* S,
+    float64_t* p, float64_t* pOut,
     uint8_t ifftFlag);
 
 
-  /**
-   * @brief Instance structure for the floating-point RFFT/RIFFT function.
-   */
-typedef struct
-  {
-          riscv_cfft_instance_f32 Sint;      /**< Internal CFFT structure. */
-          uint16_t fftLenRFFT;             /**< length of the real sequence */
-    const float32_t * pTwiddleRFFT;        /**< Twiddle factors real stage  */
-  } riscv_rfft_fast_instance_f32 ;
+/**
+ * @brief Instance structure for the floating-point RFFT/RIFFT function.
+ */
+typedef struct {
+    riscv_cfft_instance_f32 Sint;      /**< Internal CFFT structure. */
+    uint16_t fftLenRFFT;             /**< length of the real sequence */
+    const float32_t* pTwiddleRFFT;         /**< Twiddle factors real stage  */
+} riscv_rfft_fast_instance_f32 ;
 
-riscv_status riscv_rfft_fast_init_f32 (
-         riscv_rfft_fast_instance_f32 * S,
-         uint16_t fftLen);
-
-
-  void riscv_rfft_fast_f32(
-        const riscv_rfft_fast_instance_f32 * S,
-        float32_t * p, float32_t * pOut,
-        uint8_t ifftFlag);
-
-  /**
-   * @brief Instance structure for the floating-point DCT4/IDCT4 function.
-   */
-  typedef struct
-  {
-          uint16_t N;                          /**< length of the DCT4. */
-          uint16_t Nby2;                       /**< half of the length of the DCT4. */
-          float32_t normalize;                 /**< normalizing factor. */
-    const float32_t *pTwiddle;                 /**< points to the twiddle factor table. */
-    const float32_t *pCosFactor;               /**< points to the cosFactor table. */
-          riscv_rfft_instance_f32 *pRfft;        /**< points to the real FFT instance. */
-          riscv_cfft_radix4_instance_f32 *pCfft; /**< points to the complex FFT instance. */
-  } riscv_dct4_instance_f32;
+riscv_status riscv_rfft_fast_init_f32(
+    riscv_rfft_fast_instance_f32* S,
+    uint16_t fftLen);
 
 
-  /**
-   * @brief  Initialization function for the floating-point DCT4/IDCT4.
-   * @param[in,out] S          points to an instance of floating-point DCT4/IDCT4 structure.
-   * @param[in]     S_RFFT     points to an instance of floating-point RFFT/RIFFT structure.
-   * @param[in]     S_CFFT     points to an instance of floating-point CFFT/CIFFT structure.
-   * @param[in]     N          length of the DCT4.
-   * @param[in]     Nby2       half of the length of the DCT4.
-   * @param[in]     normalize  normalizing factor.
-   * @return      riscv_status function returns RISCV_MATH_SUCCESS if initialization is successful or RISCV_MATH_ARGUMENT_ERROR if <code>fftLenReal</code> is not a supported transform length.
-   */
-  riscv_status riscv_dct4_init_f32(
-        riscv_dct4_instance_f32 * S,
-        riscv_rfft_instance_f32 * S_RFFT,
-        riscv_cfft_radix4_instance_f32 * S_CFFT,
-        uint16_t N,
-        uint16_t Nby2,
-        float32_t normalize);
+void riscv_rfft_fast_f32(
+    const riscv_rfft_fast_instance_f32* S,
+    float32_t* p, float32_t* pOut,
+    uint8_t ifftFlag);
+
+/**
+ * @brief Instance structure for the floating-point DCT4/IDCT4 function.
+ */
+typedef struct {
+    uint16_t N;                          /**< length of the DCT4. */
+    uint16_t Nby2;                       /**< half of the length of the DCT4. */
+    float32_t normalize;                 /**< normalizing factor. */
+    const float32_t* pTwiddle;                 /**< points to the twiddle factor table. */
+    const float32_t* pCosFactor;               /**< points to the cosFactor table. */
+    riscv_rfft_instance_f32* pRfft;        /**< points to the real FFT instance. */
+    riscv_cfft_radix4_instance_f32* pCfft; /**< points to the complex FFT instance. */
+} riscv_dct4_instance_f32;
 
 
-  /**
-   * @brief Processing function for the floating-point DCT4/IDCT4.
-   * @param[in]     S              points to an instance of the floating-point DCT4/IDCT4 structure.
-   * @param[in]     pState         points to state buffer.
-   * @param[in,out] pInlineBuffer  points to the in-place input and output buffer.
-   */
-  void riscv_dct4_f32(
-  const riscv_dct4_instance_f32 * S,
-        float32_t * pState,
-        float32_t * pInlineBuffer);
+/**
+ * @brief  Initialization function for the floating-point DCT4/IDCT4.
+ * @param[in,out] S          points to an instance of floating-point DCT4/IDCT4 structure.
+ * @param[in]     S_RFFT     points to an instance of floating-point RFFT/RIFFT structure.
+ * @param[in]     S_CFFT     points to an instance of floating-point CFFT/CIFFT structure.
+ * @param[in]     N          length of the DCT4.
+ * @param[in]     Nby2       half of the length of the DCT4.
+ * @param[in]     normalize  normalizing factor.
+ * @return      riscv_status function returns RISCV_MATH_SUCCESS if initialization is successful or RISCV_MATH_ARGUMENT_ERROR if <code>fftLenReal</code> is not a supported transform length.
+ */
+riscv_status riscv_dct4_init_f32(
+    riscv_dct4_instance_f32* S,
+    riscv_rfft_instance_f32* S_RFFT,
+    riscv_cfft_radix4_instance_f32* S_CFFT,
+    uint16_t N,
+    uint16_t Nby2,
+    float32_t normalize);
 
 
-  /**
-   * @brief Instance structure for the Q31 DCT4/IDCT4 function.
-   */
-  typedef struct
-  {
-          uint16_t N;                          /**< length of the DCT4. */
-          uint16_t Nby2;                       /**< half of the length of the DCT4. */
-          q31_t normalize;                     /**< normalizing factor. */
-    const q31_t *pTwiddle;                     /**< points to the twiddle factor table. */
-    const q31_t *pCosFactor;                   /**< points to the cosFactor table. */
-          riscv_rfft_instance_q31 *pRfft;        /**< points to the real FFT instance. */
-          riscv_cfft_radix4_instance_q31 *pCfft; /**< points to the complex FFT instance. */
-  } riscv_dct4_instance_q31;
+/**
+ * @brief Processing function for the floating-point DCT4/IDCT4.
+ * @param[in]     S              points to an instance of the floating-point DCT4/IDCT4 structure.
+ * @param[in]     pState         points to state buffer.
+ * @param[in,out] pInlineBuffer  points to the in-place input and output buffer.
+ */
+void riscv_dct4_f32(
+    const riscv_dct4_instance_f32* S,
+    float32_t* pState,
+    float32_t* pInlineBuffer);
 
 
-  /**
-   * @brief  Initialization function for the Q31 DCT4/IDCT4.
-   * @param[in,out] S          points to an instance of Q31 DCT4/IDCT4 structure.
-   * @param[in]     S_RFFT     points to an instance of Q31 RFFT/RIFFT structure
-   * @param[in]     S_CFFT     points to an instance of Q31 CFFT/CIFFT structure
-   * @param[in]     N          length of the DCT4.
-   * @param[in]     Nby2       half of the length of the DCT4.
-   * @param[in]     normalize  normalizing factor.
-   * @return      riscv_status function returns RISCV_MATH_SUCCESS if initialization is successful or RISCV_MATH_ARGUMENT_ERROR if <code>N</code> is not a supported transform length.
-   */
-  riscv_status riscv_dct4_init_q31(
-        riscv_dct4_instance_q31 * S,
-        riscv_rfft_instance_q31 * S_RFFT,
-        riscv_cfft_radix4_instance_q31 * S_CFFT,
-        uint16_t N,
-        uint16_t Nby2,
-        q31_t normalize);
+/**
+ * @brief Instance structure for the Q31 DCT4/IDCT4 function.
+ */
+typedef struct {
+    uint16_t N;                          /**< length of the DCT4. */
+    uint16_t Nby2;                       /**< half of the length of the DCT4. */
+    q31_t normalize;                     /**< normalizing factor. */
+    const q31_t* pTwiddle;                     /**< points to the twiddle factor table. */
+    const q31_t* pCosFactor;                   /**< points to the cosFactor table. */
+    riscv_rfft_instance_q31* pRfft;        /**< points to the real FFT instance. */
+    riscv_cfft_radix4_instance_q31* pCfft; /**< points to the complex FFT instance. */
+} riscv_dct4_instance_q31;
 
 
-  /**
-   * @brief Processing function for the Q31 DCT4/IDCT4.
-   * @param[in]     S              points to an instance of the Q31 DCT4 structure.
-   * @param[in]     pState         points to state buffer.
-   * @param[in,out] pInlineBuffer  points to the in-place input and output buffer.
-   */
-  void riscv_dct4_q31(
-  const riscv_dct4_instance_q31 * S,
-        q31_t * pState,
-        q31_t * pInlineBuffer);
+/**
+ * @brief  Initialization function for the Q31 DCT4/IDCT4.
+ * @param[in,out] S          points to an instance of Q31 DCT4/IDCT4 structure.
+ * @param[in]     S_RFFT     points to an instance of Q31 RFFT/RIFFT structure
+ * @param[in]     S_CFFT     points to an instance of Q31 CFFT/CIFFT structure
+ * @param[in]     N          length of the DCT4.
+ * @param[in]     Nby2       half of the length of the DCT4.
+ * @param[in]     normalize  normalizing factor.
+ * @return      riscv_status function returns RISCV_MATH_SUCCESS if initialization is successful or RISCV_MATH_ARGUMENT_ERROR if <code>N</code> is not a supported transform length.
+ */
+riscv_status riscv_dct4_init_q31(
+    riscv_dct4_instance_q31* S,
+    riscv_rfft_instance_q31* S_RFFT,
+    riscv_cfft_radix4_instance_q31* S_CFFT,
+    uint16_t N,
+    uint16_t Nby2,
+    q31_t normalize);
 
 
-  /**
-   * @brief Instance structure for the Q15 DCT4/IDCT4 function.
-   */
-  typedef struct
-  {
-          uint16_t N;                          /**< length of the DCT4. */
-          uint16_t Nby2;                       /**< half of the length of the DCT4. */
-          q15_t normalize;                     /**< normalizing factor. */
-    const q15_t *pTwiddle;                     /**< points to the twiddle factor table. */
-    const q15_t *pCosFactor;                   /**< points to the cosFactor table. */
-          riscv_rfft_instance_q15 *pRfft;        /**< points to the real FFT instance. */
-          riscv_cfft_radix4_instance_q15 *pCfft; /**< points to the complex FFT instance. */
-  } riscv_dct4_instance_q15;
+/**
+ * @brief Processing function for the Q31 DCT4/IDCT4.
+ * @param[in]     S              points to an instance of the Q31 DCT4 structure.
+ * @param[in]     pState         points to state buffer.
+ * @param[in,out] pInlineBuffer  points to the in-place input and output buffer.
+ */
+void riscv_dct4_q31(
+    const riscv_dct4_instance_q31* S,
+    q31_t* pState,
+    q31_t* pInlineBuffer);
 
 
-  /**
-   * @brief  Initialization function for the Q15 DCT4/IDCT4.
-   * @param[in,out] S          points to an instance of Q15 DCT4/IDCT4 structure.
-   * @param[in]     S_RFFT     points to an instance of Q15 RFFT/RIFFT structure.
-   * @param[in]     S_CFFT     points to an instance of Q15 CFFT/CIFFT structure.
-   * @param[in]     N          length of the DCT4.
-   * @param[in]     Nby2       half of the length of the DCT4.
-   * @param[in]     normalize  normalizing factor.
-   * @return      riscv_status function returns RISCV_MATH_SUCCESS if initialization is successful or RISCV_MATH_ARGUMENT_ERROR if <code>N</code> is not a supported transform length.
-   */
-  riscv_status riscv_dct4_init_q15(
-        riscv_dct4_instance_q15 * S,
-        riscv_rfft_instance_q15 * S_RFFT,
-        riscv_cfft_radix4_instance_q15 * S_CFFT,
-        uint16_t N,
-        uint16_t Nby2,
-        q15_t normalize);
+/**
+ * @brief Instance structure for the Q15 DCT4/IDCT4 function.
+ */
+typedef struct {
+    uint16_t N;                          /**< length of the DCT4. */
+    uint16_t Nby2;                       /**< half of the length of the DCT4. */
+    q15_t normalize;                     /**< normalizing factor. */
+    const q15_t* pTwiddle;                     /**< points to the twiddle factor table. */
+    const q15_t* pCosFactor;                   /**< points to the cosFactor table. */
+    riscv_rfft_instance_q15* pRfft;        /**< points to the real FFT instance. */
+    riscv_cfft_radix4_instance_q15* pCfft; /**< points to the complex FFT instance. */
+} riscv_dct4_instance_q15;
 
 
-  /**
-   * @brief Processing function for the Q15 DCT4/IDCT4.
-   * @param[in]     S              points to an instance of the Q15 DCT4 structure.
-   * @param[in]     pState         points to state buffer.
-   * @param[in,out] pInlineBuffer  points to the in-place input and output buffer.
-   */
-  void riscv_dct4_q15(
-  const riscv_dct4_instance_q15 * S,
-        q15_t * pState,
-        q15_t * pInlineBuffer);
+/**
+ * @brief  Initialization function for the Q15 DCT4/IDCT4.
+ * @param[in,out] S          points to an instance of Q15 DCT4/IDCT4 structure.
+ * @param[in]     S_RFFT     points to an instance of Q15 RFFT/RIFFT structure.
+ * @param[in]     S_CFFT     points to an instance of Q15 CFFT/CIFFT structure.
+ * @param[in]     N          length of the DCT4.
+ * @param[in]     Nby2       half of the length of the DCT4.
+ * @param[in]     normalize  normalizing factor.
+ * @return      riscv_status function returns RISCV_MATH_SUCCESS if initialization is successful or RISCV_MATH_ARGUMENT_ERROR if <code>N</code> is not a supported transform length.
+ */
+riscv_status riscv_dct4_init_q15(
+    riscv_dct4_instance_q15* S,
+    riscv_rfft_instance_q15* S_RFFT,
+    riscv_cfft_radix4_instance_q15* S_CFFT,
+    uint16_t N,
+    uint16_t Nby2,
+    q15_t normalize);
+
+
+/**
+ * @brief Processing function for the Q15 DCT4/IDCT4.
+ * @param[in]     S              points to an instance of the Q15 DCT4 structure.
+ * @param[in]     pState         points to state buffer.
+ * @param[in,out] pInlineBuffer  points to the in-place input and output buffer.
+ */
+void riscv_dct4_q15(
+    const riscv_dct4_instance_q15* S,
+    q15_t* pState,
+    q15_t* pInlineBuffer);
 
 
 

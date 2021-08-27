@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef _DISTANCE_FUNCTIONS_F16_H_
 #define _DISTANCE_FUNCTIONS_F16_H_
 
@@ -42,8 +42,7 @@
 #include "dsp/fast_math_functions_f16.h"
 
 #ifdef   __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
@@ -57,7 +56,7 @@ extern "C"
  *
  */
 
-float16_t riscv_euclidean_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize);
+float16_t riscv_euclidean_distance_f16(const float16_t* pA, const float16_t* pB, uint32_t blockSize);
 
 /**
  * @brief        Bray-Curtis distance between two vectors
@@ -67,7 +66,7 @@ float16_t riscv_euclidean_distance_f16(const float16_t *pA,const float16_t *pB, 
  * @return distance
  *
  */
-float16_t riscv_braycurtis_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize);
+float16_t riscv_braycurtis_distance_f16(const float16_t* pA, const float16_t* pB, uint32_t blockSize);
 
 /**
  * @brief        Canberra distance between two vectors
@@ -82,7 +81,7 @@ float16_t riscv_braycurtis_distance_f16(const float16_t *pA,const float16_t *pB,
  * @return distance
  *
  */
-float16_t riscv_canberra_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize);
+float16_t riscv_canberra_distance_f16(const float16_t* pA, const float16_t* pB, uint32_t blockSize);
 
 
 /**
@@ -93,7 +92,7 @@ float16_t riscv_canberra_distance_f16(const float16_t *pA,const float16_t *pB, u
  * @return distance
  *
  */
-float16_t riscv_chebyshev_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize);
+float16_t riscv_chebyshev_distance_f16(const float16_t* pA, const float16_t* pB, uint32_t blockSize);
 
 
 /**
@@ -104,7 +103,7 @@ float16_t riscv_chebyshev_distance_f16(const float16_t *pA,const float16_t *pB, 
  * @return distance
  *
  */
-float16_t riscv_cityblock_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize);
+float16_t riscv_cityblock_distance_f16(const float16_t* pA, const float16_t* pB, uint32_t blockSize);
 
 /**
  * @brief        Correlation distance between two vectors
@@ -117,7 +116,7 @@ float16_t riscv_cityblock_distance_f16(const float16_t *pA,const float16_t *pB, 
  * @return distance
  *
  */
-float16_t riscv_correlation_distance_f16(float16_t *pA,float16_t *pB, uint32_t blockSize);
+float16_t riscv_correlation_distance_f16(float16_t* pA, float16_t* pB, uint32_t blockSize);
 
 /**
  * @brief        Cosine distance between two vectors
@@ -129,7 +128,7 @@ float16_t riscv_correlation_distance_f16(float16_t *pA,float16_t *pB, uint32_t b
  *
  */
 
-float16_t riscv_cosine_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize);
+float16_t riscv_cosine_distance_f16(const float16_t* pA, const float16_t* pB, uint32_t blockSize);
 
 /**
  * @brief        Jensen-Shannon distance between two vectors
@@ -151,7 +150,7 @@ float16_t riscv_cosine_distance_f16(const float16_t *pA,const float16_t *pB, uin
  *
  */
 
-float16_t riscv_jensenshannon_distance_f16(const float16_t *pA,const float16_t *pB,uint32_t blockSize);
+float16_t riscv_jensenshannon_distance_f16(const float16_t* pA, const float16_t* pB, uint32_t blockSize);
 
 /**
  * @brief        Minkowski distance between two vectors
@@ -166,7 +165,7 @@ float16_t riscv_jensenshannon_distance_f16(const float16_t *pA,const float16_t *
 
 
 
-float16_t riscv_minkowski_distance_f16(const float16_t *pA,const float16_t *pB, int32_t order, uint32_t blockSize);
+float16_t riscv_minkowski_distance_f16(const float16_t* pA, const float16_t* pB, int32_t order, uint32_t blockSize);
 
 
 #endif /*defined(RISCV_FLOAT16_SUPPORTED)*/

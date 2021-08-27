@@ -20,7 +20,7 @@
 
 #include "riscv_bits.h"
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 /**
  * \defgroup NMSIS_Core_CSR_Encoding    Core CSR Encodings

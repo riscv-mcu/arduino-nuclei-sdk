@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef _SUPPORT_FUNCTIONS_F16_H_
 #define _SUPPORT_FUNCTIONS_F16_H_
 
@@ -35,27 +35,26 @@
 #include "dsp/utils.h"
 
 #ifdef   __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
-  /**
-   * @brief  Copies the elements of a floating-point vector.
-   * @param[in]  pSrc       input pointer
-   * @param[out] pDst       output pointer
-   * @param[in]  blockSize  number of samples to process
-   */
-void riscv_copy_f16(const float16_t * pSrc, float16_t * pDst, uint32_t blockSize);
+/**
+ * @brief  Copies the elements of a floating-point vector.
+ * @param[in]  pSrc       input pointer
+ * @param[out] pDst       output pointer
+ * @param[in]  blockSize  number of samples to process
+ */
+void riscv_copy_f16(const float16_t* pSrc, float16_t* pDst, uint32_t blockSize);
 
-  /**
-   * @brief  Fills a constant value into a floating-point vector.
-   * @param[in]  value      input value to be filled
-   * @param[out] pDst       output pointer
-   * @param[in]  blockSize  number of samples to process
-   */
-void riscv_fill_f16(float16_t value, float16_t * pDst, uint32_t blockSize);
+/**
+ * @brief  Fills a constant value into a floating-point vector.
+ * @param[in]  value      input value to be filled
+ * @param[out] pDst       output pointer
+ * @param[in]  blockSize  number of samples to process
+ */
+void riscv_fill_f16(float16_t value, float16_t* pDst, uint32_t blockSize);
 
 /**
    * @brief Converts the elements of the floating-point vector to Q31 vector.
@@ -63,7 +62,7 @@ void riscv_fill_f16(float16_t value, float16_t * pDst, uint32_t blockSize);
    * @param[out] pDst       points to the q15 output vector
    * @param[in]  blockSize  length of the input vector
    */
-void riscv_f16_to_q15(const float16_t * pSrc, q15_t * pDst, uint32_t blockSize);
+void riscv_f16_to_q15(const float16_t* pSrc, q15_t* pDst, uint32_t blockSize);
 
 /**
    * @brief Converts the elements of the floating-point vector to Q31 vector.
@@ -71,7 +70,7 @@ void riscv_f16_to_q15(const float16_t * pSrc, q15_t * pDst, uint32_t blockSize);
    * @param[out] pDst       points to the f16 output vector
    * @param[in]  blockSize  length of the input vector
    */
-void riscv_q15_to_f16(const q15_t * pSrc, float16_t * pDst, uint32_t blockSize);
+void riscv_q15_to_f16(const q15_t* pSrc, float16_t* pDst, uint32_t blockSize);
 
 
 /**
@@ -80,7 +79,7 @@ void riscv_q15_to_f16(const q15_t * pSrc, float16_t * pDst, uint32_t blockSize);
    * @param[out] pDst       points to the f16 output vector
    * @param[in]  blockSize  length of the input vector
    */
-void riscv_float_to_f16(const float32_t * pSrc, float16_t * pDst, uint32_t blockSize);
+void riscv_float_to_f16(const float32_t* pSrc, float16_t* pDst, uint32_t blockSize);
 
 /**
    * @brief Converts the elements of the floating-point vector to Q31 vector.
@@ -88,7 +87,7 @@ void riscv_float_to_f16(const float32_t * pSrc, float16_t * pDst, uint32_t block
    * @param[out] pDst       points to the f32 output vector
    * @param[in]  blockSize  length of the input vector
    */
-void riscv_f16_to_float(const float16_t * pSrc, float32_t * pDst, uint32_t blockSize);
+void riscv_f16_to_float(const float16_t* pSrc, float32_t* pDst, uint32_t blockSize);
 
 /**
  * @brief Weighted sum
@@ -100,9 +99,9 @@ void riscv_f16_to_float(const float16_t * pSrc, float32_t * pDst, uint32_t block
  * @return Weighted sum
  *
  */
-float16_t riscv_weighted_sum_f16(const float16_t *in
-  , const float16_t *weigths
-  , uint32_t blockSize);
+float16_t riscv_weighted_sum_f16(const float16_t* in
+                                 , const float16_t* weigths
+                                 , uint32_t blockSize);
 
 /**
  * @brief Barycenter
@@ -116,11 +115,11 @@ float16_t riscv_weighted_sum_f16(const float16_t *in
  * @return       None
  *
  */
-void riscv_barycenter_f16(const float16_t *in
-  , const float16_t *weights
-  , float16_t *out
-  , uint32_t nbVectors
-  , uint32_t vecDim);
+void riscv_barycenter_f16(const float16_t* in
+                          , const float16_t* weights
+                          , float16_t* out
+                          , uint32_t nbVectors
+                          , uint32_t vecDim);
 
 #endif /*defined(RISCV_FLOAT16_SUPPORTED)*/
 #ifdef   __cplusplus

@@ -32,8 +32,7 @@
 
 
 #ifdef   __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 /**
@@ -41,17 +40,17 @@ extern "C"
   @deprecated
  */
 #if   defined ( __GNUC__ )
-  #define __SIMD32_TYPE int32_t
+#define __SIMD32_TYPE int32_t
 #elif defined ( __TI_RISCV__ )
-  #define __SIMD32_TYPE int32_t
+#define __SIMD32_TYPE int32_t
 #elif defined ( __CSMC__ )
-  #define __SIMD32_TYPE int32_t
+#define __SIMD32_TYPE int32_t
 #elif defined ( __TASKING__ )
-  #define __SIMD32_TYPE __un(aligned) int32_t
+#define __SIMD32_TYPE __un(aligned) int32_t
 #elif defined(_MSC_VER )
-  #define __SIMD32_TYPE int32_t
+#define __SIMD32_TYPE int32_t
 #else
-  #error Unknown compiler
+#error Unknown compiler
 #endif
 
 #define __SIMD32(addr)        (*(__SIMD32_TYPE **) & (addr))
@@ -67,21 +66,21 @@ extern "C"
   @param[in]     pQ31      points to input value
   @return        Q63 value
  */
-__STATIC_FORCEINLINE q63_t read_q31x2_ia (
-  q31_t ** pQ31)
+__STATIC_FORCEINLINE q63_t read_q31x2_ia(
+    q31_t** pQ31)
 {
-  q63_t val;
+    q63_t val;
 #ifndef __RISCV_FEATURE_UNALIGNED
 #if __RISCV_XLEN == 64
-  val = __LD(*pQ31);
+    val = __LD(*pQ31);
 #else
-  val = *((q63_t *)*pQ31);
+    val = *((q63_t*)*pQ31);
 #endif /* __RISCV_XLEN == 64 */
 #else
-  memcpy((void *)(&val), (void *)(*pQ31), 8);
+    memcpy((void*)(&val), (void*)(*pQ31), 8);
 #endif
-  *pQ31 += 2;
-  return (val);
+    *pQ31 += 2;
+    return (val);
 }
 
 /**
@@ -89,21 +88,21 @@ __STATIC_FORCEINLINE q63_t read_q31x2_ia (
   @param[in]     pQ31      points to input value
   @return        Q63 value
  */
-__STATIC_FORCEINLINE q63_t read_q31x2_da (
-  q31_t ** pQ31)
+__STATIC_FORCEINLINE q63_t read_q31x2_da(
+    q31_t** pQ31)
 {
-  q63_t val;
+    q63_t val;
 #ifndef __RISCV_FEATURE_UNALIGNED
 #if __RISCV_XLEN == 64
-  val = __LD(*pQ31);
+    val = __LD(*pQ31);
 #else
-  val = *((q63_t *)*pQ31);
+    val = *((q63_t*)*pQ31);
 #endif /* __RISCV_XLEN == 64 */
 #else
-  memcpy((void *)(&val), (void *)(*pQ31), 8);
+    memcpy((void*)(&val), (void*)(*pQ31), 8);
 #endif
-  *pQ31 -= 2;
-  return (val);
+    *pQ31 -= 2;
+    return (val);
 }
 
 /**
@@ -111,20 +110,20 @@ __STATIC_FORCEINLINE q63_t read_q31x2_da (
   @param[in]     pQ31      points to input value
   @return        Q63 value
  */
-__STATIC_FORCEINLINE q63_t read_q31x2 (
-  q31_t * pQ31)
+__STATIC_FORCEINLINE q63_t read_q31x2(
+    q31_t* pQ31)
 {
-  q63_t val;
+    q63_t val;
 #ifndef __RISCV_FEATURE_UNALIGNED
 #if __RISCV_XLEN == 64
-  val = __LD(pQ31);
+    val = __LD(pQ31);
 #else
-  val = *((q63_t *)pQ31);
+    val = *((q63_t*)pQ31);
 #endif /* __RISCV_XLEN == 64 */
 #else
-  memcpy((void *)(&val), (void *)(pQ31), 8);
+    memcpy((void*)(&val), (void*)(pQ31), 8);
 #endif
-  return (val);
+    return (val);
 }
 
 /**
@@ -133,20 +132,20 @@ __STATIC_FORCEINLINE q63_t read_q31x2 (
   @param[in]     value     Q63 value
   @return        none
  */
-__STATIC_FORCEINLINE void write_q31x2_ia (
-		q31_t ** pQ31,
-		q63_t    value)
+__STATIC_FORCEINLINE void write_q31x2_ia(
+    q31_t** pQ31,
+    q63_t    value)
 {
 #ifndef __RISCV_FEATURE_UNALIGNED
 #if __RISCV_XLEN == 64
-  __SD(*pQ31, value);
+    __SD(*pQ31, value);
 #else
-  *((q63_t *)*pQ31) = value;
+    *((q63_t*)*pQ31) = value;
 #endif /* __RISCV_XLEN == 64 */
 #else
-  memcpy((void *)(*pQ31), (void *)(&value), 8);
+    memcpy((void*)(*pQ31), (void*)(&value), 8);
 #endif
-  *pQ31 += 2;
+    *pQ31 += 2;
 }
 
 /**
@@ -155,18 +154,18 @@ __STATIC_FORCEINLINE void write_q31x2_ia (
   @param[in]     value     Q63 value
   @return        none
  */
-__STATIC_FORCEINLINE void write_q31x2 (
-		q31_t * pQ31,
-		q63_t value)
+__STATIC_FORCEINLINE void write_q31x2(
+    q31_t* pQ31,
+    q63_t value)
 {
 #ifndef __RISCV_FEATURE_UNALIGNED
 #if __RISCV_XLEN == 64
-  __SD(pQ31, value);
+    __SD(pQ31, value);
 #else
-  *((q63_t *)pQ31) = value;
+    *((q63_t*)pQ31) = value;
 #endif /* __RISCV_XLEN == 64 */
 #else
-  memcpy((void *)(pQ31), (void *)(&value), 8);
+    memcpy((void*)(pQ31), (void*)(&value), 8);
 #endif
 }
 
@@ -175,18 +174,18 @@ __STATIC_FORCEINLINE void write_q31x2 (
   @param[in]     pQ15      points to input value
   @return        Q31 value
  */
-__STATIC_FORCEINLINE q31_t read_q15x2 (
-  q15_t * pQ15)
+__STATIC_FORCEINLINE q31_t read_q15x2(
+    q15_t* pQ15)
 {
-  q31_t val;
+    q31_t val;
 
 #ifdef __RISCV_FEATURE_UNALIGNED
-  memcpy (&val, pQ15, 4);
+    memcpy(&val, pQ15, 4);
 #else
-  val = __LW(pQ15);
+    val = __LW(pQ15);
 #endif
 
-  return (val);
+    return (val);
 }
 
 /**
@@ -194,19 +193,19 @@ __STATIC_FORCEINLINE q31_t read_q15x2 (
   @param[in]     pQ15      points to input value
   @return        Q31 value
  */
-__STATIC_FORCEINLINE q31_t read_q15x2_ia (
-  q15_t ** pQ15)
+__STATIC_FORCEINLINE q31_t read_q15x2_ia(
+    q15_t** pQ15)
 {
-  q31_t val;
+    q31_t val;
 
 #ifdef __RISCV_FEATURE_UNALIGNED
-  memcpy (&val, *pQ15, 4);
+    memcpy(&val, *pQ15, 4);
 #else
-  val = __LW(*pQ15);
+    val = __LW(*pQ15);
 #endif
 
- *pQ15 += 2;
- return (val);
+    *pQ15 += 2;
+    return (val);
 }
 
 /**
@@ -214,19 +213,19 @@ __STATIC_FORCEINLINE q31_t read_q15x2_ia (
   @param[in]     pQ15      points to input value
   @return        Q31 value
  */
-__STATIC_FORCEINLINE q31_t read_q15x2_da (
-  q15_t ** pQ15)
+__STATIC_FORCEINLINE q31_t read_q15x2_da(
+    q15_t** pQ15)
 {
-  q31_t val;
+    q31_t val;
 
 #ifdef __RISCV_FEATURE_UNALIGNED
-  memcpy (&val, *pQ15, 4);
+    memcpy(&val, *pQ15, 4);
 #else
-  val = __LW(*pQ15);
+    val = __LW(*pQ15);
 #endif
 
-  *pQ15 -= 2;
-  return (val);
+    *pQ15 -= 2;
+    return (val);
 }
 
 /**
@@ -235,17 +234,17 @@ __STATIC_FORCEINLINE q31_t read_q15x2_da (
   @param[in]     value     Q31 value
   @return        none
  */
-__STATIC_FORCEINLINE void write_q15x2_ia (
-  q15_t ** pQ15,
-  q31_t    value)
+__STATIC_FORCEINLINE void write_q15x2_ia(
+    q15_t** pQ15,
+    q31_t    value)
 {
 #ifdef __RISCV_FEATURE_UNALIGNED
-  memcpy (*pQ15, &value, 4);
+    memcpy(*pQ15, &value, 4);
 #else
-  __SW(*pQ15, value);
+    __SW(*pQ15, value);
 #endif
 
- *pQ15 += 2;
+    *pQ15 += 2;
 }
 
 /**
@@ -254,14 +253,14 @@ __STATIC_FORCEINLINE void write_q15x2_ia (
   @param[in]     value     Q31 value
   @return        none
  */
-__STATIC_FORCEINLINE void write_q15x2 (
-  q15_t * pQ15,
-  q31_t   value)
+__STATIC_FORCEINLINE void write_q15x2(
+    q15_t* pQ15,
+    q31_t   value)
 {
 #ifdef __RISCV_FEATURE_UNALIGNED
-  memcpy (pQ15, &value, 4);
+    memcpy(pQ15, &value, 4);
 #else
-  __SW(pQ15, value);
+    __SW(pQ15, value);
 #endif
 }
 
@@ -271,20 +270,20 @@ __STATIC_FORCEINLINE void write_q15x2 (
   @param[in]     value     Q31 value
   @return        none
  */
-__STATIC_FORCEINLINE void write_q15x4_ia (
-		q15_t ** pQ15,
-		q63_t    value)
+__STATIC_FORCEINLINE void write_q15x4_ia(
+    q15_t** pQ15,
+    q63_t    value)
 {
 #ifndef __RISCV_FEATURE_UNALIGNED
 #if __RISCV_XLEN == 64
-  __SD(*pQ15, value);
+    __SD(*pQ15, value);
 #else
-  *((q63_t *)*pQ15) = value;
+    *((q63_t*)*pQ15) = value;
 #endif
 #else
-  memcpy((void *)(*pQ15), (void *)(&value), 8);
+    memcpy((void*)(*pQ15), (void*)(&value), 8);
 #endif
-  *pQ15 += 4;
+    *pQ15 += 4;
 }
 
 /**
@@ -293,20 +292,20 @@ __STATIC_FORCEINLINE void write_q15x4_ia (
   @param[in]     value     Q31 value
   @return        none
  */
-__STATIC_FORCEINLINE void write_q15x4_da (
-		q15_t ** pQ15,
-		q63_t    value)
+__STATIC_FORCEINLINE void write_q15x4_da(
+    q15_t** pQ15,
+    q63_t    value)
 {
 #ifndef __RISCV_FEATURE_UNALIGNED
 #if __RISCV_XLEN == 64
-  __SD(*pQ15, value);
+    __SD(*pQ15, value);
 #else
-  *((q63_t *)*pQ15) = value;
+    *((q63_t*)*pQ15) = value;
 #endif
 #else
-  memcpy((void *)(*pQ15), (void *)(&value), 8);
+    memcpy((void*)(*pQ15), (void*)(&value), 8);
 #endif
-  *pQ15 -= 4;
+    *pQ15 -= 4;
 }
 
 /**
@@ -315,18 +314,18 @@ __STATIC_FORCEINLINE void write_q15x4_da (
   @param[in]     value     Q31 value
   @return        none
  */
-__STATIC_FORCEINLINE void write_q15x4 (
-		q15_t * pQ15,
-		q63_t   value)
+__STATIC_FORCEINLINE void write_q15x4(
+    q15_t* pQ15,
+    q63_t   value)
 {
 #ifndef __RISCV_FEATURE_UNALIGNED
 #if __RISCV_XLEN == 64
-  __SD(pQ15, value);
+    __SD(pQ15, value);
 #else
-  *((q63_t *)pQ15) = value;
+    *((q63_t*)pQ15) = value;
 #endif
 #else
-  memcpy((void *)(pQ15), (void *)(&value), 8);
+    memcpy((void*)(pQ15), (void*)(&value), 8);
 #endif
 }
 
@@ -335,22 +334,22 @@ __STATIC_FORCEINLINE void write_q15x4 (
   @param[in]     pQ15      points to input value
   @return        Q63 value
  */
-__STATIC_FORCEINLINE q63_t read_q15x4_ia (
-		q15_t ** pQ15)
+__STATIC_FORCEINLINE q63_t read_q15x4_ia(
+    q15_t** pQ15)
 {
-  q63_t val;
+    q63_t val;
 #ifndef __RISCV_FEATURE_UNALIGNED
 #if __RISCV_XLEN == 64
-  val = __LD(*pQ15);
+    val = __LD(*pQ15);
 #else
-  val = *((q63_t *)*pQ15);
+    val = *((q63_t*)*pQ15);
 #endif
 #else
-  memcpy((void *)(&val), (void *)(*pQ15), 8);
+    memcpy((void*)(&val), (void*)(*pQ15), 8);
 #endif
-  *pQ15 += 4;
+    *pQ15 += 4;
 
-  return (val);
+    return (val);
 }
 
 /**
@@ -358,22 +357,22 @@ __STATIC_FORCEINLINE q63_t read_q15x4_ia (
   @param[in]     pQ15      points to input value
   @return        Q31 value
  */
-__STATIC_FORCEINLINE q63_t read_q15x4_da (
-		q15_t ** pQ15)
+__STATIC_FORCEINLINE q63_t read_q15x4_da(
+    q15_t** pQ15)
 {
-	q63_t val;
+    q63_t val;
 #ifndef __RISCV_FEATURE_UNALIGNED
 #if __RISCV_XLEN == 64
-  val = __LD(*pQ15);
+    val = __LD(*pQ15);
 #else
-  val = *((q63_t *)*pQ15);
+    val = *((q63_t*)*pQ15);
 #endif
 #else
-  memcpy((void *)(&val), (void *)(*pQ15), 8);
+    memcpy((void*)(&val), (void*)(*pQ15), 8);
 #endif
-  *pQ15 -= 4;
+    *pQ15 -= 4;
 
-  return (val);
+    return (val);
 }
 
 /**
@@ -381,20 +380,20 @@ __STATIC_FORCEINLINE q63_t read_q15x4_da (
   @param[in]     pQ15      points to input value
   @return        Q63 value
  */
-__STATIC_FORCEINLINE q63_t read_q15x4 (
-		q15_t * pQ15)
+__STATIC_FORCEINLINE q63_t read_q15x4(
+    q15_t* pQ15)
 {
-  q63_t val;
+    q63_t val;
 #ifndef __RISCV_FEATURE_UNALIGNED
 #if __RISCV_XLEN == 64
-  val = __LD(pQ15);
+    val = __LD(pQ15);
 #else
-  val = *((q63_t *)pQ15);
+    val = *((q63_t*)pQ15);
 #endif /* __RISCV_XLEN == 64 */
 #else
-  memcpy((void *)(&val), (void *)(pQ15), 8);
+    memcpy((void*)(&val), (void*)(pQ15), 8);
 #endif
-  return (val);
+    return (val);
 }
 
 /**
@@ -402,21 +401,21 @@ __STATIC_FORCEINLINE q63_t read_q15x4 (
   @param[in]     pQ7       points to input value
   @return        Q31 value
  */
-__STATIC_FORCEINLINE q31_t read_q7x4_ia (
-  q7_t ** pQ7)
+__STATIC_FORCEINLINE q31_t read_q7x4_ia(
+    q7_t** pQ7)
 {
-  q31_t val;
+    q31_t val;
 
 
 #ifdef __RISCV_FEATURE_UNALIGNED
-  memcpy (&val, *pQ7, 4);
+    memcpy(&val, *pQ7, 4);
 #else
-  val = __LW(*pQ7);
+    val = __LW(*pQ7);
 #endif
 
-  *pQ7 += 4;
+    *pQ7 += 4;
 
-  return (val);
+    return (val);
 }
 
 /**
@@ -424,18 +423,18 @@ __STATIC_FORCEINLINE q31_t read_q7x4_ia (
   @param[in]     pQ7       points to input value
   @return        Q31 value
  */
-__STATIC_FORCEINLINE q31_t read_q7x4_da (
-  q7_t ** pQ7)
+__STATIC_FORCEINLINE q31_t read_q7x4_da(
+    q7_t** pQ7)
 {
-  q31_t val;
+    q31_t val;
 #ifdef __RISCV_FEATURE_UNALIGNED
-  memcpy (&val, *pQ7, 4);
+    memcpy(&val, *pQ7, 4);
 #else
-  val = __LW(*pQ7);
+    val = __LW(*pQ7);
 #endif
-  *pQ7 -= 4;
+    *pQ7 -= 4;
 
-  return (val);
+    return (val);
 }
 
 /**
@@ -444,17 +443,17 @@ __STATIC_FORCEINLINE q31_t read_q7x4_da (
   @param[in]     value     Q31 value
   @return        none
  */
-__STATIC_FORCEINLINE void write_q7x4_ia (
-  q7_t ** pQ7,
-  q31_t   value)
+__STATIC_FORCEINLINE void write_q7x4_ia(
+    q7_t** pQ7,
+    q31_t   value)
 {
 #ifdef __RISCV_FEATURE_UNALIGNED
-  q31_t val = value;
-  memcpy (*pQ7, &val, 4);
+    q31_t val = value;
+    memcpy(*pQ7, &val, 4);
 #else
-  __SW(*pQ7, value);
+    __SW(*pQ7, value);
 #endif
-  *pQ7 += 4;
+    *pQ7 += 4;
 }
 
 /**
@@ -463,15 +462,15 @@ __STATIC_FORCEINLINE void write_q7x4_ia (
   @param[in]     value     Q31 value
   @return        none
  */
-__STATIC_FORCEINLINE void write_q7x4 (
-  q7_t * pQ7,
-  q31_t   value)
+__STATIC_FORCEINLINE void write_q7x4(
+    q7_t* pQ7,
+    q31_t   value)
 {
 #ifdef __RISCV_FEATURE_UNALIGNED
-  q31_t val = value;
-  memcpy (pQ7, &val, 4);
+    q31_t val = value;
+    memcpy(pQ7, &val, 4);
 #else
-  __SW(pQ7, value);
+    __SW(pQ7, value);
 #endif
 }
 
@@ -480,22 +479,22 @@ __STATIC_FORCEINLINE void write_q7x4 (
   @param[in]     pQ7       points to input value
   @return        Q63 value
  */
-__STATIC_FORCEINLINE q63_t read_q7x8_ia (
-		q7_t ** pQ7)
+__STATIC_FORCEINLINE q63_t read_q7x8_ia(
+    q7_t** pQ7)
 {
-	q63_t val;
+    q63_t val;
 #ifndef __RISCV_FEATURE_UNALIGNED
 #if __RISCV_XLEN == 64
-  val = __LD(*pQ7);
+    val = __LD(*pQ7);
 #else
-  val = *((q63_t *)*pQ7);
+    val = *((q63_t*)*pQ7);
 #endif
 #else
-  memcpy((void *)(&val), (void *)(*pQ7), 8);
+    memcpy((void*)(&val), (void*)(*pQ7), 8);
 #endif
-  *pQ7 += 8;
+    *pQ7 += 8;
 
-  return val;
+    return val;
 }
 
 /**
@@ -503,21 +502,21 @@ __STATIC_FORCEINLINE q63_t read_q7x8_ia (
   @param[in]     pQ7       points to input value
   @return        Q63 value
  */
-__STATIC_FORCEINLINE q63_t read_q7x8_da (
-		q7_t ** pQ7)
+__STATIC_FORCEINLINE q63_t read_q7x8_da(
+    q7_t** pQ7)
 {
-	q63_t val;
+    q63_t val;
 #ifndef __RISCV_FEATURE_UNALIGNED
 #if __RISCV_XLEN == 64
-  val = __LD(*pQ7);
+    val = __LD(*pQ7);
 #else
-  val = *((q63_t *)*pQ7);
+    val = *((q63_t*)*pQ7);
 #endif
 #else
-  memcpy((void *)(&val), (void *)(*pQ7), 8);
+    memcpy((void*)(&val), (void*)(*pQ7), 8);
 #endif
-  *pQ7 -= 8;
-  return val;
+    *pQ7 -= 8;
+    return val;
 }
 
 /**
@@ -526,20 +525,20 @@ __STATIC_FORCEINLINE q63_t read_q7x8_da (
   @param[in]     value     Q63 value
   @return        none
  */
-__STATIC_FORCEINLINE void write_q7x8_ia (
-		q7_t ** pQ7,
-		q63_t   value)
+__STATIC_FORCEINLINE void write_q7x8_ia(
+    q7_t** pQ7,
+    q63_t   value)
 {
 #ifndef __RISCV_FEATURE_UNALIGNED
 #if __RISCV_XLEN == 64
-  __SD(*pQ7,value);
+    __SD(*pQ7, value);
 #else
-  *((q63_t *)*pQ7) = value;
+    *((q63_t*)*pQ7) = value;
 #endif
 #else
-  memcpy((void *)(*pQ7), (void *)(&value), 8);
+    memcpy((void*)(*pQ7), (void*)(&value), 8);
 #endif
-  *pQ7 += 8;
+    *pQ7 += 8;
 }
 
 

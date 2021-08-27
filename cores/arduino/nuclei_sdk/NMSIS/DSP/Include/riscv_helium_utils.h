@@ -32,8 +32,7 @@
 
 
 #ifdef   __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 /***************************************
 
@@ -54,7 +53,7 @@ Definitions available for f16 datatype with HW acceleration only
 
 ***************************************/
 #if defined(RISCV_FLOAT16_SUPPORTED)
-#endif 
+#endif
 
 /***************************************
 

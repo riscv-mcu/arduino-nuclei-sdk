@@ -8,14 +8,13 @@ extern "C" {
 
 void tone(uint8_t pin, unsigned int freq)
 {
-    if(analogPinToTimer(pin) != 0 && freq >= 0)
-    {   
+    if (analogPinToTimer(pin) != 0 && freq >= 0) {
         // system clocks configuration
         rcu_periph_clock_enable(analogPinToPortRCU(pin));
         rcu_periph_clock_enable(RCU_AF);
         // GPIO configuration
         gpio_init(analogPinToPort(pin), GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ, analogPinToBit(pin));
-        
+
         // Timer configuration
         timer_oc_parameter_struct timer_ocinitpara;
         timer_parameter_struct timer_initpara;
@@ -29,7 +28,7 @@ void tone(uint8_t pin, unsigned int freq)
         timer_initpara.prescaler         = 107;
         timer_initpara.alignedmode       = TIMER_COUNTER_EDGE;
         timer_initpara.counterdirection  = TIMER_COUNTER_UP;
-        timer_initpara.period            = 1000000/freq;
+        timer_initpara.period            = 1000000 / freq;
         timer_initpara.clockdivision     = TIMER_CKDIV_DIV1;
         timer_initpara.repetitioncounter = 0;
         timer_init(analogPinToTimer(pin), &timer_initpara);
@@ -53,9 +52,9 @@ void tone(uint8_t pin, unsigned int freq)
         timer_enable(analogPinToTimer(pin));
 
         /* CH configuration in PWM mode1, duty cycle 50% */
-        timer_channel_output_pulse_value_config(analogPinToTimer(pin),analogPinToTimerChannel(pin), 500000/freq);
-        timer_channel_output_mode_config(analogPinToTimer(pin),analogPinToTimerChannel(pin),TIMER_OC_MODE_PWM0);
-        timer_channel_output_shadow_config(analogPinToTimer(pin),analogPinToTimerChannel(pin),TIMER_OC_SHADOW_DISABLE);
+        timer_channel_output_pulse_value_config(analogPinToTimer(pin), analogPinToTimerChannel(pin), 500000 / freq);
+        timer_channel_output_mode_config(analogPinToTimer(pin), analogPinToTimerChannel(pin), TIMER_OC_MODE_PWM0);
+        timer_channel_output_shadow_config(analogPinToTimer(pin), analogPinToTimerChannel(pin), TIMER_OC_SHADOW_DISABLE);
     }
 }
 

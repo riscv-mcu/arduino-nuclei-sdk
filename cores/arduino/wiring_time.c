@@ -19,8 +19,7 @@ uint32_t micros(void)
 
 void delay(uint32_t ms)
 {
-    if (ms >= 0)
-    {
+    if (ms >= 0) {
         delay_1ms(ms);
     }
 }
@@ -34,7 +33,7 @@ void delayMicroseconds(uint32_t us)
 
     do {
         delta_mtime = SysTimer_GetLoadValue() - start_mtime;
-    } while (delta_mtime < delay_ticks);  
+    } while (delta_mtime < delay_ticks);
 }
 
 

@@ -30,8 +30,7 @@
 #include "riscv_math.h"
 
 #ifdef   __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include "riscv_math_types_f16.h"

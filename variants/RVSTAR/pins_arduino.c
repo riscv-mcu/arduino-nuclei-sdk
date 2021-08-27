@@ -54,15 +54,15 @@ adc_dev_t adc1 = {
 
 
 const gd32v_pin_dev_t PIN_MAP[BOARD_GPIO_NUM] = {
-/*
- * gpio_dev    *gpio_device;    GPIO device 
- * uint32      gpio_bit;        Pin's GPIO port bit. 
- * timer_dev   *timer_device;   Pin's timer device, if any.
- * uint16      timer_channel;   Timer channel, or 0 if none. 
- * adc_dev     *adc_device;     ADC device, if any.
- * uint8       adc_channel;     Pin ADC channel, or ADCx if none. 
- * todo: IRQn_Type irqn
-*/
+    /*
+     * gpio_dev    *gpio_device;    GPIO device
+     * uint32      gpio_bit;        Pin's GPIO port bit.
+     * timer_dev   *timer_device;   Pin's timer device, if any.
+     * uint16      timer_channel;   Timer channel, or 0 if none.
+     * adc_dev     *adc_device;     ADC device, if any.
+     * uint8       adc_channel;     Pin ADC channel, or ADCx if none.
+     * todo: IRQn_Type irqn
+    */
     {&gpioc, GPIO_PIN_11, 0, 0, 0, 0}, // 0  - PC11 - UART3_RX
     {&gpioc, GPIO_PIN_10, 0, 0, 0, 0}, // 1  - PC10 - UART3_TX
     {&gpioc, GPIO_PIN_8, 0, 0, 0, 0}, // 2  - PC8

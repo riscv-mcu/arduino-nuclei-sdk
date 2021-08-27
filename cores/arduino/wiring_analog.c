@@ -28,7 +28,7 @@ uint32_t analogRead(uint32_t pin)
     adc_channel_length_config(ADC1, ADC_REGULAR_CHANNEL, 1U);
     adc_external_trigger_source_config(ADC1, ADC_REGULAR_CHANNEL, ADC0_1_EXTTRIG_INSERTED_NONE);
     adc_external_trigger_config(ADC1, ADC_REGULAR_CHANNEL, ENABLE);
-    
+
     adc_enable(ADC1);
     delay_1ms(1);
     adc_calibration_enable(ADC1);
@@ -40,17 +40,17 @@ uint32_t analogRead(uint32_t pin)
     //while (!adc_flag_get(ADC1, ADC_FLAG_EOC));
     adc_flag_clear(ADC1, ADC_FLAG_EOC);
 
-    return (uint32_t)(adc_regular_data_read(ADC1)/4);    
+    return (uint32_t)(adc_regular_data_read(ADC1) / 4);
 }
 
 void analogWrite(uint32_t awPin, uint32_t awVal)
 {
-    if(awVal < 0 ) return;
-    if(awVal > 255) {
+    if (awVal < 0) { return; }
+    if (awVal > 255) {
         awVal = 255;
     }
 
-    if( awPin == 13 ) {
+    if (awPin == 13) {
         rcu_periph_clock_enable(RCU_GPIOA);
         rcu_periph_clock_enable(RCU_DAC);
         gpio_init(GPIOA, GPIO_MODE_AIN, GPIO_OSPEED_50MHZ, GPIO_PIN_5);
@@ -105,14 +105,14 @@ void analogWrite(uint32_t awPin, uint32_t awVal)
     timer_ocinitpara.ocnidlestate = TIMER_OCN_IDLE_STATE_LOW;
 
     timer_channel_output_config(analogPinToTimer(awPin), analogPinToTimerChannel(awPin), &timer_ocinitpara);
-    
+
     /* auto-reload preload enable */
     timer_auto_reload_shadow_enable(analogPinToTimer(awPin));
     /* auto-reload preload enable */
     timer_enable(analogPinToTimer(awPin));
 
     /* CH configuration in PWM mode1, duty cycle: (awVal / 255) * 100% */
-    timer_channel_output_pulse_value_config(analogPinToTimer(awPin), analogPinToTimerChannel(awPin), awVal*9999/255);
+    timer_channel_output_pulse_value_config(analogPinToTimer(awPin), analogPinToTimerChannel(awPin), awVal * 9999 / 255);
     timer_channel_output_mode_config(analogPinToTimer(awPin), analogPinToTimerChannel(awPin), TIMER_OC_MODE_PWM0);
     timer_channel_output_shadow_config(analogPinToTimer(awPin), analogPinToTimerChannel(awPin), TIMER_OC_SHADOW_DISABLE);
 }

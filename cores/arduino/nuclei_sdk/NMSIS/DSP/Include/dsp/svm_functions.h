@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef _SVM_FUNCTIONS_H_
 #define _SVM_FUNCTIONS_H_
 
@@ -36,8 +36,7 @@
 #include "dsp/svm_defines.h"
 
 #ifdef   __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #define STEP(x) (x) <= 0 ? 0 : 1
@@ -49,11 +48,11 @@ extern "C"
  * generated from the scikit-learn object. Some examples are given in
  * DSP/Testing/PatternGeneration/SVM.py
  *
- * If more than 2 classes are needed, the functions in this folder 
+ * If more than 2 classes are needed, the functions in this folder
  * will have to be used, as building blocks, to do multi-class classification.
  *
  * No multi-class classification is provided in this SVM folder.
- * 
+ *
  */
 
 /**
@@ -67,75 +66,70 @@ __STATIC_INLINE float32_t riscv_exponent_f32(float32_t x, int32_t nb)
 {
     float32_t r = x;
     nb --;
-    while(nb > 0)
-    {
+    while (nb > 0) {
         r = r * x;
         nb--;
     }
-    return(r);
+    return (r);
 }
 
-  
+
 
 
 
 /**
  * @brief Instance structure for linear SVM prediction function.
  */
-typedef struct
-{
-  uint32_t        nbOfSupportVectors;     /**< Number of support vectors */
-  uint32_t        vectorDimension;        /**< Dimension of vector space */
-  float32_t       intercept;              /**< Intercept */
-  const float32_t *dualCoefficients;      /**< Dual coefficients */
-  const float32_t *supportVectors;        /**< Support vectors */
-  const int32_t   *classes;               /**< The two SVM classes */
+typedef struct {
+    uint32_t        nbOfSupportVectors;     /**< Number of support vectors */
+    uint32_t        vectorDimension;        /**< Dimension of vector space */
+    float32_t       intercept;              /**< Intercept */
+    const float32_t* dualCoefficients;      /**< Dual coefficients */
+    const float32_t* supportVectors;        /**< Support vectors */
+    const int32_t*   classes;               /**< The two SVM classes */
 } riscv_svm_linear_instance_f32;
 
 
 /**
  * @brief Instance structure for polynomial SVM prediction function.
  */
-typedef struct
-{
-  uint32_t        nbOfSupportVectors;     /**< Number of support vectors */
-  uint32_t        vectorDimension;        /**< Dimension of vector space */
-  float32_t       intercept;              /**< Intercept */
-  const float32_t *dualCoefficients;      /**< Dual coefficients */
-  const float32_t *supportVectors;        /**< Support vectors */
-  const int32_t   *classes;               /**< The two SVM classes */
-  int32_t         degree;                 /**< Polynomial degree */
-  float32_t       coef0;                  /**< Polynomial constant */
-  float32_t       gamma;                  /**< Gamma factor */
+typedef struct {
+    uint32_t        nbOfSupportVectors;     /**< Number of support vectors */
+    uint32_t        vectorDimension;        /**< Dimension of vector space */
+    float32_t       intercept;              /**< Intercept */
+    const float32_t* dualCoefficients;      /**< Dual coefficients */
+    const float32_t* supportVectors;        /**< Support vectors */
+    const int32_t*   classes;               /**< The two SVM classes */
+    int32_t         degree;                 /**< Polynomial degree */
+    float32_t       coef0;                  /**< Polynomial constant */
+    float32_t       gamma;                  /**< Gamma factor */
 } riscv_svm_polynomial_instance_f32;
 
 /**
  * @brief Instance structure for rbf SVM prediction function.
  */
-typedef struct
-{
-  uint32_t        nbOfSupportVectors;     /**< Number of support vectors */
-  uint32_t        vectorDimension;        /**< Dimension of vector space */
-  float32_t       intercept;              /**< Intercept */
-  const float32_t *dualCoefficients;      /**< Dual coefficients */
-  const float32_t *supportVectors;        /**< Support vectors */
-  const int32_t   *classes;               /**< The two SVM classes */
-  float32_t       gamma;                  /**< Gamma factor */
+typedef struct {
+    uint32_t        nbOfSupportVectors;     /**< Number of support vectors */
+    uint32_t        vectorDimension;        /**< Dimension of vector space */
+    float32_t       intercept;              /**< Intercept */
+    const float32_t* dualCoefficients;      /**< Dual coefficients */
+    const float32_t* supportVectors;        /**< Support vectors */
+    const int32_t*   classes;               /**< The two SVM classes */
+    float32_t       gamma;                  /**< Gamma factor */
 } riscv_svm_rbf_instance_f32;
 
 /**
  * @brief Instance structure for sigmoid SVM prediction function.
  */
-typedef struct
-{
-  uint32_t        nbOfSupportVectors;     /**< Number of support vectors */
-  uint32_t        vectorDimension;        /**< Dimension of vector space */
-  float32_t       intercept;              /**< Intercept */
-  const float32_t *dualCoefficients;      /**< Dual coefficients */
-  const float32_t *supportVectors;        /**< Support vectors */
-  const int32_t   *classes;               /**< The two SVM classes */
-  float32_t       coef0;                  /**< Independent constant */
-  float32_t       gamma;                  /**< Gamma factor */
+typedef struct {
+    uint32_t        nbOfSupportVectors;     /**< Number of support vectors */
+    uint32_t        vectorDimension;        /**< Dimension of vector space */
+    float32_t       intercept;              /**< Intercept */
+    const float32_t* dualCoefficients;      /**< Dual coefficients */
+    const float32_t* supportVectors;        /**< Support vectors */
+    const int32_t*   classes;               /**< The two SVM classes */
+    float32_t       coef0;                  /**< Independent constant */
+    float32_t       gamma;                  /**< Gamma factor */
 } riscv_svm_sigmoid_instance_f32;
 
 /**
@@ -152,13 +146,13 @@ typedef struct
  */
 
 
-void riscv_svm_linear_init_f32(riscv_svm_linear_instance_f32 *S, 
-  uint32_t nbOfSupportVectors,
-  uint32_t vectorDimension,
-  float32_t intercept,
-  const float32_t *dualCoefficients,
-  const float32_t *supportVectors,
-  const int32_t  *classes);
+void riscv_svm_linear_init_f32(riscv_svm_linear_instance_f32* S,
+                               uint32_t nbOfSupportVectors,
+                               uint32_t vectorDimension,
+                               float32_t intercept,
+                               const float32_t* dualCoefficients,
+                               const float32_t* supportVectors,
+                               const int32_t*  classes);
 
 /**
  * @brief SVM linear prediction
@@ -168,10 +162,10 @@ void riscv_svm_linear_init_f32(riscv_svm_linear_instance_f32 *S,
  * @return none.
  *
  */
-  
-void riscv_svm_linear_predict_f32(const riscv_svm_linear_instance_f32 *S, 
-   const float32_t * in, 
-   int32_t * pResult);
+
+void riscv_svm_linear_predict_f32(const riscv_svm_linear_instance_f32* S,
+                                  const float32_t* in,
+                                  int32_t* pResult);
 
 
 /**
@@ -191,17 +185,17 @@ void riscv_svm_linear_predict_f32(const riscv_svm_linear_instance_f32 *S,
  */
 
 
-void riscv_svm_polynomial_init_f32(riscv_svm_polynomial_instance_f32 *S, 
-  uint32_t nbOfSupportVectors,
-  uint32_t vectorDimension,
-  float32_t intercept,
-  const float32_t *dualCoefficients,
-  const float32_t *supportVectors,
-  const int32_t   *classes,
-  int32_t      degree,
-  float32_t coef0,
-  float32_t gamma
-  );
+void riscv_svm_polynomial_init_f32(riscv_svm_polynomial_instance_f32* S,
+                                   uint32_t nbOfSupportVectors,
+                                   uint32_t vectorDimension,
+                                   float32_t intercept,
+                                   const float32_t* dualCoefficients,
+                                   const float32_t* supportVectors,
+                                   const int32_t*   classes,
+                                   int32_t      degree,
+                                   float32_t coef0,
+                                   float32_t gamma
+                                  );
 
 /**
  * @brief SVM polynomial prediction
@@ -211,9 +205,9 @@ void riscv_svm_polynomial_init_f32(riscv_svm_polynomial_instance_f32 *S,
  * @return none.
  *
  */
-void riscv_svm_polynomial_predict_f32(const riscv_svm_polynomial_instance_f32 *S, 
-   const float32_t * in, 
-   int32_t * pResult);
+void riscv_svm_polynomial_predict_f32(const riscv_svm_polynomial_instance_f32* S,
+                                      const float32_t* in,
+                                      int32_t* pResult);
 
 
 /**
@@ -230,15 +224,15 @@ void riscv_svm_polynomial_predict_f32(const riscv_svm_polynomial_instance_f32 *S
  *
  */
 
-void riscv_svm_rbf_init_f32(riscv_svm_rbf_instance_f32 *S, 
-  uint32_t nbOfSupportVectors,
-  uint32_t vectorDimension,
-  float32_t intercept,
-  const float32_t *dualCoefficients,
-  const float32_t *supportVectors,
-  const int32_t   *classes,
-  float32_t gamma
-  );
+void riscv_svm_rbf_init_f32(riscv_svm_rbf_instance_f32* S,
+                            uint32_t nbOfSupportVectors,
+                            uint32_t vectorDimension,
+                            float32_t intercept,
+                            const float32_t* dualCoefficients,
+                            const float32_t* supportVectors,
+                            const int32_t*   classes,
+                            float32_t gamma
+                           );
 
 /**
  * @brief SVM rbf prediction
@@ -248,9 +242,9 @@ void riscv_svm_rbf_init_f32(riscv_svm_rbf_instance_f32 *S,
  * @return none.
  *
  */
-void riscv_svm_rbf_predict_f32(const riscv_svm_rbf_instance_f32 *S, 
-   const float32_t * in, 
-   int32_t * pResult);
+void riscv_svm_rbf_predict_f32(const riscv_svm_rbf_instance_f32* S,
+                               const float32_t* in,
+                               int32_t* pResult);
 
 /**
  * @brief        SVM sigmoid instance init function
@@ -267,16 +261,16 @@ void riscv_svm_rbf_predict_f32(const riscv_svm_rbf_instance_f32 *S,
  *
  */
 
-void riscv_svm_sigmoid_init_f32(riscv_svm_sigmoid_instance_f32 *S, 
-  uint32_t nbOfSupportVectors,
-  uint32_t vectorDimension,
-  float32_t intercept,
-  const float32_t *dualCoefficients,
-  const float32_t *supportVectors,
-  const int32_t   *classes,
-  float32_t coef0,
-  float32_t gamma
-  );
+void riscv_svm_sigmoid_init_f32(riscv_svm_sigmoid_instance_f32* S,
+                                uint32_t nbOfSupportVectors,
+                                uint32_t vectorDimension,
+                                float32_t intercept,
+                                const float32_t* dualCoefficients,
+                                const float32_t* supportVectors,
+                                const int32_t*   classes,
+                                float32_t coef0,
+                                float32_t gamma
+                               );
 
 /**
  * @brief SVM sigmoid prediction
@@ -286,9 +280,9 @@ void riscv_svm_sigmoid_init_f32(riscv_svm_sigmoid_instance_f32 *S,
  * @return none.
  *
  */
-void riscv_svm_sigmoid_predict_f32(const riscv_svm_sigmoid_instance_f32 *S, 
-   const float32_t * in, 
-   int32_t * pResult);
+void riscv_svm_sigmoid_predict_f32(const riscv_svm_sigmoid_instance_f32* S,
+                                   const float32_t* in,
+                                   int32_t* pResult);
 
 
 

@@ -18,10 +18,10 @@
 #include "Tone.h"
 
 #ifdef __cplusplus
-  #include "HardwareSerial.h"
-  #include "WMath.h"
-  #include "WCharacter.h"
-  #include "WString.h"
+#include "HardwareSerial.h"
+#include "WMath.h"
+#include "WCharacter.h"
+#include "WString.h"
 #endif  // __cpp
 
 #endif // _WIRING_H_

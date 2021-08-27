@@ -2,7 +2,8 @@
 
 typedef void (*voidFuncPtr)(void);
 
-static void nothing(void) {
+static void nothing(void)
+{
     // do nothing
 }
 
@@ -11,9 +12,9 @@ static volatile voidFuncPtr intFunc[2] = {
     nothing   // D3 - PC9
 };
 
-void attachInterrupt(uint32_t pin, void (*userFunc)(void), int mode) {
-    switch (pin)
-    {
+void attachInterrupt(uint32_t pin, void (*userFunc)(void), int mode)
+{
+    switch (pin) {
         case 2:
             intFunc[0] = userFunc;
             rcu_periph_clock_enable(RCU_GPIOC);
@@ -31,7 +32,7 @@ void attachInterrupt(uint32_t pin, void (*userFunc)(void), int mode) {
             exti_init(EXTI_8, EXTI_INTERRUPT, mode);
             exti_interrupt_flag_clear(EXTI_8);
             break;
-        
+
         case 3:
             intFunc[1] = userFunc;
             rcu_periph_clock_enable(RCU_GPIOC);
@@ -45,7 +46,7 @@ void attachInterrupt(uint32_t pin, void (*userFunc)(void), int mode) {
             exti_init(EXTI_9, EXTI_INTERRUPT, mode);
             exti_interrupt_flag_clear(EXTI_9);
             break;
-        
+
         default:
             break;
     }
@@ -53,30 +54,30 @@ void attachInterrupt(uint32_t pin, void (*userFunc)(void), int mode) {
     interrupts();
 }
 
-void detachInterrupt(uint32_t pin) {
-    switch (pin)
-    {
+void detachInterrupt(uint32_t pin)
+{
+    switch (pin) {
         case 2:
             exti_interrupt_disable(EXTI_8);
             intFunc[0] = nothing;
             break;
-        
+
         case 3:
             exti_interrupt_disable(EXTI_9);
             intFunc[1] = nothing;
             break;
-        
+
         default:
             break;
     }
 }
 
-void EXTI5_9_IRQHandler(void) {
-    if(RESET != exti_interrupt_flag_get(EXTI_8)){
+void EXTI5_9_IRQHandler(void)
+{
+    if (RESET != exti_interrupt_flag_get(EXTI_8)) {
         intFunc[0]();
         exti_interrupt_flag_clear(EXTI_8);
-    }
-    else if(RESET != exti_interrupt_flag_get(EXTI_9)){
+    } else if (RESET != exti_interrupt_flag_get(EXTI_9)) {
         intFunc[1]();
         exti_interrupt_flag_clear(EXTI_9);
     }

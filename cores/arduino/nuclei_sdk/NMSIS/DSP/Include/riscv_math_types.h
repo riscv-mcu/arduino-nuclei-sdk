@@ -29,16 +29,15 @@
 #define _RISCV_MATH_TYPES_H_
 
 #ifdef   __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 /* Compiler specific diagnostic adjustment */
 #if   defined ( __GNUC__ )
-  #pragma GCC diagnostic push
-  #pragma GCC diagnostic ignored "-Wsign-conversion"
-  #pragma GCC diagnostic ignored "-Wconversion"
-  #pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wsign-conversion"
+#pragma GCC diagnostic ignored "-Wconversion"
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 
 #elif defined ( __TI_RISCV__ )
 
@@ -49,7 +48,7 @@ extern "C"
 #elif defined ( _MSC_VER )
 
 #else
-  #error Unknown compiler
+#error Unknown compiler
 #endif
 
 
@@ -63,13 +62,13 @@ extern "C"
 #elif defined (__GNUC_PYTHON__)
 #include <stdint.h>
 #define  __ALIGNED(x) __attribute__((aligned(x)))
-#define __STATIC_FORCEINLINE static inline __attribute__((always_inline)) 
+#define __STATIC_FORCEINLINE static inline __attribute__((always_inline))
 #define __STATIC_INLINE static inline
 
 #else
 #define __NMSIS_GENERIC
 #if (defined (__RISCV_FEATURE_DSP) && (__RISCV_FEATURE_DSP == 1))
-    #define __DSP_PRESENT   1
+#define __DSP_PRESENT   1
 #endif
 #include "nmsis_core.h"
 #undef __NMSIS_GENERIC
@@ -77,7 +76,7 @@ extern "C"
 
 #if (defined (__RISCV_FEATURE_VECTOR) && (__RISCV_FEATURE_VECTOR == 1))
 #define RISCV_VECTOR                  1
-#include <riscv_vector.h> 
+#include <riscv_vector.h>
 #endif
 
 #include <string.h>
@@ -87,15 +86,15 @@ extern "C"
 
 /* evaluate RISCV DSP feature */
 #if (defined (__RISCV_FEATURE_DSP) && (__RISCV_FEATURE_DSP == 1))
-  #define RISCV_MATH_DSP                   1
+#define RISCV_MATH_DSP                   1
 #endif
 
 
 
 
 #if (__RISCV_FEATURE_MVE & 2)
-    #define RISCV_MATH_MVEF
-       #define RISCV_MATH_MVE_FLOAT16
+#define RISCV_MATH_MVEF
+#define RISCV_MATH_MVE_FLOAT16
 #endif
 
 
@@ -104,35 +103,35 @@ extern "C"
 
 
 #if   defined ( __GNUC__ )
-  #define LOW_OPTIMIZATION_ENTER \
-       __attribute__(( optimize("-O1") ))
-  #define LOW_OPTIMIZATION_EXIT
-  #define IAR_ONLY_LOW_OPTIMIZATION_ENTER
-  #define IAR_ONLY_LOW_OPTIMIZATION_EXIT
+#define LOW_OPTIMIZATION_ENTER \
+    __attribute__(( optimize("-O1") ))
+#define LOW_OPTIMIZATION_EXIT
+#define IAR_ONLY_LOW_OPTIMIZATION_ENTER
+#define IAR_ONLY_LOW_OPTIMIZATION_EXIT
 
 #elif defined ( __TI_RISCV__ )
-  #define LOW_OPTIMIZATION_ENTER
-  #define LOW_OPTIMIZATION_EXIT
-  #define IAR_ONLY_LOW_OPTIMIZATION_ENTER
-  #define IAR_ONLY_LOW_OPTIMIZATION_EXIT
+#define LOW_OPTIMIZATION_ENTER
+#define LOW_OPTIMIZATION_EXIT
+#define IAR_ONLY_LOW_OPTIMIZATION_ENTER
+#define IAR_ONLY_LOW_OPTIMIZATION_EXIT
 
 #elif defined ( __CSMC__ )
-  #define LOW_OPTIMIZATION_ENTER
-  #define LOW_OPTIMIZATION_EXIT
-  #define IAR_ONLY_LOW_OPTIMIZATION_ENTER
-  #define IAR_ONLY_LOW_OPTIMIZATION_EXIT
+#define LOW_OPTIMIZATION_ENTER
+#define LOW_OPTIMIZATION_EXIT
+#define IAR_ONLY_LOW_OPTIMIZATION_ENTER
+#define IAR_ONLY_LOW_OPTIMIZATION_EXIT
 
 #elif defined ( __TASKING__ )
-  #define LOW_OPTIMIZATION_ENTER
-  #define LOW_OPTIMIZATION_EXIT
-  #define IAR_ONLY_LOW_OPTIMIZATION_ENTER
-  #define IAR_ONLY_LOW_OPTIMIZATION_EXIT
+#define LOW_OPTIMIZATION_ENTER
+#define LOW_OPTIMIZATION_EXIT
+#define IAR_ONLY_LOW_OPTIMIZATION_ENTER
+#define IAR_ONLY_LOW_OPTIMIZATION_EXIT
 
 #elif defined ( _MSC_VER ) || defined(__GNUC_PYTHON__)
-      #define LOW_OPTIMIZATION_ENTER
-      #define LOW_OPTIMIZATION_EXIT
-      #define IAR_ONLY_LOW_OPTIMIZATION_ENTER
-      #define IAR_ONLY_LOW_OPTIMIZATION_EXIT
+#define LOW_OPTIMIZATION_ENTER
+#define LOW_OPTIMIZATION_EXIT
+#define IAR_ONLY_LOW_OPTIMIZATION_ENTER
+#define IAR_ONLY_LOW_OPTIMIZATION_EXIT
 #endif
 
 
@@ -150,7 +149,7 @@ extern "C"
 #elif defined ( _MSC_VER )
 
 #else
-  #error Unknown compiler
+#error Unknown compiler
 #endif
 
 #ifdef   __cplusplus
@@ -159,43 +158,42 @@ extern "C"
 
 
 #ifdef   __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
- /**
-   * @brief 8-bit fractional data type in 1.7 format.
-   */
-  typedef int8_t q7_t;
+/**
+  * @brief 8-bit fractional data type in 1.7 format.
+  */
+typedef int8_t q7_t;
 
-  /**
-   * @brief 16-bit fractional data type in 1.15 format.
-   */
-  typedef int16_t q15_t;
+/**
+ * @brief 16-bit fractional data type in 1.15 format.
+ */
+typedef int16_t q15_t;
 
-  /**
-   * @brief 32-bit fractional data type in 1.31 format.
-   */
-  typedef int32_t q31_t;
+/**
+ * @brief 32-bit fractional data type in 1.31 format.
+ */
+typedef int32_t q31_t;
 
-  /**
-   * @brief 64-bit fractional data type in 1.63 format.
-   */
-  typedef int64_t q63_t;
+/**
+ * @brief 64-bit fractional data type in 1.63 format.
+ */
+typedef int64_t q63_t;
 
-  /**
-   * @brief 32-bit floating-point type definition.
-   */
-  typedef float float32_t;
+/**
+ * @brief 32-bit floating-point type definition.
+ */
+typedef float float32_t;
 
-  /**
-   * @brief 64-bit floating-point type definition.
-   */
-  typedef double float64_t;
+/**
+ * @brief 64-bit floating-point type definition.
+ */
+typedef double float64_t;
 
-  /**
-   * @brief vector types
-   */
+/**
+ * @brief vector types
+ */
 
 
 
@@ -236,15 +234,14 @@ extern "C"
 #define Q15_ABSMIN   ((q15_t)0)
 #define Q7_ABSMIN    ((q7_t)0)
 
-  /* Dimension C vector space */
-  #define CMPLX_DIM 2
+/* Dimension C vector space */
+#define CMPLX_DIM 2
 
-  /**
-   * @brief Error status returned by some functions in the library.
-   */
+/**
+ * @brief Error status returned by some functions in the library.
+ */
 
-  typedef enum
-  {
+typedef enum {
     RISCV_MATH_SUCCESS                 =  0,        /**< No error */
     RISCV_MATH_ARGUMENT_ERROR          = -1,        /**< One or more arguments are incorrect */
     RISCV_MATH_LENGTH_ERROR            = -2,        /**< Length of data buffer is incorrect */
@@ -253,7 +250,7 @@ extern "C"
     RISCV_MATH_SINGULAR                = -5,        /**< Input matrix is singular and cannot be inverted */
     RISCV_MATH_TEST_FAILURE            = -6,        /**< Test Failed */
     RISCV_MATH_DECOMPOSITION_FAILURE   = -7         /**< Decomposition Failed */
-  } riscv_status;
+} riscv_status;
 
 
 #ifdef   __cplusplus

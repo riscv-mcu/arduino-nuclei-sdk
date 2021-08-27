@@ -32,8 +32,7 @@
 #include "riscv_helium_utils.h"
 
 #ifdef   __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #if defined(RISCV_FLOAT16_SUPPORTED)

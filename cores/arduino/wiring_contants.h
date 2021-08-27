@@ -5,22 +5,22 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-  #include <algorithm>
-  using std::min;
-  using std::max;
+#include <algorithm>
+using std::min;
+using std::max;
 #else // C
-  #include <stdlib.h>
-  #ifndef abs
-    #define abs(x) ((x)>0?(x):-(x))
-  #endif // abs
+#include <stdlib.h>
+#ifndef abs
+#define abs(x) ((x)>0?(x):-(x))
+#endif // abs
 
-  #ifndef min
-    #define min(a,b) ((a)<(b)?(a):(b))
-  #endif // min
+#ifndef min
+#define min(a,b) ((a)<(b)?(a):(b))
+#endif // min
 
-  #ifndef max
-    #define max(a,b) ((a)>(b)?(a):(b))
-  #endif // max
+#ifndef max
+#define max(a,b) ((a)>(b)?(a):(b))
+#endif // max
 
 #endif // __cplusplus
 
@@ -45,8 +45,8 @@
 #define DISPLAY             0x1
 
 enum BitOrder {
-  LSBFIRST = 0,
-  MSBFIRST = 1
+    LSBFIRST = 0,
+    MSBFIRST = 1
 };
 
 #define LOW                 0x0
@@ -78,13 +78,13 @@ enum BitOrder {
 #define bit(b) (1UL << (b))
 //macro added for compatibility
 #ifndef _BV
-  #define _BV(bit) (1 << (bit))
+#define _BV(bit) (1 << (bit))
 #endif
 #ifndef cbi
-  #define cbi(reg, bitmask) *reg &= ~bitmask
+#define cbi(reg, bitmask) *reg &= ~bitmask
 #endif
 #ifndef sbi
-  #define sbi(reg, bitmask) *reg |= bitmask
+#define sbi(reg, bitmask) *reg |= bitmask
 #endif
 
 typedef unsigned int word;
