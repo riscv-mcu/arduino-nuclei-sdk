@@ -1,4 +1,4 @@
-#include "tone.h"
+#include "Tone.h"
 
 #ifdef __cplusplus
 extern "C" {
